@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    :root { --bg:#16181d; --panel:#1e2129; --border:rgba(255,255,255,.09); --text:#e7e9ee; --muted:#9aa0ab; --primary:#8b5cf6; --primary2:#ec4899; }
+    * { box-sizing:border-box; }
+    body { margin:0; width:380px; max-height:560px; overflow:hidden; display:flex; flex-direction:column; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:var(--bg); color:var(--text); }
+    .head { padding:12px 14px 10px; }
+    .brand { display:flex; align-items:center; gap:9px; margin-bottom:10px; }
+    .brand svg { display:block; filter:drop-shadow(0 2px 7px rgba(139,92,246,.5)); }
+    .brand b { font-size:16px; font-weight:800; letter-spacing:-.02em; }
+    .brand b i { font-style:normal; background:linear-gradient(120deg,var(--primary),var(--primary2)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+    .tabs { display:flex; gap:6px; margin-bottom:8px; }
+    .tab { flex:1; padding:6px; border:1px solid var(--border); border-radius:8px; background:var(--panel); color:var(--muted); font-weight:600; font-size:12px; cursor:pointer; }
+    .tab.on { color:#fff; border-color:transparent; background:linear-gradient(135deg,var(--primary),var(--primary2)); }
+    .searchrow { display:flex; gap:6px; }
+    .searchrow input { flex:1; min-width:0; padding:9px 11px; border:1px solid var(--border); border-radius:9px; background:var(--panel); color:var(--text); font-size:13px; outline:none; }
+    .searchrow input:focus { border-color:var(--primary); }
+    .searchrow button { padding:0 14px; border:none; border-radius:9px; background:linear-gradient(135deg,var(--primary),var(--primary2)); color:#fff; font-weight:700; font-size:13px; cursor:pointer; }
+    .grid { flex:1; overflow-y:auto; padding:0 14px 14px; display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .card { position:relative; border:1px solid var(--border); border-radius:10px; overflow:hidden; background:var(--panel); }
+    .card img { width:100%; height:96px; object-fit:cover; display:block; background:#0b1020; }
+    .card .ov { position:absolute; inset:0; background:rgba(10,12,20,.72); opacity:0; transition:opacity .12s; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; }
+    .card:hover .ov { opacity:1; }
+    .card .ov button { border:none; border-radius:7px; padding:6px 10px; font-size:11px; font-weight:700; cursor:pointer; width:80%; }
+    .b-edit { background:linear-gradient(135deg,var(--primary),var(--primary2)); color:#fff; }
+    .b-open { background:rgba(255,255,255,.14); color:#fff; }
+    .card .cred { position:absolute; bottom:0; left:0; right:0; font-size:9px; color:#cbd0da; background:linear-gradient(transparent,rgba(0,0,0,.72)); padding:9px 6px 3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; pointer-events:none; }
+    .card .vbadge { position:absolute; top:5px; left:5px; background:rgba(0,0,0,.6); color:#fff; font-size:8px; font-weight:700; padding:2px 5px; border-radius:4px; letter-spacing:.4px; }
+    .msg { grid-column:1 / -1; color:var(--muted); font-size:12px; text-align:center; padding:26px 10px; }
+    .foot { padding:9px 14px; border-top:1px solid var(--border); font-size:11px; color:var(--muted); text-align:center; }
+    .foot a { color:var(--primary); text-decoration:none; }
+    .grid::-webkit-scrollbar { width:8px; } .grid::-webkit-scrollbar-thumb { background:rgba(255,255,255,.12); border-radius:8px; }
+  </style>
+</head>
+<body>
+  <div class="head">
+    <div class="brand">
+      <svg width="26" height="26" viewBox="0 0 64 64">
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#a78bfa" /><stop offset="0.5" stop-color="#8b5cf6" /><stop offset="1" stop-color="#ec4899" />
+            <animateTransform attributeName="gradientTransform" type="rotate" from="0 32 32" to="360 32 32" dur="12s" repeatCount="indefinite" />
+          </linearGradient>
+        </defs>
+        <circle cx="32" cy="32" r="26" fill="none" stroke="url(#g)" stroke-width="3.4" />
+        <circle cx="32" cy="32" r="26" fill="none" stroke="#fff" stroke-opacity="0.85" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="22.7 140.7">
+          <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="5s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="32" cy="32" r="4" fill="url(#g)"><animate attributeName="r" values="3.4;5;3.4" dur="2.6s" repeatCount="indefinite" /></circle>
+      </svg>
+      <b>Pik<i>Finder</i></b>
+    </div>
+    <div class="tabs">
+      <button class="tab on" data-type="photo">Photos</button>
+      <button class="tab" data-type="video">Videos</button>
+    </div>
+    <div class="searchrow">
+      <input id="q" type="text" placeholder="Search free stock photos…" />
+      <button id="go">Search</button>
+    </div>
+  </div>
+  <div id="grid" class="grid"><div class="msg">Search millions of free, copyright-safe photos & videos.</div></div>
+  <div class="foot">Powered by <a href="https://www.pikfinder.com" target="_blank" rel="noopener">PikFinder</a> · free &amp; copyright-safe</div>
+  <script src="popup.js"></script>
+</body>
+</html>

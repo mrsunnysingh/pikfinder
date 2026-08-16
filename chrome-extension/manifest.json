@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "PikFinder — Free Stock Images & Video",
+  "version": "1.0.0",
+  "description": "Search millions of free, copyright-safe photos, videos and icons — and edit any image in PikFinder Studio — from anywhere in your browser.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "PikFinder — search free images"
+  },
+  "permissions": ["contextMenus"],
+  "host_permissions": ["https://www.pikfinder.com/*"],
+  "background": { "service_worker": "background.js" }
+}

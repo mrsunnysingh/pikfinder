@@ -1,0 +1,13 @@
+{
+  "name": "PikFinder — Free Stock Media",
+  "id": "1663285303127319860",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma", "figjam"],
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": ["*"],
+    "reasoning": "Searches PikFinder for free, copyright-safe stock photos and videos and loads their previews so you can insert them onto the canvas."
+  }
+}

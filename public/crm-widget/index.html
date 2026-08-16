@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Document Generator</title>
+  <script src="https://live.zwidgets.com/js-sdk/1.2/ZohoEmbededAppSDK.min.js"></script>
+  <link rel="stylesheet" href="css/widget.css" />
+</head>
+<body>
+  <div class="pf-wrap">
+    <header class="pf-head">
+      <div class="pf-brand-row">
+        <span class="pf-logo" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="dg" x1="4" y1="3" x2="20" y2="21" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#6d28d9"/>
+            </linearGradient></defs>
+            <rect x="4" y="3" width="16" height="18" rx="2.5" fill="url(#dg)"/>
+            <line x1="8" y1="8"  x2="16" y2="8"  stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+            <line x1="8" y1="12" x2="16" y2="12" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+            <line x1="8" y1="16" x2="13" y2="16" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="pf-brand-text">Document Generator</span>
+      </div>
+      <div class="pf-sub">Upload a template, place fields, and save the finished document to this record</div>
+    </header>
+
+    <div id="pf-status" class="pf-status" hidden></div>
+
+    <details class="pf-help" open>
+      <summary>How it works</summary>
+      <ol class="pf-help-steps">
+        <li><strong>New template.</strong> Upload your document design (PNG / JPG / PDF) or start from a blank page.</li>
+        <li><strong>Place fields.</strong> Click on the design to drop a field, then pick which CRM field it maps to (the list is pulled from this module). Add a logo too if you like.</li>
+        <li><strong>Save &amp; use.</strong> Save the template (kept for next time). Then <em>Pull from record</em> to fill it, and <em>Save to record</em> to attach the finished document.</li>
+      </ol>
+    </details>
+
+    <div id="pf-record" class="pf-record">No record detected yet…</div>
+
+    <!-- Saved templates + file type -->
+    <div class="pf-row">
+      <label class="pf-field">
+        <span>Saved templates</span>
+        <select id="pf-template"><!-- populated by JS --></select>
+      </label>
+      <label class="pf-field">
+        <span>Output</span>
+        <select id="pf-filetype">
+          <option value="png">PNG image</option>
+          <option value="pdf">PDF</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="pf-tpl-tools">
+      <button id="pf-new-tpl" class="pf-btn pf-btn-primary" type="button">＋ New template</button>
+      <button id="pf-del-tpl" class="pf-btn pf-btn-ghost" type="button" hidden>Delete template</button>
+    </div>
+
+    <!-- Builder -->
+    <div id="pf-builder" class="pf-builder" hidden>
+      <div class="pf-builder-head">
+        <strong>New template</strong>
+        <button id="pf-builder-close" class="pf-x" type="button" aria-label="Close">×</button>
+      </div>
+      <label class="pf-field"><span>Template name</span><input id="pf-b-name" placeholder="e.g. Welcome Letter" /></label>
+
+      <div class="pf-b-source">
+        <label class="pf-field pf-b-source-file"><span>Upload design (PNG / JPG / PDF)</span><input id="pf-b-image" type="file" accept="image/*,application/pdf" /></label>
+        <button id="pf-b-blank" class="pf-btn pf-btn-ghost" type="button">Use blank page</button>
+      </div>
+
+      <div class="pf-b-stage-hint" id="pf-b-hint" hidden>Click on the design to place the selected field.</div>
+      <div id="pf-b-stage" class="pf-b-stage" hidden><img id="pf-b-img" alt="" /><div id="pf-b-marks"></div></div>
+
+      <div class="pf-b-fields">
+        <div class="pf-b-fields-head">
+          <span>Fields</span>
+          <div style="display:flex; gap:8px;">
+            <button id="pf-b-addfield" class="pf-btn pf-btn-ghost pf-btn-sm" type="button">＋ Add field</button>
+            <button id="pf-b-addlogo" class="pf-btn pf-btn-ghost pf-btn-sm" type="button">＋ Add logo</button>
+          </div>
+        </div>
+        <div id="pf-b-list" class="pf-b-list"></div>
+      </div>
+      <input id="pf-b-logofile" type="file" accept="image/*" hidden />
+
+      <div class="pf-actions">
+        <button id="pf-b-cancel" class="pf-btn pf-btn-ghost" type="button">Cancel</button>
+        <button id="pf-b-save" class="pf-btn pf-btn-primary" type="button">Save template</button>
+      </div>
+    </div>
+
+    <div id="pf-fields" class="pf-fields"></div>
+
+    <div class="pf-preview-wrap">
+      <div class="pf-preview-title">Preview</div>
+      <div id="pf-preview" class="pf-preview"></div>
+    </div>
+
+    <div class="pf-actions pf-actions-wrap">
+      <button id="pf-refresh" class="pf-btn pf-btn-ghost" type="button">Pull from record</button>
+      <button id="pf-copy" class="pf-btn pf-btn-ghost" type="button">Copy for email</button>
+      <button id="pf-attach" class="pf-btn pf-btn-primary" type="button">Save to record</button>
+    </div>
+    <p class="pf-note">Tip: after saving to the record, add it to an email via <strong>Attachments → From Records</strong>. Or use <strong>Copy for email</strong> and paste it into the email body.</p>
+  </div>
+
+  <script src="js/render.js"></script>
+  <script src="js/widget.js"></script>
+</body>
+</html>

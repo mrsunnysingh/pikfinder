@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<style>
+  :root{
+    --bg:#17181d; --bg2:#1b1d24; --panel:#22242c; --panel2:#272a33;
+    --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+    --text:#eceef3; --muted:#9aa0ac; --faint:#6c7280;
+    --brand:#8b5cf6; --brand2:#ec4899; --brand-soft:rgba(139,92,246,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:
+      radial-gradient(120% 60% at 100% 0%, rgba(139,92,246,.10), transparent 60%),
+      radial-gradient(90% 50% at 0% 100%, rgba(236,72,153,.08), transparent 55%),
+      var(--bg);
+    color:var(--text);font-size:13px;display:flex;flex-direction:column;overflow:hidden;
+  }
+
+  /* header */
+  .top{display:flex;align-items:center;gap:10px;padding:13px 14px 12px}
+  .brand{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+  .brand .name{font-size:14.5px;font-weight:700;letter-spacing:-.01em;line-height:1.1}
+  .brand .sub{display:block;font-size:10.5px;color:var(--muted);font-weight:500;margin-top:1px}
+  .hbtn{width:26px;height:26px;border:none;background:transparent;color:var(--faint);border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
+  .hbtn:hover{background:var(--panel);color:var(--text)}
+
+  /* tabs (underline style) */
+  .tabs{display:flex;gap:20px;padding:0 16px;border-bottom:1px solid var(--line)}
+  .tab{position:relative;padding:9px 2px 11px;border:none;background:none;font-family:inherit;font-size:13px;font-weight:600;color:var(--faint);cursor:pointer;transition:color .15s}
+  .tab:hover{color:var(--muted)}
+  .tab.on{color:var(--text)}
+  .tab.on::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--brand),var(--brand2))}
+
+  /* search */
+  .search-wrap{padding:12px 14px 6px}
+  .search{display:flex;align-items:center;gap:9px;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:10px 11px;transition:border-color .15s,box-shadow .15s}
+  .search:focus-within{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+  .search .mag{flex-shrink:0;color:var(--faint)}
+  .search input{flex:1;min-width:0;border:none;outline:none;background:none;font-family:inherit;font-size:13px;color:var(--text)}
+  .search input::placeholder{color:var(--faint)}
+  .filt{flex-shrink:0;width:26px;height:26px;border:none;background:transparent;color:var(--faint);border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
+  .filt:hover,.filt.on{background:var(--brand-soft);color:var(--brand)}
+
+  /* provider chips */
+  .providers{display:flex;gap:7px;padding:8px 14px 12px;overflow-x:auto;scrollbar-width:none}
+  .providers::-webkit-scrollbar{display:none}
+  .pchip{display:inline-flex;align-items:center;gap:6px;flex-shrink:0;padding:6px 11px;border-radius:9px;border:1px solid var(--line2);background:var(--panel);color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;transition:.15s;white-space:nowrap}
+  .pchip:hover{border-color:var(--brand);color:var(--text)}
+  .pchip .g{width:15px;height:15px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#fff;flex-shrink:0}
+  .pchip.on{background:linear-gradient(135deg,var(--brand),#7c3aed);border-color:transparent;color:#fff;box-shadow:0 4px 12px rgba(139,92,246,.32)}
+  .g-all{background:linear-gradient(135deg,var(--brand),var(--brand2))}
+  .g-uns{background:#111}
+  .g-pex{background:#05a081}
+  .g-pix{background:#2ec66d}
+  .g-wik{background:#36c;color:#fff}
+
+  /* results */
+  .scroll{flex:1;overflow-y:auto;padding:2px 14px 14px}
+  .scroll::-webkit-scrollbar{width:8px}
+  .scroll::-webkit-scrollbar-thumb{background:var(--line2);border-radius:8px}
+  .grid{columns:2;column-gap:10px}
+  .card{position:relative;break-inside:avoid;margin-bottom:10px;border-radius:12px;overflow:hidden;background:var(--panel);border:1px solid var(--line);cursor:pointer;transition:transform .12s,box-shadow .15s}
+  .card:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.35)}
+  .card img{width:100%;display:block}
+  .card .ov{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:10px;background:linear-gradient(to top,rgba(10,8,18,.62),transparent 55%);opacity:0;transition:opacity .16s}
+  .card:hover .ov{opacity:1}
+  .card .ins{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:20px;background:linear-gradient(135deg,var(--brand),#7c3aed);color:#fff;font-weight:700;font-size:12px;box-shadow:0 3px 10px rgba(0,0,0,.3)}
+  .card.busy .ov{opacity:1;background:rgba(20,16,32,.55)}
+  .card.busy .ins{background:#fff;color:var(--brand)}
+  .cred{position:absolute;top:8px;left:8px;padding:2px 8px;border-radius:6px;background:rgba(10,8,18,.6);color:#fff;font-size:9.5px;font-weight:600;backdrop-filter:blur(4px);max-width:82%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .vbadge{position:absolute;top:8px;right:8px;padding:2px 8px;border-radius:6px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;font-size:9px;font-weight:800;letter-spacing:.05em}
+
+  /* states */
+  .state{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:9px;padding:44px 20px;color:var(--muted)}
+  .state .ic{width:52px;height:52px;border-radius:15px;background:var(--brand-soft);color:var(--brand);display:flex;align-items:center;justify-content:center}
+  .state b{font-size:14px;color:var(--text);font-weight:700}
+  .state p{font-size:12px;color:var(--faint);max-width:230px;line-height:1.55}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:4px}
+  .chip{padding:5px 12px;border-radius:20px;background:var(--panel);border:1px solid var(--line2);font-size:11.5px;color:var(--muted);cursor:pointer;transition:.15s}
+  .chip:hover{border-color:var(--brand);color:var(--brand)}
+  .sk{break-inside:avoid;margin-bottom:10px;border-radius:12px;background:linear-gradient(90deg,#22242c 25%,#2b2e38 37%,#22242c 63%);background-size:400% 100%;animation:sh 1.3s ease-in-out infinite}
+  @keyframes sh{0%{background-position:100% 0}100%{background-position:-100% 0}}
+
+  /* icon grid */
+  .igrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .itile{position:relative;aspect-ratio:1;border-radius:11px;background:var(--panel);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .12s,border-color .15s,background .15s}
+  .itile:hover{transform:translateY(-1px);border-color:var(--brand);background:var(--panel2)}
+  .itile img{width:26px;height:26px;filter:brightness(0) invert(.92)}
+  .itile.busy{border-color:var(--brand);background:var(--brand-soft)}
+  .iskel{aspect-ratio:1;border-radius:11px;background:linear-gradient(90deg,#22242c 25%,#2b2e38 37%,#22242c 63%);background-size:400% 100%;animation:sh 1.3s ease-in-out infinite}
+
+  .foot{padding:8px 14px;border-top:1px solid var(--line);font-size:10.5px;color:var(--faint);text-align:center}
+  .foot a{color:var(--brand);text-decoration:none;font-weight:600}
+
+  /* pro / upgrade bar */
+  .probar{display:flex;align-items:center;gap:8px;padding:8px 14px;border-top:1px solid var(--line);font-size:11.5px}
+  .probar .stat{flex:1;color:var(--muted)}
+  .probar .stat b{color:var(--text)}
+  .probar .pro-on{color:var(--brand);font-weight:700}
+  .probar .up{border:none;cursor:pointer;font-family:inherit;font-size:11.5px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--brand),#7c3aed);border-radius:8px;padding:6px 12px}
+  .probar .up:hover{filter:brightness(1.08)}
+
+  /* pro panel */
+  .pro-panel{position:absolute;inset:0;background:rgba(10,8,18,.72);backdrop-filter:blur(3px);display:none;align-items:flex-end;z-index:20}
+  .pro-panel.open{display:flex}
+  .pro-card{width:100%;background:var(--bg2);border-top:1px solid var(--line2);border-radius:16px 16px 0 0;padding:18px 16px 16px;box-shadow:0 -10px 30px rgba(0,0,0,.4)}
+  .pro-card h3{font-size:15px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:7px}
+  .pro-card .tag{font-size:8px;font-weight:800;letter-spacing:.06em;color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand2));padding:2px 6px;border-radius:5px}
+  .pro-card p{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:12px}
+  .pro-card ul{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:6px}
+  .pro-card li{font-size:12px;color:var(--text);display:flex;align-items:center;gap:8px}
+  .pro-card li svg{color:var(--brand);flex-shrink:0}
+  .pro-buy{display:block;text-align:center;text-decoration:none;font-weight:700;font-size:13px;color:#fff;background:linear-gradient(135deg,var(--brand),#7c3aed);border-radius:10px;padding:11px;margin-bottom:12px}
+  .pro-sep{display:flex;align-items:center;gap:8px;color:var(--faint);font-size:10.5px;margin-bottom:10px}
+  .pro-sep::before,.pro-sep::after{content:"";flex:1;height:1px;background:var(--line)}
+  .pro-key{display:flex;gap:7px}
+  .pro-key input{flex:1;min-width:0;background:var(--panel);border:1px solid var(--line2);border-radius:9px;padding:9px 10px;color:var(--text);font-family:inherit;font-size:12px;outline:none}
+  .pro-key input:focus{border-color:var(--brand)}
+  .pro-key button{border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:12px;color:var(--text);background:var(--panel2);border:1px solid var(--line2);border-radius:9px;padding:9px 13px}
+  .pro-key button:hover{border-color:var(--brand);color:var(--brand)}
+  .pro-help{font-size:10.5px;color:var(--faint);margin-top:8px;text-align:center}
+  .pro-help a{color:var(--brand);text-decoration:none}
+  .pro-msg{font-size:11px;margin-top:8px;text-align:center;min-height:14px}
+  .pro-msg.err{color:#f87171}.pro-msg.ok{color:#34d399}
+  .pro-x{position:absolute;top:-34px;right:4px;width:28px;height:28px;border:none;background:rgba(255,255,255,.12);color:#fff;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}
+</style>
+</head>
+<body>
+  <div class="top">
+    <svg width="30" height="30" viewBox="0 0 64 64" role="img" aria-label="PikFinder">
+      <defs>
+        <linearGradient id="pg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#a78bfa"/><stop offset=".5" stop-color="#8b5cf6"/><stop offset="1" stop-color="#ec4899"/>
+          <animateTransform attributeName="gradientTransform" type="rotate" from="0 32 32" to="360 32 32" dur="12s" repeatCount="indefinite"/>
+        </linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="26" fill="none" stroke="url(#pg)" stroke-width="3.4"/>
+      <circle cx="32" cy="32" r="26" fill="none" stroke="#c9b8f7" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="22.7 140.7">
+        <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="5s" repeatCount="indefinite"/>
+      </circle>
+      <g fill="none" stroke="url(#pg)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+        <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="26s" repeatCount="indefinite"/>
+        <path d="M36.27 22.41 L42.44 30.9 L38.17 40.49 L27.73 41.59 L21.56 33.1 L25.83 23.51 Z"/>
+        <line x1="32" y1="7" x2="36.27" y2="22.41"/><line x1="53.65" y1="19.5" x2="42.44" y2="30.9"/><line x1="53.65" y1="44.5" x2="38.17" y2="40.49"/><line x1="32" y1="57" x2="27.73" y2="41.59"/><line x1="10.35" y1="44.5" x2="21.56" y2="33.1"/><line x1="10.35" y1="19.5" x2="25.83" y2="23.51"/>
+      </g>
+      <circle cx="32" cy="32" r="4" fill="url(#pg)"><animate attributeName="r" values="3.4;5;3.4" dur="2.6s" repeatCount="indefinite"/></circle>
+    </svg>
+    <div class="brand">
+      <span class="name">PikFinder</span>
+      <span class="sub">Free Stock Media</span>
+    </div>
+    <button class="hbtn" id="menu" title="About">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg>
+    </button>
+    <button class="hbtn" id="close" title="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-type="photo">Photos</button>
+    <button class="tab" data-type="video">Videos</button>
+    <button class="tab" data-type="icon">Icons</button>
+  </div>
+
+  <div class="search-wrap">
+    <div class="search">
+      <svg class="mag" width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="q" placeholder="Search free stock photos…" autofocus />
+      <button class="filt" id="filt" title="Providers">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M7 12h10M10 18h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="providers" id="providers">
+    <button class="pchip on" data-src="all"><span class="g g-all">✦</span>All</button>
+    <button class="pchip" data-src="unsplash"><span class="g g-uns">U</span>Unsplash</button>
+    <button class="pchip" data-src="pexels"><span class="g g-pex">P</span>Pexels</button>
+    <button class="pchip" data-src="pixabay"><span class="g g-pix">px</span>Pixabay</button>
+    <button class="pchip" data-src="wikimedia"><span class="g g-wik">W</span>Wikimedia</button>
+  </div>
+
+  <div class="scroll" id="scroll">
+    <div class="state" id="empty">
+      <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8.5" cy="10" r="1.5" fill="currentColor"/><path d="m5 17 4-4 3 3 3-3 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <b>Find the perfect image</b>
+      <p>Search millions of free, copyright-safe photos and videos, then click to drop one onto your canvas.</p>
+      <div class="chips">
+        <span class="chip">nature</span><span class="chip">office</span><span class="chip">gradient</span><span class="chip">people</span><span class="chip">food</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="probar">
+    <span class="stat" id="pf-stat">Loading…</span>
+    <button class="up" id="pf-up">Upgrade to Pro</button>
+  </div>
+
+  <div class="pro-panel" id="pf-panel">
+    <div class="pro-card">
+      <button class="pro-x" id="pf-close-panel" aria-label="Close">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <h3>PikFinder <span class="tag">PRO</span></h3>
+      <p>You’ve used your free inserts for today. Go Pro for unlimited assets and more.</p>
+      <ul>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Unlimited photo, video &amp; icon inserts</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>All of pikfinder.com — Studio, PDF tools &amp; more</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Support an indie maker 💜</li>
+      </ul>
+      <a class="pro-buy" id="pf-buy" href="https://www.pikfinder.com/billing" target="_blank" rel="noopener">Get PikFinder Pro →</a>
+      <div class="pro-sep">already Pro? activate here</div>
+      <div class="pro-key">
+        <input id="pf-key" placeholder="Paste your Pro key" />
+        <button id="pf-activate">Activate</button>
+      </div>
+      <div class="pro-msg" id="pf-msg"></div>
+      <div class="pro-help">Find your key in <a href="https://www.pikfinder.com/settings" target="_blank" rel="noopener">PikFinder → Settings</a></div>
+    </div>
+  </div>
+
+<script>
+  var BASE = 'https://www.pikfinder.com';
+  var type = 'photo';
+  var source = 'all';
+  var scroll = document.getElementById('scroll');
+  var input = document.getElementById('q');
+  var seq = 0;
+
+  function esc(s){ return (s||'').replace(/[&<>"]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function showState(html){ scroll.innerHTML = '<div class="state">'+html+'</div>'; }
+
+  // Empty (no-query) state, tailored to the active tab.
+  function showEmpty(){
+    var isIcon = type==='icon';
+    var ic = isIcon
+      ? '<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>'
+      : '<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8.5" cy="10" r="1.5" fill="currentColor"/><path d="m5 17 4-4 3 3 3-3 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    var title = isIcon ? 'Find the perfect icon' : 'Find the perfect image';
+    var desc = isIcon
+      ? 'Search thousands of free, open-source vector icons, then click to drop one onto your canvas.'
+      : 'Search millions of free, copyright-safe photos and videos, then click to drop one onto your canvas.';
+    var picks = isIcon
+      ? ['home','arrow','user','search','heart','star']
+      : ['nature','office','gradient','people','food'];
+    var chips = picks.map(function(p){ return '<span class="chip">'+p+'</span>'; }).join('');
+    scroll.innerHTML =
+      '<div class="state"><div class="ic">'+ic+'</div>'+
+      '<b>'+title+'</b><p>'+desc+'</p>'+
+      '<div class="chips">'+chips+'</div></div>';
+  }
+
+  function skeletons(){
+    var h='<div class="grid">';
+    var hs=[150,110,170,130,120,160];
+    for(var i=0;i<6;i++){ h+='<div class="sk" style="height:'+hs[i]+'px"></div>'; }
+    h+='</div>';
+    scroll.innerHTML=h;
+  }
+
+  function render(items){
+    if(!items.length){ showState('<b>No results</b><p>Try a different search term'+(source!=='all'?' or switch to All providers':'')+'.</p>'); return; }
+    var g=document.createElement('div'); g.className='grid';
+    items.forEach(function(r){
+      var url = r.thumbnail || r.preview;
+      var card=document.createElement('div'); card.className='card';
+      card.innerHTML =
+        '<img loading="lazy" src="'+esc(url)+'" alt="'+esc(r.title)+'"/>'+
+        (r.type==='video'?'<span class="vbadge">VIDEO</span>':'')+
+        (r.source?'<span class="cred">'+esc(r.source)+(r.creator?' · '+esc(r.creator):'')+'</span>':'')+
+        '<div class="ov"><span class="ins">'+
+          '<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>'+
+          'Insert</span></div>';
+      card.onclick=function(){ insert(r, card); };
+      g.appendChild(card);
+    });
+    scroll.innerHTML=''; scroll.appendChild(g);
+  }
+
+  function search(){
+    var q=(input.value||'').trim();
+    if(!q){ showState('<b>Type to search</b><p>Enter a keyword above to find free '+(type==='icon'?'icons':'media')+'.</p>'); return; }
+    if(type==='icon'){ searchIcons(q); return; }
+    var my=++seq;
+    skeletons();
+    // Fetch across all providers, then filter client-side by the chosen source so
+    // the provider chips work on both Photos and Videos.
+    fetch(BASE+'/api/search?q='+encodeURIComponent(q)+'&type='+type+'&per_page=40')
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(my!==seq) return;
+        var res=(d&&d.results)||[];
+        if(source!=='all'){
+          res=res.filter(function(x){ return (x.source||'').toLowerCase().indexOf(source)>-1; });
+        }
+        render(res);
+      })
+      .catch(function(){ if(my!==seq) return; showState('<b>Search unavailable</b><p>Please check your connection and try again.</p>'); });
+  }
+
+  // ── Icons (Iconify — thousands of open-source icon sets) ────────────────
+  var ICON='https://api.iconify.design';
+  function iconSkeletons(){
+    var h='<div class="igrid">';
+    for(var i=0;i<16;i++){ h+='<div class="iskel"></div>'; }
+    h+='</div>';
+    scroll.innerHTML=h;
+  }
+  function searchIcons(q){
+    var my=++seq; iconSkeletons();
+    fetch(ICON+'/search?query='+encodeURIComponent(q)+'&limit=60')
+      .then(function(r){return r.json();})
+      .then(function(d){ if(my!==seq) return; renderIcons((d&&d.icons)||[]); })
+      .catch(function(){ if(my!==seq) return; showState('<b>Icons unavailable</b><p>Please check your connection and try again.</p>'); });
+  }
+  function renderIcons(names){
+    if(!names.length){ showState('<b>No icons</b><p>Try a simpler term like “home”, “user” or “arrow”.</p>'); return; }
+    var g=document.createElement('div'); g.className='igrid';
+    names.forEach(function(name){
+      var tile=document.createElement('div'); tile.className='itile'; tile.title=name;
+      tile.innerHTML='<img loading="lazy" src="'+esc(ICON+'/'+name+'.svg?height=48')+'" alt="'+esc(name)+'"/>';
+      tile.onclick=function(){ insertIcon(name, tile); };
+      g.appendChild(tile);
+    });
+    scroll.innerHTML=''; scroll.appendChild(g);
+  }
+  function insertIcon(name, tile){
+    if(tile.classList.contains('busy')) return;
+    tile.classList.add('busy');
+    var id='ic'+Date.now();
+    fetch(ICON+'/'+name+'.svg?height=240')
+      .then(function(r){ if(!r.ok) throw 0; return r.text(); })
+      .then(function(svg){
+        parent.postMessage({ pluginMessage:{ type:'insert-svg', id:id, svg:svg, name:name } }, '*');
+      })
+      .catch(function(){ tile.classList.remove('busy'); parent.postMessage({ pluginMessage:{ type:'notify', text:'Could not load that icon — try another.' } }, '*'); });
+  }
+
+  function insert(r, card){
+    if(card.classList.contains('busy')) return;
+    card.classList.add('busy');
+    var src = r.preview || r.thumbnail || r.downloadUrl;
+    var proxied = BASE + '/api/proxy-image?url=' + encodeURIComponent(src);
+    var id = 'i'+Date.now();
+    var img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = function(){
+      try {
+        var MAX = 2400;
+        var scale = Math.min(1, MAX / Math.max(img.naturalWidth || 1, img.naturalHeight || 1));
+        var w = Math.max(1, Math.round((img.naturalWidth || 1) * scale));
+        var h = Math.max(1, Math.round((img.naturalHeight || 1) * scale));
+        var cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+        var ctx = cv.getContext('2d'); ctx.drawImage(img, 0, 0, w, h);
+        cv.toBlob(function(blob){
+          if(!blob){ fail(card); return; }
+          blob.arrayBuffer().then(function(buf){
+            parent.postMessage({ pluginMessage: { type:'insert-image', id:id, bytes: Array.prototype.slice.call(new Uint8Array(buf)), name: r.title || 'PikFinder image' } }, '*');
+          }).catch(function(){ fail(card); });
+        }, 'image/jpeg', 0.92);
+      } catch(e){ fail(card); }
+    };
+    img.onerror = function(){
+      fetch(proxied).then(function(res){ if(!res.ok) throw 0; return res.arrayBuffer(); })
+        .then(function(buf){ parent.postMessage({ pluginMessage: { type:'insert-image', id:id, bytes: Array.prototype.slice.call(new Uint8Array(buf)), name: r.title || 'PikFinder image' } }, '*'); })
+        .catch(function(){ fail(card); });
+    };
+    img.src = proxied;
+  }
+  function fail(card){ card.classList.remove('busy'); parent.postMessage({ pluginMessage:{ type:'notify', text:'Could not load that image — try another.' } }, '*'); }
+
+  // tabs
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.onclick=function(){
+      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+      t.classList.add('on');
+      type=t.getAttribute('data-type');
+      input.placeholder = type==='video' ? 'Search free stock videos…'
+                        : type==='icon' ? 'Search icons…'
+                        : 'Search free stock photos…';
+      // Provider chips only apply to photos/videos.
+      document.getElementById('providers').style.display = type==='icon' ? 'none' : 'flex';
+      if(input.value.trim()) search(); else showEmpty();
+    };
+  });
+  // provider chips
+  document.querySelectorAll('.pchip').forEach(function(p){
+    p.onclick=function(){
+      document.querySelectorAll('.pchip').forEach(function(x){x.classList.remove('on');});
+      p.classList.add('on');
+      source=p.getAttribute('data-src');
+      if(input.value.trim()) search();
+    };
+  });
+  // filter button focuses the provider row
+  document.getElementById('filt').onclick=function(){
+    this.classList.toggle('on');
+    document.getElementById('providers').scrollIntoView({behavior:'smooth',block:'nearest'});
+  };
+  // suggestion chips (empty state)
+  scroll.addEventListener('click', function(e){
+    if(e.target.classList.contains('chip')){ input.value=e.target.textContent; search(); }
+  });
+  input.addEventListener('keydown', function(e){ if(e.key==='Enter') search(); });
+  document.getElementById('menu').onclick=function(){ parent.postMessage({pluginMessage:{type:'notify',text:'PikFinder — free stock media, free to use. pikfinder.com'}},'*'); };
+  document.getElementById('close').onclick=function(){ parent.postMessage({pluginMessage:{type:'close'}},'*'); };
+
+  // ── Pro / upgrade ────────────────────────────────────────────────────────
+  var isPro=false, verifiedThisSession=false;
+  var panel=document.getElementById('pf-panel');
+  var statEl=document.getElementById('pf-stat');
+  var upBtn=document.getElementById('pf-up');
+  var msgEl=document.getElementById('pf-msg');
+  function openPanel(){ panel.classList.add('open'); }
+  function closePanel(){ panel.classList.remove('open'); msgEl.textContent=''; msgEl.className='pro-msg'; }
+  upBtn.onclick=openPanel;
+  document.getElementById('pf-close-panel').onclick=closePanel;
+  panel.onclick=function(e){ if(e.target===panel) closePanel(); };
+
+  function renderPro(){
+    if(isPro){
+      statEl.innerHTML='<span class="pro-on">PikFinder Pro ✓</span> · unlimited inserts';
+      upBtn.style.display='none';
+    } else {
+      var left=Math.max(0, (window.__limit||10)-(window.__used||0));
+      statEl.innerHTML='<b>'+left+'</b> free insert'+(left===1?'':'s')+' left today';
+      upBtn.style.display='';
+    }
+  }
+
+  function activate(key, silent){
+    key=(key||'').trim();
+    if(!key){ if(!silent){ msgEl.textContent='Paste your Pro key first.'; msgEl.className='pro-msg err'; } return; }
+    if(!silent){ msgEl.textContent='Checking…'; msgEl.className='pro-msg'; }
+    fetch(BASE+'/api/razorpay/verify-license',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key:key})})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        var ok=d&&d.pro===true;
+        // Persist in the main thread (survives reloads) — it also notifies the user.
+        parent.postMessage({pluginMessage:{type:'set-pro',pro:ok,key:key,silent:!!silent}},'*');
+        if(ok){ if(!silent){ msgEl.textContent='✅ Pro activated!'; msgEl.className='pro-msg ok'; setTimeout(closePanel,900); } }
+        else if(!silent){ msgEl.textContent='That key isn’t Pro yet. Buy Pro above, then activate.'; msgEl.className='pro-msg err'; }
+      })
+      .catch(function(){ if(!silent){ msgEl.textContent='Couldn’t verify — check your connection.'; msgEl.className='pro-msg err'; } });
+  }
+  document.getElementById('pf-activate').onclick=function(){ activate(document.getElementById('pf-key').value,false); };
+  document.getElementById('pf-key').addEventListener('keydown',function(e){ if(e.key==='Enter') activate(this.value,false); });
+
+  // Ask the main thread for saved Pro/usage state on load.
+  parent.postMessage({pluginMessage:{type:'get-state'}},'*');
+
+  // messages back from the plugin
+  onmessage=function(e){
+    var m=e.data.pluginMessage; if(!m) return;
+    if(m.type==='inserted' || m.type==='insert-error'){
+      document.querySelectorAll('.card.busy,.itile.busy').forEach(function(c){c.classList.remove('busy');});
+    }
+    if(m.type==='state'){
+      isPro=!!m.pro; window.__used=m.used; window.__limit=m.limit; renderPro();
+      // Re-verify a stored key once per session so expiry is respected.
+      if(m.key && !verifiedThisSession){ verifiedThisSession=true; activate(m.key,true); }
+    }
+    if(m.type==='limit'){ openPanel(); }
+  };
+</script>
+</body>
+</html>

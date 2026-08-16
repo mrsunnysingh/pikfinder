@@ -1,0 +1,101 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Change this to your admin account's email to view the /analytics dashboard.
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email == 'admin@pikfinder.com';
+    }
+
+    // Each signed-in user can read/write ONLY their own profile document — but
+    // NEVER the server-managed billing fields (isPremium/subscription/
+    // stripeCustomerId). Those are written only by the Stripe webhook via the
+    // Admin SDK, which bypasses these rules, so a user can't self-grant premium.
+    function noBillingFields(data) {
+      return !data.keys().hasAny(['isPremium', 'subscription', 'stripeCustomerId']);
+    }
+    match /users/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow create: if request.auth != null && request.auth.uid == uid
+                    && noBillingFields(request.resource.data);
+      allow update: if request.auth != null && request.auth.uid == uid
+                    && !request.resource.data.diff(resource.data).affectedKeys()
+                          .hasAny(['isPremium', 'subscription', 'stripeCustomerId']);
+      allow delete: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // A user's own collections (created in the Collections page). Private to them.
+    match /users/{uid}/collections/{collectionId} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Username reservations for global uniqueness. Doc id = the lowercased handle,
+    // value = { uid }. Any signed-in user may READ (to check availability), but a
+    // handle can only be created/updated/deleted by the user who owns it.
+    match /usernames/{name} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && request.resource.data.uid == request.auth.uid;
+      allow update: if request.auth != null && resource.data.uid == request.auth.uid
+                    && request.resource.data.uid == request.auth.uid;
+      allow delete: if request.auth != null && resource.data.uid == request.auth.uid;
+    }
+
+    // Contact form: anyone may SUBMIT; client can never read/edit/delete.
+    match /contact_messages/{docId} {
+      allow create: if request.resource.data.keys().hasOnly(['name', 'email', 'category', 'message', 'timestamp'])
+                    && request.resource.data.name is string && request.resource.data.name.size() > 0
+                    && request.resource.data.email is string
+                    && request.resource.data.category is string
+                    && request.resource.data.message is string
+                    && request.resource.data.message.size() > 0
+                    && request.resource.data.message.size() < 5000;
+      allow read, update, delete: if false;
+    }
+
+    // Waitlist: anyone may JOIN; client can never read/edit/delete.
+    match /waitlist/{docId} {
+      allow create: if request.resource.data.keys().hasOnly(['name', 'email', 'profession', 'useCase', 'source', 'createdAt'])
+                    && request.resource.data.name is string && request.resource.data.name.size() > 0
+                    && request.resource.data.email is string && request.resource.data.email.size() < 200
+                    && request.resource.data.profession is string
+                    && request.resource.data.useCase is string;
+      allow read, update, delete: if false;
+    }
+
+    // Newsletter subscribers: anyone may SUBSCRIBE; client can never read/edit/delete.
+    match /subscribers/{docId} {
+      allow create: if request.resource.data.keys().hasOnly(['email', 'source', 'createdAt'])
+                    && request.resource.data.email is string
+                    && request.resource.data.email.size() > 3
+                    && request.resource.data.email.size() < 200
+                    && request.resource.data.source is string;
+      allow read, update, delete: if false;
+    }
+
+    // Blog posts (CMS = Firebase source). Anyone may READ published posts;
+    // only an admin may create/update/delete. Drafts (published != true) are
+    // hidden from the public.
+    match /blogPosts/{docId} {
+      allow read: if resource.data.published == true || isAdmin();
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Zoho connections: written ONLY by the server (Admin SDK) in the OAuth
+    // callback — it holds the encrypted refresh token. The client must never
+    // read or write these docs (no token exposure, no self-granted connections).
+    // Status/test/disconnect all go through authenticated api/zoho/* endpoints.
+    match /zohoConnections/{uid}/services/{serviceId} {
+      allow read, write: if false;
+    }
+
+    // Analytics events: create-only for everyone (anonymous logging), size-limited.
+    // Reads are admin-only (the /analytics dashboard). For scale, aggregate
+    // server-side instead of reading raw events.
+    match /analytics/{bucket}/events/{docId} {
+      allow create: if bucket in ['searches', 'downloads', 'tools', 'waitlist']
+                    && request.resource.data.keys().size() < 8;
+      allow read: if isAdmin();
+      allow update, delete: if false;
+    }
+  }
+}

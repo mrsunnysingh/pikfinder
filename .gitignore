@@ -61,7 +61,8 @@ yarn-error.log*
 docs/
 
 # ── One-time scripts & debug dumps ───────────────────────────
-scripts/
+scripts/*
+!scripts/prerender.mjs
 css_audit.txt
 studio_dump.txt
 

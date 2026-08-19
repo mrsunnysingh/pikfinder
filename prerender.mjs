@@ -12,7 +12,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = join(__dirname, '..');
+const ROOT = __dirname;
 const DIST = join(ROOT, 'dist');
 
 // Import the registry (plain JS module, no JSX)

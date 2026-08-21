@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "discover": "Entdecken",
+    "templates": "Vorlagen",
+    "studio": "Studio",
+    "documents": "Dokumente",
+    "free_tools": "Kostenlose Tools",
+    "pricing": "Preise",
+    "about_us": "Über uns",
+    "my_favorites": "Meine Favoriten",
+    "log_in": "Anmelden",
+    "sign_up": "Registrieren",
+    "log_out": "Abmelden"
+  },
+  "home": {
+    "trending_now": "Jetzt im Trend",
+    "explore_creators_love": "Entdecken Sie, was Kreative lieben",
+    "explore_creators_love_desc": "Ein Einblick in Millionen kostenloser, lizenzierter Bilder, nur eine Suche entfernt.",
+    "everything_you_need": "Alles, was Sie brauchen",
+    "powerful_tools": "Leistungsstarke Tools für Kreative",
+    "powerful_tools_desc": "Suchen, bearbeiten, organisieren und erstellen – alles auf einer Plattform.",
+    "ready_for_more": "Bereit für mehr?",
+    "ready_for_more_desc": "Kostenlos starten, für immer. Upgrade auf Creator Pro, wenn Sie werbefreies Surfen und erweiterte Studiofunktionen benötigen.",
+    "see_pricing": "Preise ansehen"
+  }
+}

@@ -46,6 +46,9 @@
   <url><loc>https://www.pikfinder.com/tools/compress-image-to-20kb</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.pikfinder.com/tools/compress-image-to-50kb</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.pikfinder.com/tools/compress-image-to-100kb</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.pikfinder.com/tools/increase-image-size</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.pikfinder.com/tools/increase-image-size-to-20kb</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.pikfinder.com/tools/increase-image-size-to-50kb</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.pikfinder.com/tools/resize-image</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.pikfinder.com/tools/crop-image</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.pikfinder.com/tools/rotate-image</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -106,6 +109,7 @@
   <url><loc>https://www.pikfinder.com/blog/how-to-make-a-resume-online-free</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.pikfinder.com/blog/how-to-remove-image-background-free</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.pikfinder.com/blog/image-formats-explained</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.pikfinder.com/blog/increase-image-size-to-20kb-50kb-for-forms</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.pikfinder.com/blog/passport-photo-online-free</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.pikfinder.com/blog/remove-metadata-exif-gps-from-photos</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.pikfinder.com/blog/resize-image-for-instagram-free</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>

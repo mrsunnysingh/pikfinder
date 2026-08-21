@@ -5,17 +5,19 @@ import Logo from './Logo';
 import { AppContext } from '../context/AppContext';
 import ThemeToggle from './ThemeToggle';
 import { SOCIAL_LINKS } from './Footer';
+import { useTranslation } from 'react-i18next';
 
 const NAV_ITEMS = [
-  { to: '/', label: 'Discover', end: true },
-  { to: '/templates', label: 'Templates' },
-  { to: '/studio', label: 'Studio', badge: 'Beta' },
-  { to: '/business-automation', label: 'Documents', badge: 'New' },
-  { to: '/tools', label: 'Free Tools' },
-  { to: '/products', label: 'Pricing' },
+  { to: '/', labelKey: 'nav.discover', end: true },
+  { to: '/templates', labelKey: 'nav.templates' },
+  { to: '/studio', labelKey: 'nav.studio', badge: 'Beta' },
+  { to: '/business-automation', labelKey: 'nav.documents', badge: 'New' },
+  { to: '/tools', labelKey: 'nav.free_tools' },
+  { to: '/products', labelKey: 'nav.pricing' },
 ];
 
 export default function Navbar() {
+  const { t, i18n } = useTranslation();
   const { isLoggedIn, user, toggleAuthModal, logoutUser, favorites } = useContext(AppContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -55,22 +57,38 @@ export default function Navbar() {
             end={item.end}
             className={({ isActive }) => (isActive ? 'active' : '')}
           >
-            {item.label}
+            {t(item.labelKey)}
             {item.badge && <span className="nav-badge">{item.badge}</span>}
           </NavLink>
         ))}
 
         <ThemeToggle />
+        <select 
+          value={i18n.resolvedLanguage?.split('-')[0] || 'en'} 
+          onChange={(e) => i18n.changeLanguage(e.target.value)}
+          className="lang-switcher"
+          style={{ background: 'transparent', border: '1px solid var(--border)', borderRadius: '4px', color: 'inherit', padding: '4px 8px', cursor: 'pointer', fontSize: '0.9rem', outline: 'none' }}
+        >
+          <option value="en">EN</option>
+          <option value="es">ES</option>
+          <option value="hi">HI</option>
+          <option value="de">DE</option>
+          <option value="pl">PL</option>
+          <option value="fr">FR</option>
+          <option value="it">IT</option>
+          <option value="ur">UR</option>
+          <option value="ro">RO</option>
+        </select>
         {!isLoggedIn ? (
           <div className="auth-buttons">
-            <button className="btn-text" onClick={() => toggleAuthModal('login')}>Log In</button>
-            <button className="btn-primary" onClick={() => toggleAuthModal('signup')}>Sign Up</button>
+            <button className="btn-text" onClick={() => toggleAuthModal('login')}>{t('nav.log_in')}</button>
+            <button className="btn-primary" onClick={() => toggleAuthModal('signup')}>{t('nav.sign_up')}</button>
           </div>
         ) : (
           <div className="user-profile">
             <button
               className="btn-icon favorites-nav-btn"
-              title="My Favorites"
+              title={t('nav.my_favorites')}
               onClick={() => navigate('/favorites')}
               style={{ position: 'relative' }}
             >
@@ -79,7 +97,7 @@ export default function Navbar() {
                 <span className="fav-count-badge">{favorites.length}</span>
               )}
             </button>
-            <div className="avatar-circle" title="Logout" onClick={logoutUser} style={{ cursor: 'pointer' }}>
+            <div className="avatar-circle" title={t('nav.log_out')} onClick={logoutUser} style={{ cursor: 'pointer' }}>
               {user?.photoURL ? <img src={user.photoURL} alt="" /> : (user?.name ? user.name.charAt(0).toUpperCase() : 'U')}
             </div>
           </div>
@@ -88,6 +106,22 @@ export default function Navbar() {
 
       {/* Mobile controls */}
       <div className="nav-mobile-controls">
+        <select 
+          value={i18n.resolvedLanguage?.split('-')[0] || 'en'} 
+          onChange={(e) => i18n.changeLanguage(e.target.value)}
+          className="lang-switcher-mobile"
+          style={{ background: 'transparent', border: '1px solid var(--border)', borderRadius: '4px', color: 'inherit', padding: '4px 8px', cursor: 'pointer', fontSize: '0.9rem', outline: 'none', marginRight: '8px' }}
+        >
+          <option value="en">EN</option>
+          <option value="es">ES</option>
+          <option value="hi">HI</option>
+          <option value="de">DE</option>
+          <option value="pl">PL</option>
+          <option value="fr">FR</option>
+          <option value="it">IT</option>
+          <option value="ur">UR</option>
+          <option value="ro">RO</option>
+        </select>
         <ThemeToggle />
         <button
           className="nav-hamburger"
@@ -110,12 +144,12 @@ export default function Navbar() {
               className={({ isActive }) => (isActive ? 'active' : '')}
               onClick={() => setMenuOpen(false)}
             >
-              {item.label}
+              {t(item.labelKey)}
               {item.badge && <span className="nav-badge">{item.badge}</span>}
             </NavLink>
           ))}
-          <NavLink to="/about" onClick={() => setMenuOpen(false)}>About Us</NavLink>
-          {isLoggedIn && <NavLink to="/favorites" onClick={() => setMenuOpen(false)}>My Favorites</NavLink>}
+          <NavLink to="/about" onClick={() => setMenuOpen(false)}>{t('nav.about_us')}</NavLink>
+          {isLoggedIn && <NavLink to="/favorites" onClick={() => setMenuOpen(false)}>{t('nav.my_favorites')}</NavLink>}
         </div>
 
         <div className="mobile-menu-footer">
@@ -128,11 +162,11 @@ export default function Navbar() {
           </div>
           {!isLoggedIn ? (
             <div className="mobile-auth">
-              <button className="btn-outline" onClick={() => { setMenuOpen(false); toggleAuthModal('login'); }}>Log In</button>
-              <button className="btn-primary" onClick={() => { setMenuOpen(false); toggleAuthModal('signup'); }}>Sign Up</button>
+              <button className="btn-outline" onClick={() => { setMenuOpen(false); toggleAuthModal('login'); }}>{t('nav.log_in')}</button>
+              <button className="btn-primary" onClick={() => { setMenuOpen(false); toggleAuthModal('signup'); }}>{t('nav.sign_up')}</button>
             </div>
           ) : (
-            <button className="btn-outline" onClick={() => { setMenuOpen(false); logoutUser(); }}>Log Out</button>
+            <button className="btn-outline" onClick={() => { setMenuOpen(false); logoutUser(); }}>{t('nav.log_out')}</button>
           )}
         </div>
       </div>

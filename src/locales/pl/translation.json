@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "discover": "Odkrywaj",
+    "templates": "Szablony",
+    "studio": "Studio",
+    "documents": "Dokumenty",
+    "free_tools": "Darmowe narzędzia",
+    "pricing": "Cennik",
+    "about_us": "O nas",
+    "my_favorites": "Moje ulubione",
+    "log_in": "Zaloguj się",
+    "sign_up": "Zarejestruj się",
+    "log_out": "Wyloguj się"
+  },
+  "home": {
+    "trending_now": "Teraz popularne",
+    "explore_creators_love": "Odkryj, co kochają twórcy",
+    "explore_creators_love_desc": "Spojrzenie na miliony darmowych, licencjonowanych obrazów na wyciągnięcie ręki.",
+    "everything_you_need": "Wszystko, czego potrzebujesz",
+    "powerful_tools": "Potężne narzędzia dla twórców",
+    "powerful_tools_desc": "Szukaj, edytuj, organizuj i twórz — wszystko na jednej platformie.",
+    "ready_for_more": "Gotowy na więcej?",
+    "ready_for_more_desc": "Zacznij za darmo na zawsze. Zaktualizuj do Creator Pro, gdy potrzebujesz przeglądania bez reklam i zaawansowanych funkcji studio.",
+    "see_pricing": "Zobacz cennik"
+  }
+}

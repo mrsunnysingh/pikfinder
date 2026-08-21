@@ -1,5 +1,5 @@
 import React, { useContext, lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { AppContext } from './context/AppContext';
 
 // Shell — always needed, kept in the main bundle.
@@ -61,7 +61,7 @@ function App() {
   const { isAuthModalOpen, isLoggedIn } = useContext(AppContext);
 
   return (
-    <Router>
+    <>
       <ScrollToTop />
       <UpgradeNudge />
       <div className="bg-shape shape-1"></div>
@@ -104,6 +104,8 @@ function App() {
                   <Route path="/support" element={<Navigate to="/billing" replace />} />
                   {/* Settings is account-only — send logged-out visitors home. */}
                   <Route path="/settings" element={<Navigate to="/" replace />} />
+                  <Route path="/dashboard" element={<Navigate to="/" replace />} />
+                  <Route path="/admin" element={<Navigate to="/" replace />} />
                   <Route path="/help" element={<Help />} />
                   <Route path="/favorites" element={<Favorites />} />
                   <Route path="/blog" element={<Blog />} />
@@ -139,6 +141,7 @@ function App() {
                 <Route path="settings" element={<Settings />} />
                 <Route path="help" element={<Help />} />
                 <Route path="collections" element={<Collections />} />
+                <Route path="business-automation" element={<Navigate to="/business" replace />} />
                 <Route path="business" element={<BusinessHub />} />
                 <Route path="business/help" element={<BusinessHelp />} />
                 <Route path="pdf-editor" element={<PdfEditor />} />
@@ -175,7 +178,7 @@ function App() {
       {/* Global Modals */}
       {isAuthModalOpen && <AuthModal />}
       <InstallPrompt />
-    </Router>
+    </>
   );
 }
 

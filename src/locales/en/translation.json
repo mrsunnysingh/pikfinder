@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "discover": "Discover",
+    "templates": "Templates",
+    "studio": "Studio",
+    "documents": "Documents",
+    "free_tools": "Free Tools",
+    "pricing": "Pricing",
+    "about_us": "About Us",
+    "my_favorites": "My Favorites",
+    "log_in": "Log In",
+    "sign_up": "Sign Up",
+    "log_out": "Log Out"
+  },
+  "home": {
+    "trending_now": "Trending now",
+    "explore_creators_love": "Explore what creators love",
+    "explore_creators_love_desc": "A glimpse of the millions of free, licensed visuals a search away.",
+    "everything_you_need": "Everything you need",
+    "powerful_tools": "Powerful tools for creators",
+    "powerful_tools_desc": "Search, edit, organize and create — all in one platform.",
+    "ready_for_more": "Ready for more?",
+    "ready_for_more_desc": "Start free, forever. Upgrade to Creator Pro when you need ad-free browsing and advanced studio features.",
+    "see_pricing": "See Pricing"
+  }
+}

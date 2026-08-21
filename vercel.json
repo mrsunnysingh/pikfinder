@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/((?!api/|crm-widget/).*)", "destination": "/index.html" }
+    { "source": "/((?!api/|crm-widget/|ads\\.txt|robots\\.txt|sitemap\\.xml).*)", "destination": "/index.html" }
   ],
   "functions": {
     "api/**/*.js": { "maxDuration": 15, "memory": 512 }

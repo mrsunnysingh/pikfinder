@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "discover": "Scopri",
+    "templates": "Modelli",
+    "studio": "Studio",
+    "documents": "Documenti",
+    "free_tools": "Strumenti gratuiti",
+    "pricing": "Prezzi",
+    "about_us": "Chi siamo",
+    "my_favorites": "I miei preferiti",
+    "log_in": "Accedi",
+    "sign_up": "Registrati",
+    "log_out": "Esci"
+  },
+  "home": {
+    "trending_now": "In tendenza ora",
+    "explore_creators_love": "Scopri cosa amano i creatori",
+    "explore_creators_love_desc": "Un assaggio di milioni di immagini gratuite e con licenza a portata di ricerca.",
+    "everything_you_need": "Tutto ciò di cui hai bisogno",
+    "powerful_tools": "Strumenti potenti per creatori",
+    "powerful_tools_desc": "Cerca, modifica, organizza e crea — tutto in un'unica piattaforma.",
+    "ready_for_more": "Pronto per altro?",
+    "ready_for_more_desc": "Inizia gratis, per sempre. Passa a Creator Pro quando hai bisogno di navigazione senza annunci e funzionalità avanzate dello studio.",
+    "see_pricing": "Vedi i prezzi"
+  }
+}

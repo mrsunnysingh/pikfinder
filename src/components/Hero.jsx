@@ -8,6 +8,7 @@ import {
   Play,
   Sparkle,
   Heart,
+  Star,
 } from '@phosphor-icons/react';
 import { motion } from 'framer-motion';
 
@@ -15,6 +16,7 @@ const MEDIA_PILLS = [
   { value: 'all', label: 'All', icon: SquaresFour },
   { value: 'photo', label: 'Images', icon: ImageIcon },
   { value: 'video', label: 'Videos', icon: Play },
+  { value: 'icon', label: 'Icons', icon: Star },
 ];
 
 export default function Hero() {
@@ -40,8 +42,8 @@ export default function Hero() {
   };
 
   const handlePillClick = (value) => {
-    // "All" maps to the default photo feed — the app only distinguishes photo/video.
-    setType(value === 'video' ? 'video' : 'photo');
+    // "All" maps to the default photo feed — the app only distinguishes photo/video/icon.
+    setType(value === 'video' ? 'video' : value === 'icon' ? 'icon' : 'photo');
   };
 
   return (
@@ -116,13 +118,14 @@ export default function Hero() {
                 />
                 <div className="search-type-select">
                   <select
-                    value={type === 'video' ? 'video' : 'all'}
+                    value={type === 'video' ? 'video' : type === 'icon' ? 'icon' : 'all'}
                     onChange={(e) => handlePillClick(e.target.value)}
                     aria-label="Media type"
                   >
                     <option value="all">All Media</option>
                     <option value="photo">Photos</option>
                     <option value="video">Videos</option>
+                    <option value="icon">Icons</option>
                   </select>
                 </div>
                 <button type="submit" className="search-submit-btn" aria-label="Search">
@@ -142,7 +145,7 @@ export default function Hero() {
             transition={{ delay: 0.7, duration: 0.8 }}
           >
             {MEDIA_PILLS.map(({ value, label, icon: Icon }) => {
-              const isActive = value === 'all' ? type !== 'video' : type === value;
+              const isActive = value === 'all' ? (type !== 'video' && type !== 'icon') : type === value;
               return (
                 <button
                   key={value}

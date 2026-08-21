@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "discover": "Descubrir",
+    "templates": "Plantillas",
+    "studio": "Estudio",
+    "documents": "Documentos",
+    "free_tools": "Herramientas Gratis",
+    "pricing": "Precios",
+    "about_us": "Sobre Nosotros",
+    "my_favorites": "Mis Favoritos",
+    "log_in": "Iniciar Sesión",
+    "sign_up": "Regístrate",
+    "log_out": "Cerrar Sesión"
+  },
+  "home": {
+    "trending_now": "Tendencia ahora",
+    "explore_creators_love": "Explora lo que aman los creadores",
+    "explore_creators_love_desc": "Un vistazo a los millones de visuales gratuitos y con licencia a una búsqueda de distancia.",
+    "everything_you_need": "Todo lo que necesitas",
+    "powerful_tools": "Herramientas potentes para creadores",
+    "powerful_tools_desc": "Busca, edita, organiza y crea — todo en una sola plataforma.",
+    "ready_for_more": "¿Listo para más?",
+    "ready_for_more_desc": "Empieza gratis, para siempre. Actualiza a Creator Pro cuando necesites navegación sin anuncios y funciones avanzadas del estudio.",
+    "see_pricing": "Ver Precios"
+  }
+}

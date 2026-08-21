@@ -11,6 +11,7 @@ import {
   deleteUser
 } from 'firebase/auth';
 import { doc, getDoc, setDoc, serverTimestamp, deleteDoc, runTransaction } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 import { auth, db, googleProvider, isFirebaseConfigured } from '../firebase';
 import { useToast } from '../components/Toast';
 
@@ -28,6 +29,7 @@ export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const toast = useToast();
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authReady, setAuthReady] = useState(false);
   const [user, setUser] = useState(null);
@@ -224,10 +226,8 @@ export const AppProvider = ({ children }) => {
       else { setIsLoggedIn(false); setUser(null); }
       toast('You have been logged out', 'info');
     } finally {
-      // Always send the user to the home page after logout (works from every
-      // caller — dashboard dropdown, navbar, etc.). Full navigation also clears
-      // any lingering component state.
-      window.location.assign('/');
+      // Navigate instantly within React to avoid 404 flashes on logout
+      navigate('/', { replace: true });
     }
   };
 

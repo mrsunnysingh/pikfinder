@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "discover": "Descoperă",
+    "templates": "Șabloane",
+    "studio": "Studio",
+    "documents": "Documente",
+    "free_tools": "Instrumente gratuite",
+    "pricing": "Prețuri",
+    "about_us": "Despre noi",
+    "my_favorites": "Favoritele mele",
+    "log_in": "Conectare",
+    "sign_up": "Înregistrare",
+    "log_out": "Deconectare"
+  },
+  "home": {
+    "trending_now": "Tendințe acum",
+    "explore_creators_love": "Explorează ce adoră creatorii",
+    "explore_creators_love_desc": "O privire asupra milioanelor de imagini gratuite, cu licență, la o căutare distanță.",
+    "everything_you_need": "Tot ce ai nevoie",
+    "powerful_tools": "Instrumente puternice pentru creatori",
+    "powerful_tools_desc": "Caută, editează, organizează și creează — totul pe o singură platformă.",
+    "ready_for_more": "Pregătit pentru mai mult?",
+    "ready_for_more_desc": "Începe gratuit, pentru totdeauna. Treci la Creator Pro când ai nevoie de navigare fără reclame și funcții avansate de studio.",
+    "see_pricing": "Vezi prețurile"
+  }
+}

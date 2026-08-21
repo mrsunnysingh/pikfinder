@@ -18,6 +18,7 @@ import {
 import Hero from '../components/Hero';
 import { GENERATORS } from './generators/generators';
 import { PAYMENTS_ENABLED } from '../config/features';
+import { useTranslation } from 'react-i18next';
 
 const HERO_STATS = [
   { icon: ImageIcon, value: '100M+', label: 'Free Media' },
@@ -46,6 +47,7 @@ const SHOWCASE = [
 ];
 
 export default function Home() {
+  const { t } = useTranslation();
   return (
     <>
       <Hero />
@@ -64,10 +66,10 @@ export default function Home() {
 
       {/* Curated preview — each tile deep-links into the search page */}
       <section className="home-showcase" aria-label="Popular searches">
-        <span className="section-eyebrow">Trending now</span>
+        <span className="section-eyebrow">{t('home.trending_now')}</span>
         <div className="section-header">
-          <h2>Explore what creators love</h2>
-          <p>A glimpse of the millions of free, licensed visuals a search away.</p>
+          <h2>{t('home.explore_creators_love')}</h2>
+          <p>{t('home.explore_creators_love_desc')}</p>
         </div>
         <div className="showcase-grid">
           {SHOWCASE.map(({ q, img }) => (
@@ -80,10 +82,10 @@ export default function Home() {
       </section>
 
       <section className="home-features-section" aria-label="Platform features">
-        <span className="section-eyebrow">Everything you need</span>
+        <span className="section-eyebrow">{t('home.everything_you_need')}</span>
         <div className="section-header">
-          <h2>Powerful tools for creators</h2>
-          <p>Search, edit, organize and create — all in one platform.</p>
+          <h2>{t('home.powerful_tools')}</h2>
+          <p>{t('home.powerful_tools_desc')}</p>
         </div>
         <div className="features-grid">
           {HOME_FEATURES.map(({ icon: Icon, title, description, link }) => (
@@ -179,15 +181,15 @@ export default function Home() {
       </section>
 
       <section className="home-pricing" aria-label="Pricing">
-        <h2>Ready for more?</h2>
+        <h2>{t('home.ready_for_more')}</h2>
         <p>
-          Start free, forever. Upgrade to Creator Pro when you need ad-free browsing and advanced studio features.
+          {t('home.ready_for_more_desc')}
         </p>
         <div style={{ display: 'flex', gap: 'var(--space-md)', justifyContent: 'center', flexWrap: 'wrap' }}>
           <Link to={PAYMENTS_ENABLED ? '/billing' : '/waitlist'} className="btn-primary">
             {PAYMENTS_ENABLED ? 'Upgrade to Creator Pro' : 'Join the Pro Waitlist'}
           </Link>
-          <Link to="/products" className="btn-outline">See Pricing</Link>
+          <Link to="/products" className="btn-outline">{t('home.see_pricing')}</Link>
         </div>
       </section>
     </>

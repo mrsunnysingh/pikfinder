@@ -8,12 +8,12 @@ import {
   Warning,
   Sparkle,
   Image as ImageIcon,
-  Faders,
   ArrowsIn,
-  ArrowsOut
+  ArrowsOut,
+  CircleNotch
 } from '@phosphor-icons/react';
 import { Dropzone, formatBytes, saveBlob, loadImageFromFile } from '../ToolShell';
-import { drawToCanvas, canvasToBlob, compressToTarget, baseName, scaleImageHQ } from './canvas-utils';
+import { drawToCanvas, canvasToBlob, compressToTarget, baseName } from './canvas-utils';
 
 const MAX_CANVAS_DIMENSION = 4096;
 
@@ -32,108 +32,130 @@ export default function CompressEngine({ targetKB = null }) {
   const [sourceImg, setSourceImg] = useState(null);
   const [originalDimensions, setOriginalDimensions] = useState({ width: 0, height: 0 });
   const [previewUrl, setPreviewUrl] = useState(null);
-  const [result, setResult] = useState(null); // { blob, url, width, height, qualityUsed }
+  
+  // Stable result state
+  const [result, setResult] = useState(null); // { blob, url, width, height }
+  const [isOptimizing, setIsOptimizing] = useState(false);
+  const [error, setError] = useState(null);
 
-  // Control states
-  const defaultTarget = targetKB || 1024; // Default to 1MB (1024 KB) if not specified
-  const [mode, setMode] = useState(targetKB ? 'target' : 'interactive'); // 'target' or 'interactive'
+  // User controls
+  const defaultTarget = targetKB || 1024;
+  const [mode, setMode] = useState(targetKB ? 'target' : 'interactive');
   const [targetSizeKB, setTargetSizeKB] = useState(defaultTarget);
   const [quality, setQuality] = useState(78); // 1-100%
   const [format, setFormat] = useState('image/jpeg'); // 'image/jpeg' | 'image/webp' | 'image/png'
-  const [scalePercent, setScalePercent] = useState(100); // 25-100%
-  
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState(null);
-  const [viewMode, setViewMode] = useState('side-by-side'); // 'side-by-side' | 'preview-only'
+  const [scalePercent, setScalePercent] = useState(100);
+  const [viewMode, setViewMode] = useState('side-by-side');
 
+  // Track active request ID to avoid race conditions
+  const seqRef = useRef(0);
+  const prevBlobUrlRef = useRef(null);
   const debounceTimerRef = useRef(null);
-  const processingRef = useRef(false);
 
-  // Load and cache the source image upon upload
-  const onFiles = async ([f]) => {
-    if (!f) return;
-    setFile(f);
-    setResult(null);
-    setError(null);
-    setBusy(true);
+  // Cleanup object URLs on unmount
+  useEffect(() => {
+    return () => {
+      if (prevBlobUrlRef.current) URL.revokeObjectURL(prevBlobUrlRef.current);
+    };
+  }, []);
 
-    try {
-      const { img, url } = await loadImageFromFile(f);
-      setSourceImg(img);
-      setOriginalDimensions({ width: img.naturalWidth, height: img.naturalHeight });
-      setPreviewUrl(url);
-
-      // Perform initial compression
-      await runCompression(img, f, mode, targetSizeKB, quality, format, scalePercent);
-    } catch (err) {
-      setError(err.message || 'Could not load the selected image.');
-    } finally {
-      setBusy(false);
-    }
-  };
-
-  // Core compression routine
-  const runCompression = useCallback(
-    async (img, rawFile, currentMode, targetKBVal, currentQuality, currentFormat, currentScale) => {
+  // Compute compression on demand
+  const executeCompression = useCallback(
+    async (img, curMode, curTargetKB, curQuality, curFormat, curScale) => {
       if (!img) return;
+
+      const currentSeq = ++seqRef.current;
+      setIsOptimizing(true);
 
       try {
         let baseW = img.naturalWidth;
         let baseH = img.naturalHeight;
 
-        // Apply scale factor
-        if (currentScale < 100) {
-          baseW = Math.max(16, Math.round((baseW * currentScale) / 100));
-          baseH = Math.max(16, Math.round((baseH * currentScale) / 100));
+        if (curScale < 100) {
+          baseW = Math.max(16, Math.round((baseW * curScale) / 100));
+          baseH = Math.max(16, Math.round((baseH * curScale) / 100));
         }
 
-        // Cap max dimensions to prevent memory overflow
         if (Math.max(baseW, baseH) > MAX_CANVAS_DIMENSION) {
-          const capScale = MAX_CANVAS_DIMENSION / Math.max(baseW, baseH);
-          baseW = Math.round(baseW * capScale);
-          baseH = Math.round(baseH * capScale);
+          const cap = MAX_CANVAS_DIMENSION / Math.max(baseW, baseH);
+          baseW = Math.round(baseW * cap);
+          baseH = Math.round(baseH * cap);
         }
 
         const canvas = drawToCanvas(img, baseW, baseH);
         let outBlob;
-        let qualityUsed = currentQuality;
+        let outW = baseW;
+        let outH = baseH;
 
-        if (currentMode === 'target' && targetKBVal) {
-          // Exact target KB compression with auto-stepping
-          const res = await compressToTarget(canvas, targetKBVal, currentFormat);
+        if (curMode === 'target' && curTargetKB) {
+          const res = await compressToTarget(canvas, curTargetKB, curFormat);
           outBlob = res.blob;
-          baseW = res.width;
-          baseH = res.height;
+          outW = res.width;
+          outH = res.height;
         } else {
-          // Manual slider compression
-          if (currentFormat === 'image/png') {
+          if (curFormat === 'image/png') {
             outBlob = await canvasToBlob(canvas, 'image/png');
           } else {
-            const q = Math.max(0.01, Math.min(0.99, currentQuality / 100));
-            outBlob = await canvasToBlob(canvas, currentFormat, q);
+            const q = Math.max(0.01, Math.min(0.99, curQuality / 100));
+            outBlob = await canvasToBlob(canvas, curFormat, q);
           }
         }
 
-        if (result?.url) {
-          URL.revokeObjectURL(result.url);
+        // If a newer compression request arrived, discard this obsolete result
+        if (currentSeq !== seqRef.current) {
+          return;
         }
+
+        const newUrl = URL.createObjectURL(outBlob);
+        const oldUrl = prevBlobUrlRef.current;
+        prevBlobUrlRef.current = newUrl;
 
         setResult({
           blob: outBlob,
-          url: URL.createObjectURL(outBlob),
-          width: baseW,
-          height: baseH,
-          qualityUsed,
+          url: newUrl,
+          width: outW,
+          height: outH,
         });
         setError(null);
+
+        // Safely revoke older URL after the DOM receives the new one
+        if (oldUrl) {
+          setTimeout(() => URL.revokeObjectURL(oldUrl), 500);
+        }
       } catch (err) {
-        setError(err.message || 'Failed to compress image.');
+        if (currentSeq === seqRef.current) {
+          setError(err.message || 'Compression failed.');
+        }
+      } finally {
+        if (currentSeq === seqRef.current) {
+          setIsOptimizing(false);
+        }
       }
     },
-    [result]
+    []
   );
 
-  // Reactive scroller / slider effect with fast 60ms debounce for silky performance
+  // Initial file upload handler
+  const onFiles = async ([f]) => {
+    if (!f) return;
+    setError(null);
+    setIsOptimizing(true);
+
+    try {
+      const { img, url } = await loadImageFromFile(f);
+      setFile(f);
+      setSourceImg(img);
+      setOriginalDimensions({ width: img.naturalWidth, height: img.naturalHeight });
+      setPreviewUrl(url);
+
+      await executeCompression(img, mode, targetSizeKB, quality, format, scalePercent);
+    } catch (err) {
+      setError(err.message || 'Could not load image.');
+      setIsOptimizing(false);
+    }
+  };
+
+  // Debounced listener for slider / control changes
   useEffect(() => {
     if (!sourceImg || !file) return;
 
@@ -141,21 +163,16 @@ export default function CompressEngine({ targetKB = null }) {
       clearTimeout(debounceTimerRef.current);
     }
 
-    debounceTimerRef.current = setTimeout(async () => {
-      if (processingRef.current) return;
-      processingRef.current = true;
-      setBusy(true);
-      await runCompression(sourceImg, file, mode, targetSizeKB, quality, format, scalePercent);
-      setBusy(false);
-      processingRef.current = false;
-    }, 60);
+    debounceTimerRef.current = setTimeout(() => {
+      executeCompression(sourceImg, mode, targetSizeKB, quality, format, scalePercent);
+    }, 50);
 
     return () => {
       if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
     };
-  }, [mode, targetSizeKB, quality, format, scalePercent, sourceImg, file, runCompression]);
+  }, [mode, targetSizeKB, quality, format, scalePercent, sourceImg, file, executeCompression]);
 
-  // Derived statistics for display
+  // Derived statistics
   const stats = useMemo(() => {
     if (!file || !result?.blob) return null;
 
@@ -194,13 +211,15 @@ export default function CompressEngine({ targetKB = null }) {
   };
 
   const resetAll = () => {
-    if (result?.url) URL.revokeObjectURL(result.url);
+    if (prevBlobUrlRef.current) URL.revokeObjectURL(prevBlobUrlRef.current);
     if (previewUrl) URL.revokeObjectURL(previewUrl);
+    prevBlobUrlRef.current = null;
     setFile(null);
     setSourceImg(null);
     setResult(null);
     setPreviewUrl(null);
     setError(null);
+    setIsOptimizing(false);
   };
 
   return (
@@ -289,6 +308,9 @@ export default function CompressEngine({ targetKB = null }) {
                     value={targetSizeKB}
                     onChange={(e) => setTargetSizeKB(Number(e.target.value))}
                     className="compress-range-slider"
+                    style={{
+                      '--slider-track-bg': `linear-gradient(to right, var(--primary, #7c3aed) 0%, var(--primary, #7c3aed) ${Math.max(0, Math.min(100, ((targetSizeKB - 10) / (5120 - 10)) * 100))}%, #cbd5e1 ${Math.max(0, Math.min(100, ((targetSizeKB - 10) / (5120 - 10)) * 100))}%, #cbd5e1 100%)`,
+                    }}
                   />
                   <div className="compress-range-ticks">
                     <span>20 KB</span>
@@ -323,6 +345,9 @@ export default function CompressEngine({ targetKB = null }) {
                     value={quality}
                     onChange={(e) => setQuality(Number(e.target.value))}
                     className="compress-range-slider"
+                    style={{
+                      '--slider-track-bg': `linear-gradient(to right, var(--primary, #7c3aed) 0%, var(--primary, #7c3aed) ${Math.max(0, Math.min(100, ((quality - 5) / (98 - 5)) * 100))}%, #cbd5e1 ${Math.max(0, Math.min(100, ((quality - 5) / (98 - 5)) * 100))}%, #cbd5e1 100%)`,
+                    }}
                   />
                   <div className="compress-range-ticks">
                     <span>5% (Smallest)</span>
@@ -402,6 +427,7 @@ export default function CompressEngine({ targetKB = null }) {
                     )}
                   </div>
                   <div className="compress-meter-val">
+                    {isOptimizing && <CircleNotch size={14} className="spin text-primary" style={{ marginRight: 6 }} />}
                     <strong>{formatBytes(stats.compressedBytes)}</strong> of{' '}
                     <span>{stats.targetFormatted}</span>
                   </div>
@@ -440,9 +466,11 @@ export default function CompressEngine({ targetKB = null }) {
 
                 <div className="compress-stat-box highlight">
                   <span className="compress-stat-label">New Compressed Size</span>
-                  <strong className="compress-stat-value success">{formatBytes(stats.compressedBytes)}</strong>
+                  <strong className="compress-stat-value success">
+                    {formatBytes(stats.compressedBytes)}
+                  </strong>
                   <span className="compress-stat-sub">
-                    {result ? `${result.width} × ${result.height} px` : 'Processing...'}
+                    {result ? `${result.width} × ${result.height} px` : 'Optimizing...'}
                   </span>
                 </div>
 
@@ -477,20 +505,20 @@ export default function CompressEngine({ targetKB = null }) {
             </div>
           )}
 
-          {/* Loader or Error */}
-          {busy && (
-            <div className="compress-inline-loader">
-              <ArrowsClockwise size={20} className="spin" />
-              <span>Optimizing image in real-time...</span>
-            </div>
-          )}
           {error && <div className="tool-error">{error}</div>}
 
-          {/* Side-by-Side Visual Comparison */}
-          {result && !busy && (
+          {/* Side-by-Side Visual Comparison - STABLE: NEVER UNMOUNTS */}
+          {result && (
             <div className="compress-preview-container">
               <div className="compress-preview-header">
-                <h3>Live Comparison</h3>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <h3>Live Comparison</h3>
+                  {isOptimizing && (
+                    <span className="compress-live-indicator">
+                      <CircleNotch size={14} className="spin" /> Updating...
+                    </span>
+                  )}
+                </div>
                 <div className="compress-view-toggle">
                   <button
                     type="button"
@@ -549,7 +577,7 @@ export default function CompressEngine({ targetKB = null }) {
                   type="button"
                   className="btn-primary compress-download-btn"
                   onClick={handleDownload}
-                  disabled={busy}
+                  disabled={!result?.blob}
                 >
                   <DownloadSimple size={20} weight="bold" />
                   <span>

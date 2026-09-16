@@ -29,22 +29,17 @@ export default function ToolPage() {
     jsonLd,
   });
 
-  // After any download finishes, reset the tool to a clean state (fresh dropzone)
-  // for the next file - professional, and clears the previous image from memory.
-  const [resetKey, setResetKey] = useState(0);
   const [done, setDone] = useState(false);
   useEffect(() => {
     const onDone = () => {
       setDone(true);
-      setResetKey((k) => k + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     };
     window.addEventListener('pikfinder:downloaded', onDone);
     return () => window.removeEventListener('pikfinder:downloaded', onDone);
   }, []);
   useEffect(() => { if (!done) return; const t = setTimeout(() => setDone(false), 2600); return () => clearTimeout(t); }, [done]);
-  // Reset the confirmation whenever the user switches tools.
-  useEffect(() => { setDone(false); setResetKey(0); }, [slug]);
+  // Reset toast when user switches tools
+  useEffect(() => { setDone(false); }, [slug]);
 
   if (!tool) return <Navigate to="/tools" replace />;
   if (tool.engine === 'external') return <Navigate to={tool.route} replace />;
@@ -67,7 +62,7 @@ export default function ToolPage() {
 
       <ToolShell>
         <Suspense fallback={<EngineFallback />}>
-          {Engine ? <Engine key={resetKey} {...tool.presetProps} /> : <EngineFallback />}
+          {Engine ? <Engine key={slug} {...tool.presetProps} /> : <EngineFallback />}
         </Suspense>
       </ToolShell>
 

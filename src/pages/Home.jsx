@@ -108,14 +108,14 @@ export default function Home() {
             <span className="section-eyebrow"><Lightning weight="fill" /> New · For businesses</span>
             <h2>Turn your data into finished documents</h2>
             <p>
-              Design a certificate, invoice, letter or ID card <strong>once</strong> — then generate a
-              personalised, on-brand copy for every customer. Auto-fill from Zoho CRM &amp; Creator, or a
-              spreadsheet. One document or a thousand, in a single click.
+              Design a certificate, invoice, letter or ID card <strong>once</strong>, then generate a
+              personalized copy for every client or customer. Auto-fill directly from Zoho CRM, Zoho Creator, or a
+              simple spreadsheet in seconds.
             </p>
             <ul className="home-docgen-points">
-              <li><CheckCircle weight="fill" /> Dynamic logo, names &amp; any field</li>
-              <li><CheckCircle weight="fill" /> Auto-fill from Zoho — no coding</li>
-              <li><CheckCircle weight="fill" /> Bulk generate &amp; export as PDF or PNG</li>
+              <li><CheckCircle weight="fill" /> Dynamic logos, names, dates and custom fields</li>
+              <li><CheckCircle weight="fill" /> Connect to Zoho records without writing code</li>
+              <li><CheckCircle weight="fill" /> Bulk export high-resolution PDF and PNG files</li>
             </ul>
             <Link to="/business-automation" className="btn-primary home-docgen-cta">
               Try the Document Generator <ArrowRight size={16} />
@@ -152,13 +152,13 @@ export default function Home() {
             <span className="section-eyebrow"><PaintBrush weight="fill" /> Design studio</span>
             <h2>Design anything, right in your browser</h2>
             <p>
-              A full design editor with premium templates, pro fonts, photo filters, shadows,
-              glassmorphism, AI backgrounds and one-click background removal — then export in crisp HD.
+              A fast, browser-based editor packed with clean templates, curated fonts, photo filters, custom shadows,
+              and instant background removal, ready for crisp HD exports.
             </p>
             <ul className="home-docgen-points">
-              <li><CheckCircle weight="fill" /> 90+ premium templates &amp; 55 pro fonts</li>
-              <li><CheckCircle weight="fill" /> Effects: glow, shadow, glass &amp; gradients</li>
-              <li><CheckCircle weight="fill" /> Always-HD PNG, SVG &amp; PDF export</li>
+              <li><CheckCircle weight="fill" /> 90+ designer templates and 55 curated fonts</li>
+              <li><CheckCircle weight="fill" /> Effects: glows, shadows, glass styling and gradients</li>
+              <li><CheckCircle weight="fill" /> Sharp exports in PNG, SVG and PDF formats</li>
             </ul>
             <Link to="/studio" className="btn-primary home-docgen-cta">
               Open Creator Studio <ArrowRight size={16} />
@@ -170,7 +170,7 @@ export default function Home() {
       <section className="home-generators" aria-label="Free generators">
         <div className="section-header">
           <h2>Free generators &amp; makers</h2>
-          <p>Create certificates, invoices, flyers and more in minutes — free, no signup.</p>
+          <p>Create certificates, invoices, flyers and cards in minutes: 100% free with no signup needed.</p>
         </div>
         <div className="home-gen-grid">
           {GENERATORS.map((g) => (

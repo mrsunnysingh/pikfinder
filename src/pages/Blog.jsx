@@ -30,8 +30,8 @@ export default function Blog() {
   }, []);
 
   useSeo({
-    title: 'Blog — Guides for Creators | PikFinder',
-    description: 'Practical guides on free stock media, image formats, licensing, and design — from the PikFinder team.',
+    title: 'Blog: Guides & Tutorials for Creators | PikFinder',
+    description: 'Practical guides on free stock media, image formats, licensing, color theory, and graphic design from the PikFinder team.',
     canonical: `${SITE_URL}/blog`,
     jsonLd: {
       '@context': 'https://schema.org',

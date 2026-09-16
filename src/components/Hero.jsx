@@ -81,7 +81,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            Access 100M+ copyright-safe images, videos, and AI-powered tools — all in one place.
+            Search millions of copyright-safe photos, videos, vector templates, and design tools in one clean workspace.
           </motion.p>
 
           <motion.div

@@ -10,7 +10,7 @@ export default function FreeTools() {
   const [query, setQuery] = useState('');
 
   useSeo({
-    title: 'Free Image Tools — Compress, Resize, Convert & More | PikFinder',
+    title: 'Free Image Tools: Compress, Resize, Convert & Edit | PikFinder',
     description: `${TOOLS.length}+ free online image tools: compress to exact KB sizes, resize, crop, convert formats, remove backgrounds, make PDFs, and more. No signup, files never leave your browser.`,
     canonical: `${SITE_URL}/tools`,
   });
@@ -38,8 +38,8 @@ export default function FreeTools() {
       <header className="page-header" style={{ paddingBottom: '32px' }}>
         <h1 style={{ marginBottom: '16px' }}>Free Tools</h1>
         <p className="text-pretty" style={{ marginBottom: '40px' }}>
-          {TOOLS.length} free tools for images, PDFs, and design — no sign-up, no watermarks.
-          Everything runs in your browser, so your files never leave your device.
+          {TOOLS.length} free tools for images, PDFs, and design with zero watermarks and no sign-up required.
+          Everything processes right in your browser, so your files stay private on your device.
         </p>
         
         <div style={{ maxWidth: '500px', margin: '0 auto', position: 'relative' }}>

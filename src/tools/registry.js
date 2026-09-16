@@ -96,6 +96,36 @@ export const TOOLS = [
     keywords: ['compress image to 100kb', 'reduce image size to 100kb', '100kb image compressor'],
     howTo: ['Upload your photo.', 'The tool automatically compresses it to fit under 100KB.', 'Download the compressed file.'],
   }),
+  t({
+    slug: 'compress-image-to-200kb', name: 'Compress Image to 200KB', short: 'Compress to 200KB', category: 'compress', engine: 'compress',
+    presetProps: { targetKB: 200 },
+    description: 'Compress photos and graphics to under 200KB with interactive live quality sliders and percentage reduction tracking.',
+    keywords: ['compress image to 200kb', 'reduce image size to 200kb', '200kb photo compressor'],
+    howTo: ['Upload your photo.', 'The tool optimizes quality and dimensions to guarantee under 200KB.', 'Download the compressed image.'],
+  }),
+  t({
+    slug: 'compress-image-to-500kb', name: 'Compress Image to 500KB', short: 'Compress to 500KB', category: 'compress', engine: 'compress',
+    presetProps: { targetKB: 500 },
+    description: 'Reduce high-resolution photos to under 500KB for fast web page loading, social media sharing, and email attachments.',
+    keywords: ['compress image to 500kb', 'reduce photo size to 500kb', '500kb image compressor'],
+    howTo: ['Upload your image.', 'Drag the live slider to preview size and quality in real time.', 'Download your 500KB optimized image.'],
+  }),
+  t({
+    slug: 'compress-image-to-1mb', name: 'Compress Image to 1MB', short: 'Compress to 1MB', category: 'compress', engine: 'compress',
+    presetProps: { targetKB: 1024 },
+    description: 'Compress large photos to under 1MB online with an interactive real-time slider, live percentage savings readout, and exact MB compliance tracking.',
+    keywords: ['compress image to 1mb', 'compress photo to 1mb', 'reduce image size to 1mb', 'image compressor under 1mb', 'compress 5mb to 1mb', 'image compressor 1mb online free'],
+    howTo: [
+      'Upload any large photo or graphic (JPG, PNG, WebP).',
+      'Use the live scroller or presets to view instant MB size reduction and savings percentage.',
+      'Check the real-time compliance meter and download your optimized image.'
+    ],
+    faq: [
+      { q: 'How does the 1MB image compressor work?', a: 'The tool uses smart browser-native encoding and adaptive downscaling to bring heavy 5MB–20MB photos down to under 1MB while preserving sharp visual fidelity. The live slider calculates exact KB/MB size and percentage savings on every adjustment.' },
+      { q: 'Are my images uploaded to any server?', a: 'No. PikFinder processes all images 100% locally inside your browser canvas for maximum privacy and zero latency.' },
+      PRIVACY_FAQ, FREE_FAQ,
+    ],
+  }),
 
   t({
     slug: 'increase-image-size', name: 'Increase Image File Size', short: 'Increase Image Size', category: 'compress', engine: 'filesize-increase',

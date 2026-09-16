@@ -26,11 +26,12 @@ export default function Privacy() {
         <h2>3. Where it's stored</h2>
         <p>Account data and activity are stored using Google Firebase (Authentication and Cloud Firestore). Contact-form messages may also be delivered by email and to a private spreadsheet via Google Apps Script.</p>
 
-        <h2>4. Third parties</h2>
+        <h2>4. Third parties & Advertising</h2>
         <p>We share data with the providers needed to run the Service: Google Firebase (accounts and data), <strong>Google Analytics</strong> (usage measurement), <strong>Google AdSense</strong> (advertising for non-Premium users), the image provider APIs you search (Unsplash, Pexels, Pixabay, Openverse), Wikimedia and CDNs (media delivery), DiceBear (generated avatars), and Razorpay (payment processing, only if you upgrade to Creator Pro). Each operates under its own privacy policy. We do not sell or rent your personal data.</p>
+        <p><strong>Google AdSense & DoubleClick Cookies:</strong> Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to PikFinder or other websites. Google's use of advertising cookies enables it and its partners to serve ads to users based on their visit to PikFinder and/or other sites on the Internet. Users may opt out of personalized advertising by visiting <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">Google Ads Settings</a> or through <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">aboutads.info</a>.</p>
 
         <h2>5. Cookies and local storage</h2>
-        <p>We use local storage for essentials like keeping you signed in and remembering your theme. We also use <strong>analytics and advertising cookies/identifiers</strong> via Google Analytics and Google AdSense; where required we request consent and honor opt-outs. You can manage ad personalization at adssettings.google.com.</p>
+        <p>We use local storage for essentials like keeping you signed in and remembering your theme preferences. We also use <strong>analytics and advertising cookies/identifiers</strong> via Google Analytics and Google AdSense. Where required by GDPR / CCPA and regional privacy laws, we request consent and honor user opt-outs.</p>
 
         <h2>6. Your rights</h2>
         <p>You can view and edit your profile at any time. You may request deletion of your account and associated data by contacting us — we will remove it promptly.</p>

@@ -276,6 +276,10 @@ const STATIC_PAGES = [
   { slug: 'blog', title: 'Blog — Guides for Creators | PikFinder', description: 'Practical guides on free stock media, image formats, licensing, and design — from the PikFinder team.', h1: 'Guides for creators', intro: 'Clear, practical writing on free media, formats, licensing and design.' },
   { slug: 'help', title: 'Help Center | PikFinder', description: 'Guides and answers for using PikFinder — search, Studio, the Document Generator, PDF editor and free tools.', h1: 'Help Center', intro: 'Guides and answers for getting the most out of PikFinder.' },
   { slug: 'contact', title: 'Contact PikFinder', description: 'Get in touch with the PikFinder team — support, feedback, partnerships and press.', h1: 'Contact us', intro: 'Questions, feedback or partnership ideas? We’d love to hear from you.' },
+  { slug: 'privacy', title: 'Privacy Policy | PikFinder', description: 'How Pik Finder handles your data, cookies, analytics, and advertising compliance.', h1: 'Privacy Policy', intro: 'How Pik Finder handles your data. We collect the minimum, and we never sell your personal data.' },
+  { slug: 'terms', title: 'Terms of Service | PikFinder', description: 'Terms of Service and usage guidelines for PikFinder.', h1: 'Terms of Service', intro: 'Rules, terms and guidelines for using PikFinder services.' },
+  { slug: 'dmca', title: 'DMCA & Copyright Policy | PikFinder', description: 'DMCA notices, copyright requests and intellectual property policies on PikFinder.', h1: 'DMCA & Copyright Policy', intro: 'How PikFinder handles intellectual property and copyright inquiries.' },
+  { slug: 'licenses', title: 'License Center | PikFinder', description: 'Clear licensing information for all free stock photos, videos, and design assets on PikFinder.', h1: 'License Center', intro: 'Understand the free and commercial licenses of media assets on PikFinder.' },
 ];
 for (const p of STATIC_PAGES) {
   const path = `/${p.slug}`;
@@ -375,6 +379,10 @@ if (existsSync(blogDir)) {
     { loc: '/gradient', priority: '0.7', changefreq: 'monthly' },
     { loc: '/products', priority: '0.6', changefreq: 'monthly' },
     { loc: '/contact', priority: '0.5', changefreq: 'monthly' },
+    { loc: '/privacy', priority: '0.5', changefreq: 'monthly' },
+    { loc: '/terms', priority: '0.5', changefreq: 'monthly' },
+    { loc: '/dmca', priority: '0.4', changefreq: 'yearly' },
+    { loc: '/licenses', priority: '0.5', changefreq: 'monthly' },
     { loc: '/license', priority: '0.4', changefreq: 'yearly' },
     { loc: '/legal', priority: '0.3', changefreq: 'yearly' },
   ];

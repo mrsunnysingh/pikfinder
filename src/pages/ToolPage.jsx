@@ -23,14 +23,14 @@ export default function ToolPage() {
   const jsonLd = useMemo(() => (tool ? buildToolJsonLd(tool, url) : null), [tool, url]);
 
   useSeo({
-    title: tool ? `${tool.name} — Free Online Tool | PikFinder` : 'Tool not found | PikFinder',
+    title: tool ? `${tool.name} - Free Online Tool | PikFinder` : 'Tool not found | PikFinder',
     description: tool?.description,
     canonical: url,
     jsonLd,
   });
 
   // After any download finishes, reset the tool to a clean state (fresh dropzone)
-  // for the next file — professional, and clears the previous image from memory.
+  // for the next file - professional, and clears the previous image from memory.
   const [resetKey, setResetKey] = useState(0);
   const [done, setDone] = useState(false);
   useEffect(() => {
@@ -73,7 +73,7 @@ export default function ToolPage() {
 
       {done && (
         <div className="tool-toast" role="status">
-          <CheckCircle size={18} weight="fill" /> Downloaded — the tool is ready for your next file.
+          <CheckCircle size={18} weight="fill" /> Downloaded - the tool is ready for your next file.
         </div>
       )}
 

@@ -1,7 +1,7 @@
 // src/pages/Analytics.jsx
 // Lightweight analytics dashboard (/analytics). Reads recent events from
 // analytics/{bucket}/events and computes simple widgets client-side. Reads are
-// admin-gated in firestore.rules — non-admins get a friendly message.
+// admin-gated in firestore.rules - non-admins get a friendly message.
 //
 // NOTE: this is a foundation. For large volumes, aggregate server-side (a
 // scheduled function writing daily rollups) rather than reading raw events.

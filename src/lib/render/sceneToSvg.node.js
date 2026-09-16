@@ -94,7 +94,7 @@ export function sceneToSvg({ dims, bg = { type: 'solid', color: '#ffffff' }, lay
 
   let body = '';
   if (bg.type === 'transparent') {
-    // no background rect — keep alpha
+    // no background rect - keep alpha
   } else if (bg.type === 'gradient') {
     body += `<rect width="${W}" height="${H}" fill="${gradDef({ angle: bg.angle, stops: bgStops(bg) }, 0, 0, W, H)}"/>`;
   } else {

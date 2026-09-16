@@ -5,7 +5,7 @@ import { SERVICE_META } from './serviceMeta';
 import ZohoLogo from './ZohoLogos';
 import { connectZoho, getStatus, testConnection, disconnect } from './zohoClient';
 
-const fmtDate = (ms) => (ms ? new Date(ms).toLocaleString() : '—');
+const fmtDate = (ms) => (ms ? new Date(ms).toLocaleString() : ' - ');
 
 export default function Connections() {
   const { user, toggleAuthModal } = useContext(AppContext);
@@ -51,7 +51,7 @@ export default function Connections() {
     setBusy((b) => ({ ...b, [service]: 'test' }));
     const { ok, data } = await testConnection(service);
     setFlash(ok
-      ? { type: 'ok', msg: `${SERVICE_META[service]?.label}: OK${data?.org?.name ? ` — ${data.org.name}` : ''} (${data.latencyMs}ms)` }
+      ? { type: 'ok', msg: `${SERVICE_META[service]?.label}: OK${data?.org?.name ? ` - ${data.org.name}` : ''} (${data.latencyMs}ms)` }
       : { type: 'err', msg: `${SERVICE_META[service]?.label}: ${String(data?.error || 'test failed').replace(/_/g, ' ')}` });
     setBusy((b) => ({ ...b, [service]: null }));
     refresh();
@@ -67,7 +67,7 @@ export default function Connections() {
   return (
     <div className="biz-conn">
       <div className="biz-conn-intro">
-        <p>Connect your Zoho apps once. PikFinder then auto-fills your templates with real records — no copy-paste. Tokens are encrypted and stored server-side; your browser never sees them.</p>
+        <p>Connect your Zoho apps once. PikFinder then auto-fills your templates with real records - no copy-paste. Tokens are encrypted and stored server-side; your browser never sees them.</p>
         <label className="biz-conn-dc">
           <span>Your Zoho region</span>
           <select value={dc} onChange={(e) => setDc(e.target.value)}>
@@ -78,7 +78,7 @@ export default function Connections() {
             <option value="jp">Japan (zoho.jp)</option>
             <option value="ca">Canada (zohocloud.ca)</option>
           </select>
-          <small>Pick the region where your Zoho account lives — it must match, or the connection will fail.</small>
+          <small>Pick the region where your Zoho account lives - it must match, or the connection will fail.</small>
         </label>
       </div>
 

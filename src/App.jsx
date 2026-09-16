@@ -2,7 +2,7 @@ import React, { useContext, lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AppContext } from './context/AppContext';
 
-// Shell — always needed, kept in the main bundle.
+// Shell - always needed, kept in the main bundle.
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import AuthModal from './components/AuthModal';
@@ -13,7 +13,7 @@ import InstallPrompt from './components/InstallPrompt';
 import NotFound from './pages/NotFound';
 import DashboardLayout from './components/dashboard/DashboardLayout';
 
-// Home is the landing/LCP page — keep it in the main bundle for instant paint.
+// Home is the landing/LCP page - keep it in the main bundle for instant paint.
 import Home from './pages/Home';
 import { GENERATORS } from './pages/generators/generators';
 
@@ -91,7 +91,7 @@ function App() {
                   <Route path="/status" element={<Status />} />
                   <Route path="/billing" element={<Billing />} />
                   <Route path="/pricing" element={<Navigate to="/billing" replace />} />
-                  {/* Creator Pro is live — old "Coming Soon" waitlist links go to pricing */}
+                  {/* Creator Pro is live - old "Coming Soon" waitlist links go to pricing */}
                   <Route path="/waitlist" element={<Navigate to="/billing" replace />} />
                   <Route path="/analytics" element={<Analytics />} />
                   <Route path="/products" element={<Products />} />
@@ -102,7 +102,7 @@ function App() {
                   <Route path="/tools" element={<FreeTools />} />
                   <Route path="/tools/:slug" element={<ToolPage />} />
                   <Route path="/support" element={<Navigate to="/billing" replace />} />
-                  {/* Settings is account-only — send logged-out visitors home. */}
+                  {/* Settings is account-only - send logged-out visitors home. */}
                   <Route path="/settings" element={<Navigate to="/" replace />} />
                   <Route path="/dashboard" element={<Navigate to="/" replace />} />
                   <Route path="/admin" element={<Navigate to="/" replace />} />

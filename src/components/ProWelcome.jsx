@@ -4,7 +4,7 @@ import { Crown, Sparkle, X } from '@phosphor-icons/react';
 
 // Celebration overlay shown once right after a successful Pro upgrade. Confetti is
 // drawn on a canvas (no dependency), and the card lists what the user just
-// unlocked with a clear next action — turning the payment into a delightful
+// unlocked with a clear next action - turning the payment into a delightful
 // "peak" moment that boosts activation and reduces buyer's remorse / refunds.
 export default function ProWelcome({ onClose, plan }) {
   const canvasRef = useRef(null);

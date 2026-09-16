@@ -81,11 +81,11 @@ export default function DashboardSearch() {
       const o = String(result.orientation || 'any').toLowerCase();
       if (['landscape', 'portrait', 'square'].includes(o)) aiFilters.orientation = o.charAt(0).toUpperCase() + o.slice(1);
       setSearchParams({ q: result.primary_query || q, type, ...aiFilters });
-      if (result._source === 'local') toast('AI unavailable — used the smart keyword optimizer', 'info');
+      if (result._source === 'local') toast('AI unavailable - used the smart keyword optimizer', 'info');
     } catch (err) {
-      // /api not reachable (e.g. plain vite dev) — fall back to a direct search.
+      // /api not reachable (e.g. plain vite dev) - fall back to a direct search.
       console.error(err);
-      toast('AI search unavailable — running a direct search', 'info');
+      toast('AI search unavailable - running a direct search', 'info');
       setSearchParams({ ...newParams, q });
     } finally {
       setIsGenerating(false);

@@ -17,7 +17,7 @@ import { useToast } from '../components/Toast';
 
 const NO_FIREBASE = () => {
   throw new Error(
-    'Auth is unavailable — Firebase is not configured. Add your VITE_FIREBASE_* keys to .env and restart the dev server.'
+    'Auth is unavailable - Firebase is not configured. Add your VITE_FIREBASE_* keys to .env and restart the dev server.'
   );
 };
 
@@ -91,7 +91,7 @@ export const AppProvider = ({ children }) => {
       }
       return snap.data();
     } catch (err) {
-      // Firestore not enabled / rules blocking / offline — log in anyway.
+      // Firestore not enabled / rules blocking / offline - log in anyway.
       console.warn('Could not load Firestore profile (login still succeeds):', err?.message || err);
       return null;
     }
@@ -173,7 +173,7 @@ export const AppProvider = ({ children }) => {
   };
 
   const loginUser = async (email, password) => {
-    if (!isFirebaseConfigured) { toast('Auth is disabled — add Firebase keys to .env', 'error'); NO_FIREBASE(); }
+    if (!isFirebaseConfigured) { toast('Auth is disabled - add Firebase keys to .env', 'error'); NO_FIREBASE(); }
     const cred = await signInWithEmailAndPassword(auth, email, password);
     if (!cred.user.emailVerified) {
       await signOut(auth);
@@ -186,7 +186,7 @@ export const AppProvider = ({ children }) => {
   };
 
   const signupUser = async (name, email, password) => {
-    if (!isFirebaseConfigured) { toast('Auth is disabled — add Firebase keys to .env', 'error'); NO_FIREBASE(); }
+    if (!isFirebaseConfigured) { toast('Auth is disabled - add Firebase keys to .env', 'error'); NO_FIREBASE(); }
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     await updateProfile(userCredential.user, { displayName: name });
     // Seed the Firestore profile so the dashboard has data immediately.
@@ -194,7 +194,7 @@ export const AppProvider = ({ children }) => {
     // Send a verification email, then sign out so access requires verification.
     await sendEmailVerification(userCredential.user);
     await signOut(auth);
-    toast('Account created — check your email to verify', 'info');
+    toast('Account created - check your email to verify', 'info');
     return { needsVerification: true };
   };
 
@@ -206,7 +206,7 @@ export const AppProvider = ({ children }) => {
   };
 
   const googleLogin = async () => {
-    if (!isFirebaseConfigured) { toast('Auth is disabled — add Firebase keys to .env', 'error'); NO_FIREBASE(); }
+    if (!isFirebaseConfigured) { toast('Auth is disabled - add Firebase keys to .env', 'error'); NO_FIREBASE(); }
     const result = await signInWithPopup(auth, googleProvider);
     await ensureUserDoc(result.user);
     setIsAuthModalOpen(false);
@@ -219,7 +219,7 @@ export const AppProvider = ({ children }) => {
 
   const logoutUser = async () => {
     // Clear sensitive in-memory state immediately (defense-in-depth), so it's
-    // gone even before the auth listener fires — matters on shared devices.
+    // gone even before the auth listener fires - matters on shared devices.
     setFavorites([]); setSearchHistory([]); setDownloadHistory([]);
     try {
       if (isFirebaseConfigured) await signOut(auth);

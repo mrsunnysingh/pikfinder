@@ -105,7 +105,7 @@ function PickerMode() {
         />
         {(hover || picked) && (
           <div className="tool-picker-readout">
-            {hover && <span><i style={{ background: hover.hex }} /> {hover.hex} — {hover.rgb}</span>}
+            {hover && <span><i style={{ background: hover.hex }} /> {hover.hex} - {hover.rgb}</span>}
             {picked && <strong>Picked: {picked.hex} {copied ? '(copied)' : ''}</strong>}
           </div>
         )}

@@ -33,7 +33,7 @@ async function pdfToDesign(file) {
   return { src: cv.toDataURL('image/jpeg', 0.9), w: cv.width, h: cv.height };
 }
 
-// Common fields most business documents need — one-click add.
+// Common fields most business documents need - one-click add.
 const QUICK_FIELDS = ['Name', 'Date', 'Company', 'Amount', 'Email', 'Phone', 'Address', 'Title'];
 
 export default function TemplateBuilder({ onClose, onSaved }) {
@@ -60,7 +60,7 @@ export default function TemplateBuilder({ onClose, onSaved }) {
     if (!f) return;
     setErr('');
     const type = f.type || '', nm = f.name.toLowerCase();
-    // Word docs can't be rendered reliably in the browser — ask for a PDF.
+    // Word docs can't be rendered reliably in the browser - ask for a PDF.
     if (nm.endsWith('.docx') || nm.endsWith('.doc') || type.includes('word') || type.includes('officedocument')) {
       setErr('Word docs: open it and choose “Save as PDF” (File → Save As → PDF, or Google Docs → Download → PDF), then upload that PDF here.');
       e.target.value = '';
@@ -194,17 +194,17 @@ export default function TemplateBuilder({ onClose, onSaved }) {
     if (!img) { setErr('Upload your design first.'); return; }
     if (!fields.length) { setErr('Add at least one field.'); return; }
     const tpl = buildTemplate();
-    if (!addCustom(tpl)) { setErr('Could not save — your image may be too large. Try a smaller file.'); return; }
+    if (!addCustom(tpl)) { setErr('Could not save - your image may be too large. Try a smaller file.'); return; }
     onSaved(tpl);
   };
 
   // Advanced path: save the current draft and open it in the full Studio, where
   // the user gets real fonts, precise layout and effects. Fields aren't required
-  // here — they can add {{placeholders}} in text right in the editor.
+  // here - they can add {{placeholders}} in text right in the editor.
   const editInStudio = () => {
     if (!img) { setErr('Upload your design first.'); return; }
     const tpl = buildTemplate();
-    if (!addCustom(tpl)) { setErr('Could not save — your image may be too large. Try a smaller file.'); return; }
+    if (!addCustom(tpl)) { setErr('Could not save - your image may be too large. Try a smaller file.'); return; }
     navigate(`/studio?template=${encodeURIComponent(tpl.id)}`);
   };
 
@@ -229,7 +229,7 @@ export default function TemplateBuilder({ onClose, onSaved }) {
               <button className="biz-builder-drop" onClick={() => fileRef.current?.click()} disabled={!!loadingFile}>
                 <UploadSimple size={34} />
                 <strong>{loadingFile || 'Upload your invoice / certificate design'}</strong>
-                <span>PNG, JPG or PDF — the layout you want to fill in (Word: save as PDF first)</span>
+                <span>PNG, JPG or PDF - the layout you want to fill in (Word: save as PDF first)</span>
               </button>
             ) : (
               <>
@@ -323,7 +323,7 @@ export default function TemplateBuilder({ onClose, onSaved }) {
                   </div>
                 </div>
               ))}
-              {img && fields.length === 0 && <p className="biz-hint">No fields yet — click “Add field” or a Quick add chip, then click on your design to place it.</p>}
+              {img && fields.length === 0 && <p className="biz-hint">No fields yet - click “Add field” or a Quick add chip, then click on your design to place it.</p>}
             </div>
 
             {err && <div className="biz-flash err">{err}</div>}

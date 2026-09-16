@@ -16,7 +16,7 @@ async function decodeToCanvas(file) {
   const name = file.name.toLowerCase();
   const type = file.type || '';
 
-  // HEIC/HEIF: browsers can't decode natively — use heic-to (MIT)
+  // HEIC/HEIF: browsers can't decode natively - use heic-to (MIT)
   if (type.includes('heic') || type.includes('heif') || name.endsWith('.heic') || name.endsWith('.heif')) {
     const { heicTo } = await import('heic-to');
     const pngBlob = await heicTo({ blob: file, type: 'image/png' });
@@ -163,7 +163,7 @@ export default function ConvertEngine({ from = 'any', to = 'any' }) {
             <>
               <div className="tool-preview">
                 <img src={result.url} alt="Converted result" />
-                <p>{result.ext.toUpperCase()} — {formatBytes(result.blob.size)}</p>
+                <p>{result.ext.toUpperCase()} - {formatBytes(result.blob.size)}</p>
               </div>
               <ResultBar
                 originalSize={file.size}

@@ -62,7 +62,7 @@ export default function UpscaleEngine() {
                 onClick={() => apply(fx)}
                 disabled={busy}
               >
-                {fx}x — {img.naturalWidth * fx}x{img.naturalHeight * fx}px
+                {fx}x - {img.naturalWidth * fx}x{img.naturalHeight * fx}px
               </button>
             ))}
             <button className="btn-ghost" onClick={() => { setFile(null); setImg(null); setResult(null); }}>
@@ -77,7 +77,7 @@ export default function UpscaleEngine() {
             <>
               <div className="tool-preview">
                 <img src={result.url} alt="Upscaled result" />
-                <p>{result.w} x {result.h} px — {formatBytes(result.blob.size)}</p>
+                <p>{result.w} x {result.h} px - {formatBytes(result.blob.size)}</p>
               </div>
               <ResultBar
                 originalSize={file.size}

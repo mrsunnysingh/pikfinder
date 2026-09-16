@@ -10,7 +10,7 @@ const SITE_URL = 'https://pikfinder.com';
 
 export default function GradientToolPage() {
   useSeo({
-    title: 'Gradient Generator — Free CSS Linear & Radial Gradients | PikFinder',
+    title: 'Gradient Generator - Free CSS Linear & Radial Gradients | PikFinder',
     description: 'Create beautiful CSS gradients free. Linear and radial, angle control, unlimited color stops, live preview. Copy CSS or download SVG in one click.',
     canonical: `${SITE_URL}/tools/gradient-generator`,
     jsonLd: {

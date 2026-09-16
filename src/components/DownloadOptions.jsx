@@ -106,7 +106,7 @@ export default function DownloadOptions({ photo }) {
       if (photo.license?.requiresAttribution) setShowCredit(true);
     } catch {
       // Canvas blocked by CORS or conversion failed → fall back to original.
-      setError('Conversion unavailable for this image — downloading original instead.');
+      setError('Conversion unavailable for this image - downloading original instead.');
       await downloadOriginal();
     } finally {
       setBusy(null);

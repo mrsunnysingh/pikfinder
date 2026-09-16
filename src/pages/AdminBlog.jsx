@@ -27,7 +27,7 @@ async function findCover({ title, tags }) {
 
 const BLANK = { title: '', slug: '', description: '', tags: '', author: 'PikFinder', coverImage: '', body: '', published: false };
 
-const fmt = (s) => { try { return s ? new Date(s).toLocaleDateString(undefined, { dateStyle: 'medium' }) : '—'; } catch { return '—'; } };
+const fmt = (s) => { try { return s ? new Date(s).toLocaleDateString(undefined, { dateStyle: 'medium' }) : ' - '; } catch { return ' - '; } };
 
 export default function AdminBlog() {
   const [posts, setPosts] = useState([]);
@@ -141,7 +141,7 @@ export default function AdminBlog() {
                   const url = await findCover({ title: editing.title, tags: tagList(editing.tags) });
                   setFinding(false);
                   if (url) set('coverImage', url);
-                  else setNotice('No matching photo found — try different tags, or paste a URL.');
+                  else setNotice('No matching photo found - try different tags, or paste a URL.');
                 }}
               >
                 {finding ? <><CircleNotch size={16} className="admin-spin" /> Finding…</> : <><MagnifyingGlass size={16} /> Find image</>}
@@ -155,7 +155,7 @@ export default function AdminBlog() {
             )}
           </div>
           <label className="admin-field">
-            <span>Body <em>(Markdown — # heading, **bold**, - list, [link](url))</em></span>
+            <span>Body <em>(Markdown - # heading, **bold**, - list, [link](url))</em></span>
             <textarea className="admin-body" rows={16} value={editing.body} onChange={(e) => set('body', e.target.value)} placeholder="Write your post here…" />
           </label>
         </div>

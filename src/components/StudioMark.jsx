@@ -1,6 +1,6 @@
 import React, { useId } from 'react';
 
-// PikFinder Studio mark — the blue→violet gloss tile with the white "P." glyph.
+// PikFinder Studio mark - the blue→violet gloss tile with the white "P." glyph.
 // Used only for the Studio (editor) sub-brand; the main PikFinder brand uses the
 // aperture Logo. Subtle periodic light sweep; styles live in index.css (.studio-mark).
 export default function StudioMark({ size = 28 }) {

@@ -1,6 +1,6 @@
 // src/lib/coverImage.js
 // Generates a branded blog cover banner (1200x630, OG-image ratio) from a post's
-// title + description — no external service, no cost. Returns a JPEG data URL
+// title + description - no external service, no cost. Returns a JPEG data URL
 // suitable for storing as `coverImage` and using directly in <img src>.
 
 function wrap(ctx, text, maxWidth, maxLines) {

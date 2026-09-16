@@ -15,13 +15,13 @@ export default function Privacy() {
         <h2>1. Information we collect</h2>
         <ul>
           <li><strong>Account information:</strong> your name, email address, and (optionally) an avatar, provided when you sign up or edit your profile.</li>
-          <li><strong>Activity you create:</strong> favorites, collections, and your search and download history — stored so we can show them back to you.</li>
+          <li><strong>Activity you create:</strong> favorites, collections, and your search and download history - stored so we can show them back to you.</li>
           <li><strong>Messages:</strong> anything you send through the contact form (name, email, category, message).</li>
           <li><strong>Preferences:</strong> your theme choice (light/dark) is stored locally in your browser.</li>
         </ul>
 
         <h2>2. How we use it</h2>
-        <p>We use your information to authenticate you, sync your saved content, respond to your messages, measure and improve the product (analytics), and — for non-Premium users — to show ads. Premium (ad-free) users are not shown ads. We do not sell your personal data.</p>
+        <p>We use your information to authenticate you, sync your saved content, respond to your messages, measure and improve the product (analytics), and - for non-Premium users - to show ads. Premium (ad-free) users are not shown ads. We do not sell your personal data.</p>
 
         <h2>3. Where it's stored</h2>
         <p>Account data and activity are stored using Google Firebase (Authentication and Cloud Firestore). Contact-form messages may also be delivered by email and to a private spreadsheet via Google Apps Script.</p>
@@ -34,7 +34,7 @@ export default function Privacy() {
         <p>We use local storage for essentials like keeping you signed in and remembering your theme preferences. We also use <strong>analytics and advertising cookies/identifiers</strong> via Google Analytics and Google AdSense. Where required by GDPR / CCPA and regional privacy laws, we request consent and honor user opt-outs.</p>
 
         <h2>6. Your rights</h2>
-        <p>You can view and edit your profile at any time. You may request deletion of your account and associated data by contacting us — we will remove it promptly.</p>
+        <p>You can view and edit your profile at any time. You may request deletion of your account and associated data by contacting us - we will remove it promptly.</p>
 
         <h2>7. Children</h2>
         <p>Pik Finder is not directed to children under 13, and we do not knowingly collect their data.</p>

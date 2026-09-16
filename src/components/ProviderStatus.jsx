@@ -54,7 +54,7 @@ export default function ProviderStatus() {
               <span style={{ fontSize: '1.2rem' }}>{isConnected ? '🟢' : '🟡'}</span>
               <span style={{ fontWeight: 500, color: 'var(--text-color)' }}>{p.name}</span>
               <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                — {isConnected ? 'Connected' : 'Configure API'}
+                - {isConnected ? 'Connected' : 'Configure API'}
               </span>
             </div>
           );

@@ -4,13 +4,13 @@ import { db } from '../firebase';
 import { submitLeadToCrm } from '../lib/crmLead';
 
 /**
- * Email capture block — writes to the Firestore `subscribers` collection
+ * Email capture block - writes to the Firestore `subscribers` collection
  * (create-only per rules). Drop it on landing/blog pages with a `source` tag.
  */
 export default function EmailCapture({
   source = 'site',
   title = 'Get new free templates in your inbox',
-  subtitle = 'Fresh certificates, invoices and designs — plus creator tips. No spam, unsubscribe anytime.',
+  subtitle = 'Fresh certificates, invoices and designs - plus creator tips. No spam, unsubscribe anytime.',
 }) {
   const [email, setEmail] = useState('');
   const [state, setState] = useState('idle'); // idle | saving | done | error
@@ -20,7 +20,7 @@ export default function EmailCapture({
     const v = email.trim().toLowerCase();
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) { setState('error'); return; }
     setState('saving');
-    submitLeadToCrm({ email: v, subject: 'Newsletter signup', source: `Email Capture — ${source}` });
+    submitLeadToCrm({ email: v, subject: 'Newsletter signup', source: `Email Capture - ${source}` });
     try {
       await addDoc(collection(db, 'subscribers'), { email: v, source, createdAt: serverTimestamp() });
       setState('done');

@@ -56,7 +56,7 @@ function draw(ctx, w, h, cfg) {
       ctx.fillRect(0, 0, w, h);
     });
     ctx.globalCompositeOperation = 'source-over';
-  } else { // abstract — soft blurred blobs
+  } else { // abstract - soft blurred blobs
     ctx.filter = `blur(${Math.round(Math.max(w, h) * 0.05)}px)`;
     cfg.blobs.forEach(b => {
       ctx.beginPath();

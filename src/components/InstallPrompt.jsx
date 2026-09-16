@@ -35,7 +35,7 @@ export default function InstallPrompt() {
       <span className="pwa-install-logo"><Logo size={30} showText={false} /></span>
       <div className="pwa-install-txt">
         <b>Install PikFinder</b>
-        <span>Add the app to your device — one tap away.</span>
+        <span>Add the app to your device - one tap away.</span>
       </div>
       <button className="pwa-install-btn" onClick={install}>Install</button>
       <button className="pwa-install-x" onClick={() => setShow(false)} aria-label="Dismiss">×</button>

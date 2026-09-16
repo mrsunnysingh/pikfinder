@@ -35,7 +35,7 @@ export default function Waitlist() {
   useEffect(() => { mountedAt.current = Date.now(); }, []);
 
   useSeo({
-    title: 'Join the PikFinder Creator Pro Waitlist — Founding Members',
+    title: 'Join the PikFinder Creator Pro Waitlist - Founding Members',
     description: 'Be one of the first 100 founding members of PikFinder Creator Pro: ad-free, advanced AI search, Creator Studio, batch downloads, and premium collections. Early access ' + FOUNDING.priceLabel + '.',
     canonical: `${SITE_URL}/waitlist`,
   });
@@ -75,7 +75,7 @@ export default function Waitlist() {
     };
 
     // Push into the connected Zoho CRM as a lead (fire-and-forget).
-    submitLeadToCrm({ name: payload.name, email: payload.email, subject: `Pro Waitlist — ${payload.profession || ''}`, message: payload.useCase || '', source: 'Pro Waitlist' });
+    submitLeadToCrm({ name: payload.name, email: payload.email, subject: `Pro Waitlist - ${payload.profession || ''}`, message: payload.useCase || '', source: 'Pro Waitlist' });
 
     let saved = false;
     if (db) {
@@ -107,7 +107,7 @@ export default function Waitlist() {
     if (saved || endpointAttempted) {
       setDone(true);
     } else {
-      toast('Could not join right now — please email us.', 'error');
+      toast('Could not join right now - please email us.', 'error');
     }
   };
 
@@ -128,7 +128,7 @@ export default function Waitlist() {
   return (
     <div className="legal-container waitlist-page" style={{ paddingTop: 'calc(var(--nav-height) + 40px)' }}>
       <header className="page-header" style={{ padding: 0, marginBottom: 20, textAlign: 'center' }}>
-        <h1>Creator Pro — Coming Soon 🚀</h1>
+        <h1>Creator Pro - Coming Soon 🚀</h1>
         <p>Join the waitlist. Limited to the first {FOUNDING.seats} founding members · Early access {FOUNDING.priceLabel}.</p>
       </header>
 

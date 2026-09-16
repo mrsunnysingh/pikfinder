@@ -1,7 +1,7 @@
 // src/business/zohoClient.js
 // Thin browser client for the Zoho connector API. All calls are authenticated
 // with the current user's Firebase ID token. Tokens for Zoho itself live only
-// on the server — this file never sees them.
+// on the server - this file never sees them.
 
 import { auth } from '../firebase';
 

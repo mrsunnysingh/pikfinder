@@ -45,7 +45,7 @@ const NAV = [
 
 export default function PdfEditor() {
   useSeo({
-    title: 'Free PDF Editor — Edit Text, Images & Sign PDFs Online | PikFinder',
+    title: 'Free PDF Editor - Edit Text, Images & Sign PDFs Online | PikFinder',
     description: 'Edit any PDF free: change existing text, add or replace images, highlight, whiteout, draw and sign, then export. Upload a file or paste a link. No signup.',
     canonical: `${SITE_URL}/pdf-editor`,
     jsonLd: { '@context': 'https://schema.org', '@graph': [{ '@type': 'SoftwareApplication', name: 'PikFinder PDF Editor', applicationCategory: 'BusinessApplication', operatingSystem: 'Web', url: `${SITE_URL}/pdf-editor`, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, description: 'Edit text and images in any PDF online for free.' }] },
@@ -192,7 +192,7 @@ export default function PdfEditor() {
   // selection ops ------------------------------------------------------------
   const patchSel = (patch) => { if (sel) setLayers((ls) => ls.map((l) => l.id === sel ? { ...l, ...patch } : l)); };
   // Live patch for continuous controls (sliders, colour pickers): don't push a
-  // history entry per event — snapshot once when the interaction begins instead.
+  // history entry per event - snapshot once when the interaction begins instead.
   const patchLive = (patch) => { if (sel) setLayers((ls) => ls.map((l) => l.id === sel ? { ...l, ...patch } : l), false); };
   const liveStart = () => { if (sel) snapshot(); };
   const removeSel = () => { if (!sel) return; const l = layers.find((x) => x.id === sel); if (l?.type === 'text' && l.original) setLayers((ls) => ls.map((x) => x.id === sel ? { ...x, text: '', edited: true } : x)); else setLayers((ls) => ls.filter((x) => x.id !== sel)); setSel(null); setEditingId(null); };
@@ -225,7 +225,7 @@ export default function PdfEditor() {
       if (navigator.canShare && navigator.canShare({ files: [file] })) {
         await navigator.share({ files: [file], title: docName });
       } else {
-        download(blob, name); notify('Sharing isn’t supported on this device — downloaded instead.');
+        download(blob, name); notify('Sharing isn’t supported on this device - downloaded instead.');
       }
     } catch (e) { if (e && e.name !== 'AbortError') notify('Could not share this file.'); }
     finally { setExporting(''); }
@@ -241,7 +241,7 @@ export default function PdfEditor() {
       <div className="subpage-wrap pdfe-load">
         <header className="pdfe-load-head">
           <h1>Free PDF Editor</h1>
-          <p>Edit text and images in any PDF, add highlights, signatures, whiteout and drawings — then download. Everything runs in your browser; nothing is uploaded.</p>
+          <p>Edit text and images in any PDF, add highlights, signatures, whiteout and drawings - then download. Everything runs in your browser; nothing is uploaded.</p>
         </header>
         {error && <div className="biz-flash err" style={{ maxWidth: 520, margin: '0 auto 16px' }}>{error}</div>}
         <div className="pdfe-drop" onDragOver={(e) => e.preventDefault()} onDrop={onDrop} onClick={() => fileInput.current?.click()}>

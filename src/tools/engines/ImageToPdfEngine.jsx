@@ -82,7 +82,7 @@ export default function ImageToPdfEngine() {
         multiple
         accept="image/jpeg,image/png,image/webp"
         label={items.length ? 'Add more images' : 'Drop your images here, or click to browse'}
-        hint="JPG, PNG, or WebP — add as many as you need"
+        hint="JPG, PNG, or WebP - add as many as you need"
       />
 
       {items.length > 0 && (

@@ -45,7 +45,7 @@ export default function Billing() {
   const [period, setPeriod] = useState('yearly');
   const [currency, setCurrency] = useState('INR');
 
-  useSeo({ title: 'Pricing — Creator Pro | PikFinder', description: 'Unlock HD exports, premium templates, AI tools and an ad-free experience. Secure checkout with UPI, cards and netbanking via Razorpay.', canonical: `${SITE_URL}/billing` });
+  useSeo({ title: 'Pricing - Creator Pro | PikFinder', description: 'Unlock HD exports, premium templates, AI tools and an ad-free experience. Secure checkout with UPI, cards and netbanking via Razorpay.', canonical: `${SITE_URL}/billing` });
 
   // Pricing is public: logged-out visitors see the full plan + prices, and the
   // CTA prompts sign-up (checkout itself needs an account).
@@ -57,7 +57,7 @@ export default function Billing() {
   // Lapsed: they had a subscription but it has expired (so isPremium is now false).
   const lapsed = !isPremium && isLoggedIn && sub?.currentPeriodEnd && new Date(sub.currentPeriodEnd).getTime() < Date.now();
   const justPaid = params.get('checkout') === 'success' || params.get('paid') === '1';
-  // Celebrate a fresh upgrade once — shown after the payment redirect.
+  // Celebrate a fresh upgrade once - shown after the payment redirect.
   const [showWelcome, setShowWelcome] = useState(false);
   useEffect(() => { if (justPaid) setShowWelcome(true); }, [justPaid]);
   const plan = PRICING[currency][period];
@@ -74,17 +74,17 @@ export default function Billing() {
         <h1>{isPremium ? 'You’re on Creator Pro' : 'Do more with Creator Pro'}</h1>
         <p className="pay-sub">
           {isPremium
-            ? 'Thanks for supporting PikFinder — all Pro features are unlocked.'
+            ? 'Thanks for supporting PikFinder - all Pro features are unlocked.'
             : 'Unlock HD exports, premium templates, AI tools and an ad-free experience.'}
         </p>
       </header>
 
       {justPaid && (
-        <div className="pay-banner ok"><Check weight="bold" /> Payment received — your Creator Pro access is now active. Thank you!</div>
+        <div className="pay-banner ok"><Check weight="bold" /> Payment received - your Creator Pro access is now active. Thank you!</div>
       )}
 
       {lapsed && (
-        <div className="pay-banner warn">Your Creator Pro plan expired on <strong>{fmtDate(sub.currentPeriodEnd)}</strong>. You’re on the free plan now — renew below to unlock Pro again.</div>
+        <div className="pay-banner warn">Your Creator Pro plan expired on <strong>{fmtDate(sub.currentPeriodEnd)}</strong>. You’re on the free plan now - renew below to unlock Pro again.</div>
       )}
 
       {isPremium ? (
@@ -92,7 +92,7 @@ export default function Billing() {
           <div className="pay-status-row">
             <div className="pay-status-badge"><Crown size={22} weight="fill" /></div>
             <div>
-              <b>Creator Pro — {planLabel}</b>
+              <b>Creator Pro - {planLabel}</b>
               <span>Status: {sub?.status || 'active'}{sub?.cancelAtPeriodEnd ? ' · cancels at period end' : ''}</span>
               {endDate && (
                 <span>{sub?.cancelAtPeriodEnd ? 'Access until' : 'Renews on'} <strong>{endDate}</strong></span>
@@ -108,7 +108,7 @@ export default function Billing() {
         <div className="pay-grid">
           {/* Pricing / checkout card */}
           <div className="pay-card featured">
-            <div className="pay-offer">🎉 Launch offer — save 20% on the yearly plan</div>
+            <div className="pay-offer">🎉 Launch offer - save 20% on the yearly plan</div>
             <div className="pay-card-top">
               <div className="pay-plan-name">Creator Pro</div>
               <div className="pay-currency" role="tablist" aria-label="Currency">
@@ -133,8 +133,8 @@ export default function Billing() {
                 currency={currency}
                 recurring
                 plan={`creator-pro-${period}`}
-                description={`PikFinder Creator Pro — ${period === 'yearly' ? 'Yearly' : 'Monthly'}`}
-                label={`Upgrade — ${plan.label}${plan.per}`}
+                description={`PikFinder Creator Pro - ${period === 'yearly' ? 'Yearly' : 'Monthly'}`}
+                label={`Upgrade - ${plan.label}${plan.per}`}
                 className="btn-primary pay-cta"
                 onPaid={() => {
                   // Entitlement is granted server-side; reload so the app re-fetches
@@ -144,7 +144,7 @@ export default function Billing() {
               />
             ) : (
               <button className="btn-primary pay-cta" onClick={() => toggleAuthModal('signup')}>
-                Sign up to upgrade — {plan.label}{plan.per}
+                Sign up to upgrade - {plan.label}{plan.per}
               </button>
             )}
 

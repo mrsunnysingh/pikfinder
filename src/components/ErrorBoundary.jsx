@@ -27,7 +27,7 @@ export default class ErrorBoundary extends React.Component {
         sessionStorage.setItem('pf-chunk-reloaded', '1');
         window.location.reload();
       }
-    } catch { /* sessionStorage unavailable — show the recovery screen */ }
+    } catch { /* sessionStorage unavailable - show the recovery screen */ }
   }
 
   render() {
@@ -38,7 +38,7 @@ export default class ErrorBoundary extends React.Component {
             <div className="app-error-glow" aria-hidden="true" />
             <div className="app-error-badge">!</div>
             <h1>Something went wrong</h1>
-            <p>An unexpected error interrupted PikFinder. Reloading usually fixes it — your work isn’t lost.</p>
+            <p>An unexpected error interrupted the app. Reloading usually resolves it and your saved work is safe.</p>
             <div className="app-error-actions">
               <button className="btn-primary" onClick={() => window.location.reload()}>Reload page</button>
               <a className="btn-outline" href="/">Go to homepage</a>

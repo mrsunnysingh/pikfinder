@@ -88,7 +88,7 @@ export default function RotateEngine() {
 
           <div className="tool-preview">
             <img src={preview.url} alt="Rotated result" />
-            <p>{preview.w} x {preview.h} px — rotation {rotation}&deg;</p>
+            <p>{preview.w} x {preview.h} px - rotation {rotation}&deg;</p>
           </div>
 
           <ResultBar

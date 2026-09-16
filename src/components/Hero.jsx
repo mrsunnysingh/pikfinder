@@ -42,7 +42,7 @@ export default function Hero() {
   };
 
   const handlePillClick = (value) => {
-    // "All" maps to the default photo feed — the app only distinguishes photo/video/icon.
+    // "All" maps to the default photo feed - the app only distinguishes photo/video/icon.
     setType(value === 'video' ? 'video' : value === 'icon' ? 'icon' : 'photo');
   };
 

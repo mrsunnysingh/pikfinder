@@ -14,7 +14,7 @@ Platforms update their UI layouts frequently. Here is the verified dimension and
 ## 1. Instagram Dimensions
 
 - **Feed Square Post:** 1080 x 1080 px (1:1 aspect ratio)
-- **Feed Portrait Post:** 1080 x 1350 px (4:5 aspect ratio) — *Recommended for maximum screen real estate on mobile feeds.*
+- **Feed Portrait Post:** 1080 x 1350 px (4:5 aspect ratio) - *Recommended for maximum screen real estate on mobile feeds.*
 - **Feed Landscape Post:** 1080 x 566 px (1.91:1 aspect ratio)
 - **Stories & Reels:** 1080 x 1920 px (9:16 aspect ratio)
 - **Profile Picture:** 320 x 320 px (displays as a circle)
@@ -45,7 +45,7 @@ Keep your text, stickers, and key subject details inside the center **1080 x 142
 
 ## 5. Pinterest Dimensions
 
-- **Standard Pin:** 1000 x 1500 px (2:3 aspect ratio) — *Optimal for search feeds.*
+- **Standard Pin:** 1000 x 1500 px (2:3 aspect ratio) - *Optimal for search feeds.*
 - **Square Pin:** 1000 x 1000 px (1:1)
 - **Long Pin:** 1000 x 2100 px (1:2.1)
 

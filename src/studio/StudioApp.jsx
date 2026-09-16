@@ -95,7 +95,7 @@ const HELP_ITEMS = [
   { cat: 'Editing', q: 'How do I crop?', a: 'Double-click an image to crop it. To resize the whole artboard, use the Crop button in the top bar and drag the frame.' },
   { cat: 'Editing', q: 'How do I align & arrange layers?', a: 'Select layers and use the align buttons in Properties. Drag to reveal smart pink guides that snap to edges & centres. Reorder in the Layers strip.' },
   { cat: 'Text', q: 'How do I change fonts and styling?', a: 'Select text and use the top toolbar or Properties → Typography for font, size, weight, colour, letter-spacing and alignment.' },
-  { cat: 'Images', q: 'Can I remove or blur a background?', a: 'Select an image, then use Properties → AI background to cut out the subject or blur the background — all in your browser.' },
+  { cat: 'Images', q: 'Can I remove or blur a background?', a: 'Select an image, then use Properties → AI background to cut out the subject or blur the background - all in your browser.' },
   { cat: 'Images', q: 'How do I apply filters?', a: 'Select an image and adjust brightness, contrast, saturation, blur and preset filters in Properties.' },
   { cat: 'Export', q: 'How do I export my design?', a: 'Click Export (top-right), choose PNG, JPG, WebP, SVG or PDF, pick a scale up to 4× for high-resolution output, then download.' },
   { cat: 'Export', q: 'How do I get a transparent background?', a: 'Choose PNG or SVG and tick “Transparent background” in the Export panel.' },
@@ -141,7 +141,7 @@ function measureTextLayer(l) {
   const lineHeight = size * (l.lineHeight || 1.2);
   let maxW = 0;
   // Track the real INK bounds (relative to l.y) so the box hugs the visible
-  // glyphs — heavy display faces paint taller/above the em box, which is why the
+  // glyphs - heavy display faces paint taller/above the em box, which is why the
   // old 1.2×size guess let letters poke outside the selection rectangle.
   let top = Infinity, bottom = -Infinity;
   lines.forEach((line, i) => {
@@ -166,7 +166,7 @@ function measureTextLayer(l) {
 }
 
 // Deep-clone layers for the history stack while PRESERVING the live image
-// element (`el`), which JSON serialization silently drops — that loss is what
+// element (`el`), which JSON serialization silently drops - that loss is what
 // made photos vanish on undo/redo.
 function cloneLayers(layers) {
   return (layers || []).map((l) => {
@@ -451,7 +451,7 @@ export default function StudioApp() {
   const [rulerGuides, setRulerGuides] = useState([]); // [{axis:'x'|'y', pos}]
   const [guideDrag, setGuideDrag] = useState(null);    // live guide being dragged
   const [bgBusy, setBgBusy] = useState(null);          // AI bg status text or null
-  // AI prompt bar (Cursor-style) — floats over the canvas
+  // AI prompt bar (Cursor-style) - floats over the canvas
   const [aiOpen, setAiOpen] = useState(false);
   const [aiPrompt, setAiPrompt] = useState('');
   const [aiStatus, setAiStatus] = useState('');        // transient status / hint line
@@ -809,7 +809,7 @@ export default function StudioApp() {
 
   // Load fonts. We use the v1 CSS API and request a broad weight range per family;
   // unlike the v2 API (which 400s on any weight a family lacks), v1 silently
-  // ignores unavailable weights — so single-weight display faces (Bebas Neue,
+  // ignores unavailable weights - so single-weight display faces (Bebas Neue,
   // Pacifico, Anton…) coexist with variable sans that need 300–900 in one request.
   useEffect(() => {
     const weights = '400,500,600,700,800,900';
@@ -839,7 +839,7 @@ export default function StudioApp() {
       }
       // 2nd fallback: drop CORS entirely so at least it displays.
       if (!el._retried) { el._retried = true; el.removeAttribute('crossorigin'); el.crossOrigin = null; el.src = src; return; }
-      alert('Could not load that image. If it is a link from another site, it may block loading — try downloading it and uploading the file.');
+      alert('Could not load that image. If it is a link from another site, it may block loading - try downloading it and uploading the file.');
     };
     el.onload = () => {
       const iw = el.naturalWidth;
@@ -970,7 +970,7 @@ export default function StudioApp() {
   useEffect(() => {
     if (restoredRef.current) return;
     restoredRef.current = true;
-    // A deep link (?template= or ?img=) is an explicit "start with THIS" intent —
+    // A deep link (?template= or ?img=) is an explicit "start with THIS" intent  - 
     // don't let a previously auto-saved design overwrite it.
     if (params.get('template') || params.get('img')) return;
     try {
@@ -1152,7 +1152,7 @@ export default function StudioApp() {
         }
         let nw = hasH ? (right ? start.w + dx : start.w - dx) : start.w;
         let nh = hasV ? (bottom ? start.h + dy : start.h - dy) : start.h;
-        // Hold Shift on a corner handle — or use the Scale tool — to keep aspect ratio.
+        // Hold Shift on a corner handle - or use the Scale tool - to keep aspect ratio.
         if ((ev.shiftKey || toolMode === 'scale') && hasH && hasV && start.w > 0 && start.h > 0) {
           const ar = start.w / start.h;
           if (Math.abs(nw - start.w) >= Math.abs(nh - start.h)) nh = nw / ar;
@@ -1550,7 +1550,7 @@ export default function StudioApp() {
     body: { text: 'Add a little bit of body text', size: 26, weight: 400 },
   };
   // Choose readable ink (dark on light backgrounds, light on dark) so new text
-  // is never invisible — important now that the default artboard is white.
+  // is never invisible - important now that the default artboard is white.
   const inkForBg = () => {
     try {
       const c = (bg.type === 'solid' ? bg.color : bg.color) || '#ffffff';
@@ -1599,7 +1599,7 @@ export default function StudioApp() {
   };
 
   // Continuous property edits (typing in a text box, dragging a slider) update
-  // the layers instantly and commit a SINGLE debounced history entry — instead
+  // the layers instantly and commit a SINGLE debounced history entry - instead
   // of deep-cloning every layer on every keystroke, which caused the lag.
   const updateLayersLive = (mapFn) => {
     setLayers(prev => {
@@ -1632,7 +1632,7 @@ export default function StudioApp() {
     // (the vast majority) stay open so the Studio remains a strong free hook.
     if (STUDIO_PREMIUM_GATING && tmpl.premium && !isPremium) {
       if (!isLoggedIn) { toggleAuthModal('login'); toast('Sign in, then upgrade to use Pro templates.', 'info'); return; }
-      toast('This is a Creator Pro template — upgrade to unlock it.', 'info');
+      toast('This is a Creator Pro template - upgrade to unlock it.', 'info');
       navigate('/billing');
       return;
     }
@@ -1642,7 +1642,7 @@ export default function StudioApp() {
     const mapped = tmpl.layers.map(l => ({ ...l, id: uid() }));
     setLayersWithHistory(mapped);
     setSelectedId(null);
-    // Hydrate photo layers so image backgrounds actually render — and route remote
+    // Hydrate photo layers so image backgrounds actually render - and route remote
     // photos through the proxy so the design stays exportable (untainted canvas).
     mapped.forEach(l => {
       if (l.type === 'image' && l.src) {
@@ -1829,7 +1829,7 @@ export default function StudioApp() {
       setDirty(false);
     } catch (e) {
       console.error(e);
-      alert('Export failed. If you used an online image, it may block cross-origin export — try uploading it instead.');
+      alert('Export failed. If you used an online image, it may block cross-origin export - try uploading it instead.');
     }
   };
 
@@ -1854,7 +1854,7 @@ export default function StudioApp() {
         id: `custom-${Date.now()}`, name: (projectName || 'My design').trim(), category: 'Custom', custom: true,
         dims: { w: dims.w, h: dims.h }, bg, fields, layers: clean,
       };
-      if (!addCustom(tpl)) { toast('Could not save — the design may be too large. Try fewer/smaller images.', 'error'); return; }
+      if (!addCustom(tpl)) { toast('Could not save - the design may be too large. Try fewer/smaller images.', 'error'); return; }
       toast('Saved to your Documents templates. 🎉', 'success');
     } catch (e) {
       console.error(e);
@@ -1864,13 +1864,13 @@ export default function StudioApp() {
     }
   };
 
-  // Single-selection layer (only when exactly one is selected — otherwise the
+  // Single-selection layer (only when exactly one is selected - otherwise the
   // group panel/box takes over).
   const sel = selectedIds.length === 1 ? layers.find(l => l.id === selectedId) : null;
   const selLayers = layers.filter(l => selectedIds.includes(l.id));
   const fitScale = Math.min(1, 800 / dims.w, 600 / dims.h);
 
-  // Exact bounding box of a layer — matches how draw() renders each type, so
+  // Exact bounding box of a layer - matches how draw() renders each type, so
   // the selection overlay and hit-testing wrap the real pixels. For text we
   // MEASURE the glyphs (not the guessed _w/_h) and position the box the same way
   // draw() aligns the text, so the box hugs the visible text without moving it.
@@ -2064,7 +2064,7 @@ export default function StudioApp() {
     if (!r) return;
     const { x, y } = toCanvasPoint(e);
     r.pts.push({ x, y });
-    // Repaint at most once per frame — long strokes stay smooth instead of
+    // Repaint at most once per frame - long strokes stay smooth instead of
     // triggering a full canvas repaint on every pointer event.
     if (drawRaf.current) return;
     drawRaf.current = requestAnimationFrame(() => {
@@ -2206,7 +2206,7 @@ export default function StudioApp() {
     window.addEventListener('pointermove', mv);
     window.addEventListener('pointerup', up);
   };
-  // Drag a bezier handle (symmetric — the opposite handle mirrors).
+  // Drag a bezier handle (symmetric - the opposite handle mirrors).
   const startHandleDrag = (e, i, sign) => {
     e.stopPropagation();
     const layer = layers.find(l => l.id === vecEdit);
@@ -2248,7 +2248,7 @@ export default function StudioApp() {
     if (spaceDown || toolMode === 'hand') { startPan(e); return; } // Space or Hand tool pans
     // Vector edit mode: the Add tool inserts a point on the path; anchor dots have
     // their own handlers. Any other click on the canvas leaves edit mode (and then
-    // falls through to normal selection) so you're never trapped — Figma-style.
+    // falls through to normal selection) so you're never trapped - Figma-style.
     if (vecEdit) {
       if (vecEditLayer && vecTool === 'add') { const p = toCanvasPoint(e); insertAnchorAt(p.x, p.y); return; }
       exitVecEdit();
@@ -2442,7 +2442,7 @@ export default function StudioApp() {
       img.onerror = () => setAiStatus('Couldn’t load the generated image.');
       img.src = url;
     } catch {
-      setAiStatus('AI background failed — please try again.');
+      setAiStatus('AI background failed - please try again.');
     }
   };
   // Route the AI chips. Generate uses /api/ai-bg (live once OPENAI_API_KEY is set;
@@ -2591,7 +2591,7 @@ export default function StudioApp() {
           <div className="studio-start">
             <div className="studio-start-head">
               <h2>Start a new design</h2>
-              <p>Choose how you’d like to begin — you can switch anytime.</p>
+              <p>Choose how you’d like to begin - you can switch anytime.</p>
             </div>
             <div className="studio-start-grid">
               <button className="studio-start-card" onClick={() => setShowStart(false)}>
@@ -2936,7 +2936,7 @@ export default function StudioApp() {
                   );
                 })()}
 
-                {/* Web icon library (Iconify) — search 200k+ open-source icons */}
+                {/* Web icon library (Iconify) - search 200k+ open-source icons */}
                 <div className="studio-section-title" style={{ margin: '16px 0 6px' }}>Icons from the web</div>
                 <form className="studio-tpl-search" onSubmit={e => { e.preventDefault(); searchIcons(iconQuery); }}>
                   <MagnifyingGlass size={16} />
@@ -2984,7 +2984,7 @@ export default function StudioApp() {
                 type="photo"
                 onPick={(src) => { if (sel && sel.type === 'image') replaceSelectedImage(src); else loadImage(src); }}
                 placeholder="Search free images…"
-                note={sel && sel.type === 'image' ? 'An image is selected — picking a photo will replace it.' : undefined}
+                note={sel && sel.type === 'image' ? 'An image is selected - picking a photo will replace it.' : undefined}
               />
             )}
 
@@ -3022,7 +3022,7 @@ export default function StudioApp() {
                   <input type="color" value={brandPick} onChange={e => setBrandPick(e.target.value)} aria-label="Pick a brand color" />
                   <button className="btn-outline" onClick={addBrandColor}>Add color</button>
                 </div>
-                <p className="studio-hint">Click a color to apply it to the selected layer — or to the background if nothing is selected.</p>
+                <p className="studio-hint">Click a color to apply it to the selected layer - or to the background if nothing is selected.</p>
                 <div className="studio-section-title" style={{ marginTop: 18 }}>Brand logo</div>
                 <button className="btn-primary" style={{ width: '100%', padding: '12px', borderRadius: 12, display: 'flex', gap: 8, alignItems: 'center', justifyContent: 'center' }} onClick={() => startFileRef.current?.click()}><Upload size={18} /> Add your logo</button>
                 <p className="studio-hint" style={{ marginTop: 10 }}>Drops your logo onto the canvas so you can place it on any design.</p>
@@ -3067,7 +3067,7 @@ export default function StudioApp() {
                       </>
                     )}
 
-                    <div className="studio-section-title" style={{ marginTop: 18 }}>{drawTool === 'pen' ? 'Stroke' : 'Size'} — {drawSize}px</div>
+                    <div className="studio-section-title" style={{ marginTop: 18 }}>{drawTool === 'pen' ? 'Stroke' : 'Size'} - {drawSize}px</div>
                     <input className="studio-draw-size" type="range" min="1" max="80" value={drawSize} onChange={(e) => setDrawSize(Number(e.target.value))} aria-label="Brush size" />
                     <div className="studio-draw-preview" aria-hidden="true">
                       <span style={{ width: drawSize, height: drawSize, background: drawTool === 'eraser' ? 'repeating-conic-gradient(#bbb 0% 25%, #eee 0% 50%) 50% / 10px 10px' : drawColor }} />
@@ -3075,7 +3075,7 @@ export default function StudioApp() {
 
                     {(drawTool === 'pencil' || drawTool === 'brush') && (
                       <>
-                        <div className="studio-section-title" style={{ marginTop: 18 }}>Smoothing — {Math.round(drawSmooth * 100)}%</div>
+                        <div className="studio-section-title" style={{ marginTop: 18 }}>Smoothing - {Math.round(drawSmooth * 100)}%</div>
                         <input className="studio-draw-size" type="range" min="0" max="1" step="0.05" value={drawSmooth} onChange={(e) => setDrawSmooth(Number(e.target.value))} aria-label="Smoothing" />
                       </>
                     )}
@@ -3085,7 +3085,7 @@ export default function StudioApp() {
                         ? 'Drag on the canvas to erase. Each erase is its own layer you can undo or delete.'
                         : drawTool === 'pen'
                         ? 'Click to add points; click-drag to curve. Click the first point to close, or press Enter / Esc to finish. Creates an editable vector path.'
-                        : 'Drag to draw freehand — shaky lines are auto-smoothed. Each stroke becomes a layer you can move, restyle, or delete.'}
+                        : 'Drag to draw freehand - shaky lines are auto-smoothed. Each stroke becomes a layer you can move, restyle, or delete.'}
                     </p>
                     <p className="studio-hint" style={{ marginTop: 8, opacity: 0.75 }}>Shortcuts: P pen · B brush · Shift+P pencil · E eraser · V exit</p>
                   </>
@@ -3111,7 +3111,7 @@ export default function StudioApp() {
             <div className="studio-brush-ring" style={{ left: brushRing.x, top: brushRing.y, width: brushRing.d, height: brushRing.d, borderColor: drawTool === 'eraser' ? '#ef4444' : drawColor }} />
           )}
 
-          {/* AI prompt bar (Cursor-style) — floats above the dock */}
+          {/* AI prompt bar (Cursor-style) - floats above the dock */}
           {aiOpen && (
             <div className="studio-ai-bar" onPointerDown={(e) => e.stopPropagation()}>
               <div className="studio-ai-row">
@@ -3220,17 +3220,17 @@ export default function StudioApp() {
 
             <span className="studio-draw-dock-sep" />
 
-            {/* Quick insert — just the essentials (the rest live in the left rail) */}
+            {/* Quick insert - just the essentials (the rest live in the left rail) */}
             <button aria-label="Add text" title="Add text" onClick={() => { setDrawTool(null); setToolMode('move'); addText('heading'); }}><TextT size={18} weight="duotone" /></button>
             <button aria-label="Add shape" title="Shapes &amp; elements" onClick={() => { setDrawTool(null); setToolMode('move'); setActiveTab('elements'); }}><Square size={18} weight="duotone" /></button>
 
             <span className="studio-draw-dock-sep" />
 
-            {/* Magic AI — trailing accent */}
+            {/* Magic AI - trailing accent */}
             <button className={`studio-dock-ai ${aiOpen ? 'active' : ''}`} aria-label="Magic AI" aria-pressed={aiOpen} title="Magic AI" onClick={() => setAiOpen(o => !o)}><Sparkle size={18} weight="fill" /> <span className="studio-dock-ai-lbl">AI</span></button>
           </div>
 
-          {/* Guides (dragged from the rulers) — full-viewport lines, double-click to remove */}
+          {/* Guides (dragged from the rulers) - full-viewport lines, double-click to remove */}
           {rulerGuides.map((g, i) => (
             <div
               key={`rg${i}`}
@@ -3246,7 +3246,7 @@ export default function StudioApp() {
               style={guideDrag.axis === 'x' ? { left: pan.x + guideDrag.pos * fitScale * zoom } : { top: pan.y + guideDrag.pos * fitScale * zoom }}
             />
           )}
-          {/* Contextual text toolbar — shown when a text layer is selected */}
+          {/* Contextual text toolbar - shown when a text layer is selected */}
           {sel && sel.type === 'text' && (
             <div className="studio-text-toolbar" onPointerDown={e => e.stopPropagation()}>
               <select className="stt-font" value={sel.font || 'Inter'} onChange={e => updateLayer(sel.id, 'font', e.target.value)} title="Font" style={{ fontFamily: `"${sel.font || 'Inter'}"` }}>
@@ -3346,7 +3346,7 @@ export default function StudioApp() {
               </div>
             )}
 
-            {/* Vector point-edit overlay — anchors + bezier handles */}
+            {/* Vector point-edit overlay - anchors + bezier handles */}
             {vecEditLayer && (
               <svg className="studio-vec-overlay" width={dims.w} height={dims.h} style={{ position: 'absolute', left: 0, top: 0, overflow: 'visible', pointerEvents: 'none' }}>
                 {(() => {
@@ -3384,7 +3384,7 @@ export default function StudioApp() {
               </svg>
             )}
 
-            {/* Selection Box overlay — wraps the selected layer exactly */}
+            {/* Selection Box overlay - wraps the selected layer exactly */}
             {!crop && !vecEdit && sel && !sel.hidden && selBox && (
               <div
                 className={`studio-sel-box ${sel.locked ? 'locked' : ''}`}
@@ -3403,7 +3403,7 @@ export default function StudioApp() {
                   <span className="studio-sel-handle resize-handle tr" data-handle="tr" />
                   <span className="studio-sel-handle resize-handle bl" data-handle="bl" />
                   <span className="studio-sel-handle resize-handle br" data-handle="br" />
-                  {/* Edge handles — resize width or height from any side */}
+                  {/* Edge handles - resize width or height from any side */}
                   <span className="studio-sel-edge resize-handle e-t" data-handle="t" />
                   <span className="studio-sel-edge resize-handle e-b" data-handle="b" />
                   <span className="studio-sel-edge resize-handle e-l" data-handle="l" />
@@ -3413,7 +3413,7 @@ export default function StudioApp() {
               </div>
             )}
 
-            {/* Group selection box (2+ layers) — drag to move them together */}
+            {/* Group selection box (2+ layers) - drag to move them together */}
             {groupBox && (
               <div
                 className="studio-group-box"
@@ -3429,7 +3429,7 @@ export default function StudioApp() {
               <div className="studio-marquee" style={{ left: marquee.x, top: marquee.y, width: marquee.w, height: marquee.h }} />
             )}
 
-            {/* Floating context toolbar — hovers above the selected element */}
+            {/* Floating context toolbar - hovers above the selected element */}
             {!crop && !vecEdit && sel && !sel.hidden && selBox && !editingLayer && (
               <div
                 className="studio-ctx-toolbar"
@@ -3445,7 +3445,7 @@ export default function StudioApp() {
               </div>
             )}
 
-            {/* Inline text editor — double-click a text layer to edit on canvas */}
+            {/* Inline text editor - double-click a text layer to edit on canvas */}
             {editingLayer && editBox && (
               <textarea
                 className="studio-inline-edit"
@@ -3538,7 +3538,7 @@ export default function StudioApp() {
                 )}
 
                 {bg.type === 'transparent' && (
-                  <p className="studio-hint">Transparent background — exports as a PNG with a see-through background. The checkerboard just marks the empty area; it won't appear in your export.</p>
+                  <p className="studio-hint">Transparent background - exports as a PNG with a see-through background. The checkerboard just marks the empty area; it won't appear in your export.</p>
                 )}
 
                 {bg.type === 'gradient' && (() => {
@@ -3885,7 +3885,7 @@ export default function StudioApp() {
                   </>
                 )}
 
-                {/* Shared Effects — shadow, glow, glassmorphism. Images have their
+                {/* Shared Effects - shadow, glow, glassmorphism. Images have their
                     own shadow/glow controls under Styling, so exclude them here. */}
                 {sel.type !== 'image' && (
                   <>
@@ -3929,7 +3929,7 @@ export default function StudioApp() {
                             <label className="insp-field"><span>Tint</span><input type="color" value={sel.fx.glass.tint || '#ffffff'} onChange={e => setFx(sel.id, 'glass', 'tint', e.target.value)} onBlur={() => saveHistory(layers, bg)} /></label>
                           </div>
                         )}
-                        {sel.fx?.glass?.on && <p className="studio-hint" style={{ marginTop: 2 }}>Glass blurs the layers behind it — place it over a photo or shapes.</p>}
+                        {sel.fx?.glass?.on && <p className="studio-hint" style={{ marginTop: 2 }}>Glass blurs the layers behind it - place it over a photo or shapes.</p>}
                       </>
                     )}
                   </>
@@ -3967,7 +3967,7 @@ export default function StudioApp() {
               <div className="studio-insp-empty">
                 <span className="studio-insp-empty-ic"><Cursor size={24} weight="duotone" /></span>
                 <b>Nothing selected</b>
-                <p>Pick an element on the canvas to edit it — or add something to get started.</p>
+                <p>Pick an element on the canvas to edit it - or add something to get started.</p>
                 <div className="studio-insp-empty-actions">
                   <button onClick={() => { setDrawTool(null); setToolMode('move'); addText('heading'); }}><TextT size={15} /> Add text</button>
                   <button onClick={() => setActiveTab('images')}><ImageIcon size={15} /> Add photo</button>

@@ -36,7 +36,7 @@ export default function AdBanner({
     try {
       // AdSense stores its command queue on window.adsbygoogle. Pushing an
       // empty config asks it to activate whichever <ins> elements haven't
-      // been hydrated yet — including the one this component just rendered.
+      // been hydrated yet - including the one this component just rendered.
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (err) {
       console.warn('AdSense push failed:', err?.message || err);
@@ -55,7 +55,7 @@ export default function AdBanner({
         </button>
         <Crown size={28} weight="fill" className="ad-premium-icon" />
         <h4>Go ad-free with PikFinder Premium</h4>
-        <p>Support the tools you love — remove ads, unlock priority tool queues, and get exclusive wallpaper packs.</p>
+        <p>Support the tools you love - remove ads, unlock priority tool queues, and get exclusive wallpaper packs.</p>
         <Link to="/products" className="btn-primary">See premium plans</Link>
       </div>
     );

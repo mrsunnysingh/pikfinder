@@ -64,7 +64,7 @@ export default function ColorPalette({ src }) {
           setStatus(palette.length ? 'done' : 'error');
         }
       } catch {
-        // Canvas tainted (CORS) — cannot read pixels.
+        // Canvas tainted (CORS) - cannot read pixels.
         if (mountedRef.current) setStatus('error');
       }
     };
@@ -81,7 +81,7 @@ export default function ColorPalette({ src }) {
       toast(`Copied ${text}`);
       setTimeout(() => setCopied(null), 1400);
     } catch {
-      // Clipboard blocked — ignore silently.
+      // Clipboard blocked - ignore silently.
     }
   };
 

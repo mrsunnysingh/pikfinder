@@ -5,7 +5,7 @@
 export const SITE_URL = 'https://www.pikfinder.com';
 
 export const CATEGORIES = [
-  { id: 'compress', name: 'Compress & reduce size', blurb: 'Shrink files for uploads, email, and faster pages — including exact-KB targets for forms.' },
+  { id: 'compress', name: 'Compress & reduce size', blurb: 'Shrink files for uploads, email, and faster pages - including exact-KB targets for forms.' },
   { id: 'resize', name: 'Resize, crop & rotate', blurb: 'Set exact dimensions, crop to a ratio, fix orientation, or enlarge small images.' },
   { id: 'convert', name: 'Convert format', blurb: 'Move between JPG, PNG, WebP, AVIF, HEIC, SVG, and ICO.' },
   { id: 'pdf', name: 'Documents & PDF', blurb: 'Move between images and PDF pages, and shrink heavy PDFs.' },
@@ -74,7 +74,7 @@ export const TOOLS = [
   t({
     slug: 'compress-image-to-20kb', name: 'Compress Image to 20KB', short: 'Compress to 20KB', category: 'compress', engine: 'compress',
     presetProps: { targetKB: 20 },
-    description: 'Compress any image to exactly 20KB or less — perfect for strict exam-form and government-portal upload limits.',
+    description: 'Compress any image to exactly 20KB or less - perfect for strict exam-form and government-portal upload limits.',
     keywords: ['compress image to 20kb', 'reduce image size to 20kb', '20kb photo compressor', 'compress photo 20kb online'],
     howTo: ['Upload your photo.', 'The tool automatically compresses and resizes it to fit under 20KB.', 'Download the result and upload it to your form.'],
     faq: [
@@ -85,26 +85,26 @@ export const TOOLS = [
   t({
     slug: 'compress-image-to-50kb', name: 'Compress Image to 50KB', short: 'Compress to 50KB', category: 'compress', engine: 'compress',
     presetProps: { targetKB: 50 },
-    description: 'Compress any image to 50KB or less — the most common application-photo and portal upload limit.',
+    description: 'Compress any image to 50KB or less - the most common application-photo and portal upload limit.',
     keywords: ['compress image to 50kb', 'reduce image size to 50kb', '50kb photo compressor'],
     howTo: ['Upload your photo.', 'The tool automatically compresses it to fit under 50KB.', 'Download the compressed file.'],
   }),
   t({
     slug: 'compress-image-to-100kb', name: 'Compress Image to 100KB', short: 'Compress to 100KB', category: 'compress', engine: 'compress',
     presetProps: { targetKB: 100 },
-    description: 'Compress any image to 100KB or less — a frequent upload cap for forms, CMS uploads, and email attachments.',
+    description: 'Compress any image to 100KB or less - a frequent upload cap for forms, CMS uploads, and email attachments.',
     keywords: ['compress image to 100kb', 'reduce image size to 100kb', '100kb image compressor'],
     howTo: ['Upload your photo.', 'The tool automatically compresses it to fit under 100KB.', 'Download the compressed file.'],
   }),
 
   t({
     slug: 'increase-image-size', name: 'Increase Image File Size', short: 'Increase Image Size', category: 'compress', engine: 'filesize-increase',
-    description: 'Increase a photo\'s file size to an exact target in KB without changing how it looks or its dimensions. For forms that require a minimum image size — the opposite of a compressor.',
+    description: 'Increase a photo\'s file size to an exact target in KB without changing how it looks or its dimensions. For forms that require a minimum image size - the opposite of a compressor.',
     keywords: ['increase image size in kb', 'increase jpg file size', 'make image bigger in kb', 'photo size increase for form', 'image size badhaye', 'increase photo size to 50kb', 'minimum image size for form'],
-    howTo: ['Upload your photo.', 'Enter the target size in KB (e.g. 20 or 50).', 'Download the resized file — same image, larger file size.'],
+    howTo: ['Upload your photo.', 'Enter the target size in KB (e.g. 20 or 50).', 'Download the resized file - same image, larger file size.'],
     faq: [
       { q: 'Why would I need to increase an image\'s file size?', a: 'Many exam and government upload forms require a photo to be at least a minimum size (e.g. "20KB to 50KB"). If your photo is too small, the form rejects it. This tool pads the file up to the size you need.' },
-      { q: 'Does it change how my photo looks?', a: 'No. The pixels and dimensions stay exactly the same — the tool adds standards-compliant filler data (a JPEG comment segment) that every viewer ignores, so only the file size changes.' },
+      { q: 'Does it change how my photo looks?', a: 'No. The pixels and dimensions stay exactly the same - the tool adds standards-compliant filler data (a JPEG comment segment) that every viewer ignores, so only the file size changes.' },
       { q: 'Is the file still a valid image?', a: 'Yes. It remains a valid JPEG that opens everywhere and passes upload checks; we simply enlarge the file to your target byte size.' },
       PRIVACY_FAQ, FREE_FAQ,
     ],
@@ -112,14 +112,14 @@ export const TOOLS = [
   t({
     slug: 'increase-image-size-to-20kb', name: 'Increase Image Size to 20KB', short: 'Increase to 20KB', category: 'compress', engine: 'filesize-increase',
     presetProps: { targetKB: 20 },
-    description: 'Make a too-small photo exactly 20KB for forms that require a minimum 20KB image — without changing how it looks.',
+    description: 'Make a too-small photo exactly 20KB for forms that require a minimum 20KB image - without changing how it looks.',
     keywords: ['increase image size to 20kb', 'photo minimum 20kb', 'make image 20kb', 'increase jpg to 20kb'],
     howTo: ['Upload your photo.', 'It is set to 20KB automatically.', 'Download and upload it to your form.'],
   }),
   t({
     slug: 'increase-image-size-to-50kb', name: 'Increase Image Size to 50KB', short: 'Increase to 50KB', category: 'compress', engine: 'filesize-increase',
     presetProps: { targetKB: 50 },
-    description: 'Make a too-small photo exactly 50KB for forms that require a minimum 50KB image — without changing how it looks.',
+    description: 'Make a too-small photo exactly 50KB for forms that require a minimum 50KB image - without changing how it looks.',
     keywords: ['increase image size to 50kb', 'photo minimum 50kb', 'make image 50kb', 'increase jpg to 50kb'],
     howTo: ['Upload your photo.', 'It is set to 50KB automatically.', 'Download and upload it to your form.'],
   }),
@@ -145,7 +145,7 @@ export const TOOLS = [
   }),
   t({
     slug: 'image-upscaler', name: 'Image Upscaler', short: 'Image Upscaler', category: 'resize', engine: 'upscale',
-    description: 'Enlarge images 2x, 3x, or 4x with high-quality multi-pass bicubic resampling — no signup, right in your browser.',
+    description: 'Enlarge images 2x, 3x, or 4x with high-quality multi-pass bicubic resampling - no signup, right in your browser.',
     keywords: ['image upscaler', 'enlarge image', 'upscale image online', 'increase image resolution'],
     howTo: ['Upload a small image.', 'Choose 2x, 3x, or 4x enlargement.', 'Download the upscaled image.'],
     faq: [
@@ -156,21 +156,21 @@ export const TOOLS = [
   t({
     slug: 'resize-image-to-20kb', name: 'Resize Image to 20KB', short: 'Resize to 20KB', category: 'resize', engine: 'resize',
     presetProps: { targetKB: 20 },
-    description: 'Resize and compress an image to hit a strict 20KB target — a resize-first workflow for form and portal uploads.',
+    description: 'Resize and compress an image to hit a strict 20KB target - a resize-first workflow for form and portal uploads.',
     keywords: ['resize image to 20kb', 'resize photo 20kb', 'reduce photo to 20kb'],
-    howTo: ['Upload your photo.', 'Set your dimensions — the tool then compresses to fit 20KB.', 'Download the result.'],
+    howTo: ['Upload your photo.', 'Set your dimensions - the tool then compresses to fit 20KB.', 'Download the result.'],
   }),
   t({
     slug: 'resize-image-for-instagram', name: 'Resize Image for Instagram', short: 'Instagram Resizer', category: 'resize', engine: 'resize',
     presetProps: {
       presets: [
-        { label: 'Post — Square (1080x1080)', w: 1080, h: 1080 },
-        { label: 'Post — Portrait (1080x1350)', w: 1080, h: 1350 },
+        { label: 'Post - Square (1080x1080)', w: 1080, h: 1080 },
+        { label: 'Post - Portrait (1080x1350)', w: 1080, h: 1350 },
         { label: 'Story / Reel (1080x1920)', w: 1080, h: 1920 },
         { label: 'Landscape (1080x566)', w: 1080, h: 566 },
       ],
     },
-    description: 'Resize photos to the exact sizes Instagram uses for posts, portraits, stories, and reels — 1080x1080, 1080x1350, 1080x1920.',
+    description: 'Resize photos to the exact sizes Instagram uses for posts, portraits, stories, and reels - 1080x1080, 1080x1350, 1080x1920.',
     keywords: ['resize image for instagram', 'instagram photo size', 'instagram post size 1080', 'instagram story size'],
     howTo: ['Upload your photo.', 'Pick a size preset for posts, stories, or reels.', 'Download and post.'],
   }),
@@ -179,7 +179,7 @@ export const TOOLS = [
   t({
     slug: 'image-format-converter', name: 'Image Format Converter', short: 'Format Converter', category: 'convert', engine: 'convert',
     presetProps: { from: 'any', to: 'any' },
-    description: 'Convert images between JPG, PNG, WebP, AVIF, HEIC, and SVG in one place. Free, fast, and private — files never leave your browser.',
+    description: 'Convert images between JPG, PNG, WebP, AVIF, HEIC, and SVG in one place. Free, fast, and private - files never leave your browser.',
     keywords: ['image converter', 'convert image format', 'image format converter online free'],
     howTo: ['Upload any image (JPG, PNG, WebP, AVIF, HEIC, or SVG).', 'Choose the output format.', 'Download the converted file.'],
   }),
@@ -190,24 +190,24 @@ export const TOOLS = [
     keywords: ['convert images', 'convert image online', 'free image conversion'],
     howTo: ['Upload any image.', 'Choose the output format.', 'Download the converted file.'],
   }),
-  convertTool('PNG', 'JPG', 'JPG flattens transparency and produces much smaller files for photo-style images — ideal for email and web uploads.'),
+  convertTool('PNG', 'JPG', 'JPG flattens transparency and produces much smaller files for photo-style images - ideal for email and web uploads.'),
   convertTool('JPG', 'PNG', 'PNG is lossless, so it is ideal for editing workflows, screenshots, and UI assets where quality must not degrade.'),
-  convertTool('PNG', 'WebP', 'WebP delivers smaller files than PNG while keeping transparency — perfect for modern, faster-loading web pages.'),
+  convertTool('PNG', 'WebP', 'WebP delivers smaller files than PNG while keeping transparency - perfect for modern, faster-loading web pages.'),
   convertTool('JPG', 'WebP', 'WebP compresses photos 25-35% smaller than JPG at the same visual quality, making pages load faster.'),
-  convertTool('WebP', 'PNG', 'PNG output is lossless and universally supported — useful when a tool or platform cannot open WebP files.'),
+  convertTool('WebP', 'PNG', 'PNG output is lossless and universally supported - useful when a tool or platform cannot open WebP files.'),
   convertTool('WebP', 'JPG', 'JPG is supported everywhere, making it the safest choice for older software, printing services, and uploads.'),
   convertTool('JPG', 'AVIF', 'AVIF is the most aggressive modern format, often halving file size versus JPG at equal quality.'),
-  convertTool('PNG', 'AVIF', 'AVIF keeps transparency like PNG but at a fraction of the file size — great for modern web delivery.'),
+  convertTool('PNG', 'AVIF', 'AVIF keeps transparency like PNG but at a fraction of the file size - great for modern web delivery.'),
   convertTool('AVIF', 'JPG', 'JPG output ensures compatibility with older browsers, editors, and systems that cannot open AVIF.'),
   convertTool('AVIF', 'PNG', 'PNG gives you a lossless working copy of an AVIF image for editing or maximum compatibility.'),
   convertTool('HEIC', 'JPG', 'iPhone photos are saved as HEIC, which many apps and websites reject. JPG works everywhere.'),
   convertTool('HEIC', 'PNG', 'Convert iPhone HEIC photos to lossless PNG for editing without any quality loss.'),
-  convertTool('SVG', 'PNG', 'Rasterize vector graphics into PNG at any resolution — needed for platforms that do not accept SVG uploads.'),
+  convertTool('SVG', 'PNG', 'Rasterize vector graphics into PNG at any resolution - needed for platforms that do not accept SVG uploads.'),
 
   // ============ PDF ============
   t({
     slug: 'compress-pdf', name: 'Compress PDF', short: 'Compress PDF', category: 'pdf', engine: 'pdf-compress',
-    description: 'Shrink scanned and image-heavy PDFs for email and uploads. Compression runs entirely in your browser — documents stay private.',
+    description: 'Shrink scanned and image-heavy PDFs for email and uploads. Compression runs entirely in your browser - documents stay private.',
     keywords: ['compress pdf', 'pdf compressor', 'reduce pdf size online free'],
     howTo: ['Upload your PDF.', 'Choose a compression level.', 'Download the smaller PDF.'],
     faq: [
@@ -217,7 +217,7 @@ export const TOOLS = [
   }),
   t({
     slug: 'pdf-to-jpg', name: 'PDF to JPG', short: 'PDF to JPG', category: 'pdf', engine: 'pdf-to-jpg',
-    description: 'Extract PDF pages as high-quality JPG images. Convert every page or pick the ones you need — all in your browser.',
+    description: 'Extract PDF pages as high-quality JPG images. Convert every page or pick the ones you need - all in your browser.',
     keywords: ['pdf to jpg', 'convert pdf to image', 'pdf to jpg converter online free'],
     howTo: ['Upload your PDF.', 'Each page renders as a JPG preview.', 'Download individual pages or all at once.'],
   }),
@@ -232,13 +232,13 @@ export const TOOLS = [
   t({
     slug: 'png-to-ico', name: 'PNG to ICO', short: 'PNG to ICO', category: 'web', engine: 'favicon',
     presetProps: { icoOnly: true },
-    description: 'Turn a PNG logo into a favicon.ico file with multiple embedded sizes (16, 32, 48px) — the format browsers expect.',
+    description: 'Turn a PNG logo into a favicon.ico file with multiple embedded sizes (16, 32, 48px) - the format browsers expect.',
     keywords: ['png to ico', 'convert png to ico', 'ico converter', 'make favicon from png'],
     howTo: ['Upload a square PNG logo.', 'The tool packs 16, 32, and 48px versions into one ICO.', 'Download favicon.ico and drop it in your site root.'],
   }),
   t({
     slug: 'favicon-generator', name: 'Favicon Generator', short: 'Favicon Generator', category: 'web', engine: 'favicon',
-    description: 'Generate a complete favicon package: favicon.ico, PNG sizes for every device, apple-touch-icon, and a web manifest — from one image.',
+    description: 'Generate a complete favicon package: favicon.ico, PNG sizes for every device, apple-touch-icon, and a web manifest - from one image.',
     keywords: ['favicon generator', 'create favicon', 'favicon package', 'apple touch icon generator'],
     howTo: ['Upload a square logo (at least 512x512 recommended).', 'The tool generates every size plus the HTML snippet.', 'Download the ZIP and copy the HTML into your <head>.'],
   }),
@@ -261,7 +261,7 @@ export const TOOLS = [
         { label: 'PAN Card (25x35 mm, 295x413)', w: 295, h: 413 },
       ],
     },
-    description: 'Resize photos to common passport and visa dimensions for online applications — US 2x2, India and EU 35x45mm, and more.',
+    description: 'Resize photos to common passport and visa dimensions for online applications - US 2x2, India and EU 35x45mm, and more.',
     keywords: ['passport photo maker', 'passport size photo online', 'visa photo resize', '35x45 photo'],
     howTo: ['Upload a clear, front-facing photo.', 'Pick your country or document preset.', 'Download the correctly sized photo.'],
   }),
@@ -298,7 +298,7 @@ export const TOOLS = [
   }),
   t({
     slug: 'background-remover', name: 'Background Remover', short: 'Background Remover', category: 'photo', engine: 'bg-remove', heavy: true,
-    description: 'Remove image backgrounds automatically, right in your browser. AI runs locally on your device — photos are never uploaded.',
+    description: 'Remove image backgrounds automatically, right in your browser. AI runs locally on your device - photos are never uploaded.',
     keywords: ['background remover', 'remove background from image', 'transparent background maker', 'free background remover no signup'],
     howTo: ['Upload a photo with a clear subject.', 'The on-device AI model separates the subject from the background.', 'Download a transparent PNG cutout.'],
     faq: [
@@ -309,7 +309,7 @@ export const TOOLS = [
   }),
   t({
     slug: 'add-background', name: 'Add Background', short: 'Add Background', category: 'photo', engine: 'add-background',
-    description: 'Add a solid color background to transparent images, or pad photos to a square or custom canvas — great after background removal.',
+    description: 'Add a solid color background to transparent images, or pad photos to a square or custom canvas - great after background removal.',
     keywords: ['add background to image', 'add white background', 'pad image to square', 'change photo background color'],
     howTo: ['Upload an image (transparent PNGs work great).', 'Pick a background color and canvas size.', 'Download the composited image.'],
   }),
@@ -322,7 +322,7 @@ export const TOOLS = [
     keywords: ['remove exif data', 'remove metadata from photo', 'strip gps from photo', 'exif remover online'],
     howTo: ['Upload a photo.', 'See exactly what hidden data it contains.', 'Download a clean copy with all metadata removed.'],
     faq: [
-      { q: 'What hidden data do photos contain?', a: 'Photos often embed the GPS location where they were taken, the exact time, your camera or phone model, and sometimes the owner name — all invisible in the image itself.' },
+      { q: 'What hidden data do photos contain?', a: 'Photos often embed the GPS location where they were taken, the exact time, your camera or phone model, and sometimes the owner name - all invisible in the image itself.' },
       PRIVACY_FAQ, FREE_FAQ,
     ],
   }),
@@ -338,7 +338,7 @@ export const TOOLS = [
   t({
     slug: 'watermark-image', name: 'Watermark Image', short: 'Watermark', category: 'creative', engine: 'edit',
     presetProps: { mode: 'watermark' },
-    description: 'Add a text watermark to your images — control the text, position, size, opacity, and color. Protect your photos before sharing.',
+    description: 'Add a text watermark to your images - control the text, position, size, opacity, and color. Protect your photos before sharing.',
     keywords: ['watermark image', 'add watermark to photo', 'text watermark online free'],
     howTo: ['Upload an image.', 'Type your watermark text and adjust position, size, and opacity.', 'Download the watermarked image.'],
   }),
@@ -351,7 +351,7 @@ export const TOOLS = [
   }),
   t({
     slug: 'gif-maker', name: 'GIF Maker', short: 'GIF Maker', category: 'creative', engine: 'gif',
-    description: 'Turn a series of images into an animated GIF. Set the frame delay, reorder frames, and download — all in your browser.',
+    description: 'Turn a series of images into an animated GIF. Set the frame delay, reorder frames, and download - all in your browser.',
     keywords: ['gif maker', 'create gif from images', 'animated gif maker online free'],
     howTo: ['Upload 2 or more images as frames.', 'Arrange the order and set the speed.', 'Download your animated GIF.'],
   }),
@@ -360,7 +360,7 @@ export const TOOLS = [
   t({
     slug: 'color-palette-extractor', name: 'Color Palette Extractor', short: 'Palette Extractor', category: 'color', engine: 'color',
     presetProps: { mode: 'palette' },
-    description: 'Extract the dominant colors from any image and copy their HEX codes — perfect for building palettes from photos and designs.',
+    description: 'Extract the dominant colors from any image and copy their HEX codes - perfect for building palettes from photos and designs.',
     keywords: ['color palette extractor', 'get colors from image', 'extract hex colors from photo'],
     howTo: ['Upload an image.', 'The dominant colors appear as swatches.', 'Click any swatch to copy its HEX code.'],
   }),
@@ -374,7 +374,7 @@ export const TOOLS = [
   t({
     slug: 'image-diff', name: 'Image Diff Checker', short: 'Image Diff', category: 'color', engine: 'color',
     presetProps: { mode: 'diff' },
-    description: 'Compare two images pixel-by-pixel and highlight every difference — useful for design reviews and visual regression checks.',
+    description: 'Compare two images pixel-by-pixel and highlight every difference - useful for design reviews and visual regression checks.',
     keywords: ['image diff', 'compare two images', 'find differences between images', 'image comparison tool'],
     howTo: ['Upload two images of the same size.', 'Differing pixels are highlighted in the diff view.', 'Review the difference percentage and map.'],
   }),
@@ -382,12 +382,12 @@ export const TOOLS = [
   // ============ GENERATE ============
   t({
     slug: 'qr-code-generator', name: 'QR Code Generator', short: 'QR Generator', category: 'generate', engine: 'qr',
-    description: 'Generate QR codes for links, text, WiFi, and more. Customize the size and colors, and export as PNG or SVG — free, no signup.',
+    description: 'Generate QR codes for links, text, WiFi, and more. Customize the size and colors, and export as PNG or SVG - free, no signup.',
     keywords: ['qr code generator', 'create qr code free', 'qr code for link', 'qr code png svg'],
     howTo: ['Type or paste your link or text.', 'Adjust size and colors if you like.', 'Download as PNG or SVG.'],
   }),
   t({
-    slug: 'ocr-image-to-text', name: 'OCR — Image to Text', short: 'Image to Text (OCR)', category: 'generate', engine: 'ocr', heavy: true,
+    slug: 'ocr-image-to-text', name: 'OCR - Image to Text', short: 'Image to Text (OCR)', category: 'generate', engine: 'ocr', heavy: true,
     description: 'Extract text from photos, screenshots, and scans with on-device OCR in 12 languages. Images never leave your browser.',
     keywords: ['image to text', 'ocr online free', 'extract text from image', 'photo to text converter'],
     howTo: ['Upload a photo or scan containing text.', 'Pick the language and run OCR.', 'Copy or download the extracted text.'],

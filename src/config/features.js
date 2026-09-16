@@ -9,7 +9,7 @@ export const PAYMENTS_ENABLED = true;
 export const WAITLIST_ENABLED = false;
 
 // Gate the exclusive Studio templates behind Creator Pro. Kept OFF while we grow
-// traffic — everything is free so the Studio stays a strong acquisition hook.
+// traffic - everything is free so the Studio stays a strong acquisition hook.
 // Flip to true once there's enough traffic/users to monetise.
 export const STUDIO_PREMIUM_GATING = false;
 

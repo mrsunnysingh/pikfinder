@@ -20,7 +20,7 @@ function downloadCsv(head, rows, filename) {
 }
 
 const fmtDate = (s) => {
-  if (!s) return '—';
+  if (!s) return ' - ';
   try { return new Date(s).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }); }
   catch { return String(s); }
 };
@@ -61,7 +61,7 @@ function DrillModal({ which, data, onClose }) {
 
   if (which === 'customers' || which === 'premium') {
     head = ['Name', 'Email', 'Username', 'Plan', 'Joined'];
-    rows = (lists[which] || []).map((u) => [u.name, u.email, u.username || '—', u.isPremium ? 'Premium' : 'Free', fmtDate(u.at)]);
+    rows = (lists[which] || []).map((u) => [u.name, u.email, u.username || ' - ', u.isPremium ? 'Premium' : 'Free', fmtDate(u.at)]);
   } else if (which === 'subscribers') {
     head = ['Email', 'Joined'];
     rows = (lists.subscribers || []).map((s) => [s.email, fmtDate(s.at)]);
@@ -70,10 +70,10 @@ function DrillModal({ which, data, onClose }) {
     rows = (data.recentPayments || []).map((p) => [p.email, p.plan, money(p.amount, p.currency), fmtDate(p.at)]);
   } else if (which === 'waitlist') {
     head = ['Name', 'Email', 'Profession', 'When'];
-    rows = (data.recentSignups || []).map((s) => [s.name, s.email, s.profession || '—', fmtDate(s.at)]);
+    rows = (data.recentSignups || []).map((s) => [s.name, s.email, s.profession || ' - ', fmtDate(s.at)]);
   } else if (which === 'contacts') {
     head = ['Name', 'Email', 'Category', 'Message', 'When'];
-    rows = (data.recentContacts || []).map((m) => [m.name, m.email, m.category || '—', m.message, fmtDate(m.at)]);
+    rows = (data.recentContacts || []).map((m) => [m.name, m.email, m.category || ' - ', m.message, fmtDate(m.at)]);
   }
 
   return (
@@ -236,7 +236,7 @@ export default function Admin() {
                     <tr key={i}>
                       <td>{s.name}</td>
                       <td>{s.email}</td>
-                      <td>{s.profession || '—'}</td>
+                      <td>{s.profession || ' - '}</td>
                       <td>{fmtDate(s.at)}</td>
                     </tr>
                   ))}
@@ -259,7 +259,7 @@ export default function Admin() {
                     <tr key={i}>
                       <td>{m.name}</td>
                       <td>{m.email}</td>
-                      <td>{m.category || '—'}</td>
+                      <td>{m.category || ' - '}</td>
                       <td className="admin-msg">{m.message}</td>
                       <td>{fmtDate(m.at)}</td>
                     </tr>

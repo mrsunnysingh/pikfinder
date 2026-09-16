@@ -1,5 +1,5 @@
 // src/lib/blog/source.firebase.js
-// Firestore-backed blog. Reuses the app's existing Firebase — no new service.
+// Firestore-backed blog. Reuses the app's existing Firebase - no new service.
 // Collection `blogPosts`, one doc per post (doc id OR a `slug` field is the slug).
 // Reads are public for published posts (see firestore.rules); writes are admin.
 //

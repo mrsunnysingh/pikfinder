@@ -1,6 +1,6 @@
 // src/business/exportHistory.js
 // Lightweight local record of Business Hub exports (last 50). Stored in
-// localStorage — no server round-trip, survives reloads. Powers the "Exports"
+// localStorage - no server round-trip, survives reloads. Powers the "Exports"
 // tab so users can see what they generated and re-download nothing is lost.
 
 const KEY = 'pikfinder-business-exports';

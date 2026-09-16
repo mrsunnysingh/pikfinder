@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Dropzone, ResultBar, formatBytes, saveBlob, loadImageFromFile } from '../ToolShell';
 import { drawToCanvas, canvasToBlob, compressToTarget, baseName } from './canvas-utils';
 
-// Increase (or set) an image's file size to an exact target in KB — the opposite
+// Increase (or set) an image's file size to an exact target in KB - the opposite
 // of a compressor. Many exam/government upload forms require a photo *at least*
 // a minimum size (e.g. "20KB to 50KB"); a too-small photo gets rejected.
 //
 // How it stays valid + identical-looking: we re-encode the picture as JPEG (same
 // pixels, same dimensions) and then pad the file to the exact byte target using
-// JPEG COM (comment) segments — a spec-compliant marker every decoder ignores.
+// JPEG COM (comment) segments - a spec-compliant marker every decoder ignores.
 // The image looks exactly the same; only the file size changes.
 
 const MAX_DIMENSION = 4096;
@@ -81,7 +81,7 @@ export default function FileSizeIncreaseEngine({ targetKB = null }) {
         blob = new Blob([bytes], { type: 'image/jpeg' });
       } else {
         blob = base; exact = false;
-        setNote(`This image can't be made this small without heavy quality loss — it's ${formatBytes(base.size)}. To reduce it, use the image compressor instead.`);
+        setNote(`This image can't be made this small without heavy quality loss - it's ${formatBytes(base.size)}. To reduce it, use the image compressor instead.`);
       }
 
       if (result?.url) URL.revokeObjectURL(result.url);
@@ -102,7 +102,7 @@ export default function FileSizeIncreaseEngine({ targetKB = null }) {
           onFiles={onFiles}
           accept="image/jpeg,image/png,image/webp"
           label="Drop your image here, or click to browse"
-          hint="JPG, PNG, or WebP — processed on your device"
+          hint="JPG, PNG, or WebP - processed on your device"
         />
       )}
 
@@ -122,7 +122,7 @@ export default function FileSizeIncreaseEngine({ targetKB = null }) {
                 </button>
               </div>
             </label>
-            <p className="tool-note">Sets your photo to about <strong>{target}KB</strong> without changing how it looks or its dimensions — ideal for forms that require a <em>minimum</em> size.</p>
+            <p className="tool-note">Sets your photo to about <strong>{target}KB</strong> without changing how it looks or its dimensions - ideal for forms that require a <em>minimum</em> size.</p>
             <button className="btn-ghost" onClick={() => { setFile(null); setResult(null); setPreviewUrl(null); setNote(''); }}>
               Choose a different image
             </button>
@@ -137,11 +137,11 @@ export default function FileSizeIncreaseEngine({ targetKB = null }) {
               <div className="tool-compare">
                 <figure>
                   <img src={previewUrl} alt="Original" />
-                  <figcaption>Original — {formatBytes(file.size)}</figcaption>
+                  <figcaption>Original - {formatBytes(file.size)}</figcaption>
                 </figure>
                 <figure>
                   <img src={result.url} alt="Result" />
-                  <figcaption>{result.exact ? 'Resized' : 'Closest'} — {formatBytes(result.blob.size)} ({result.width}×{result.height})</figcaption>
+                  <figcaption>{result.exact ? 'Resized' : 'Closest'} - {formatBytes(result.blob.size)} ({result.width}×{result.height})</figcaption>
                 </figure>
               </div>
               <ResultBar

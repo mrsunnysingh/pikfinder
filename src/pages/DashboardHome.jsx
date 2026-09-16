@@ -48,16 +48,22 @@ export default function DashboardHome() {
   const location = useLocation();
   const [term, setTerm] = useState('');
 
-  const firstName = useMemo(() => (user?.name || 'there').split(' ')[0], [user]);
+  const favList = Array.isArray(favorites) ? favorites : [];
+  const searchList = Array.isArray(searchHistory) ? searchHistory : [];
+  const downList = Array.isArray(downloadHistory) ? downloadHistory : [];
+
+  const firstName = useMemo(() => String(user?.name || 'there').split(' ')[0], [user]);
 
   useEffect(() => {
     if (!location.hash) return;
-    const el = document.querySelector(location.hash);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    try {
+      const el = document.querySelector(location.hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch { /* ignore invalid selector */ }
   }, [location.hash]);
 
   const goSearch = (q) => {
-    const query = (q ?? term).trim();
+    const query = String(q ?? term ?? '').trim();
     if (!query) return;
     navigate(`/search?q=${encodeURIComponent(query)}`);
   };
@@ -70,31 +76,31 @@ export default function DashboardHome() {
   ];
 
   const stats = [
-    { label: 'Saved images', value: favorites.length, icon: Heart, color: '#f43f5e', onClick: () => navigate('/favorites') },
+    { label: 'Saved images', value: favList.length, icon: Heart, color: '#f43f5e', onClick: () => navigate('/favorites') },
     { label: 'Collections', value: 24, icon: FolderSimple, color: '#8b5cf6', onClick: () => navigate('/collections') },
-    { label: 'Downloads', value: downloadHistory.length, icon: DownloadSimple, color: '#3b82f6', onClick: () => navigate('/dashboard#downloads') },
-    { label: 'Searches', value: searchHistory.length, icon: ClockCounterClockwise, color: '#10b981', onClick: () => navigate('/dashboard#ai-search-history') },
+    { label: 'Downloads', value: downList.length, icon: DownloadSimple, color: '#3b82f6', onClick: () => navigate('/dashboard#downloads') },
+    { label: 'Searches', value: searchList.length, icon: ClockCounterClockwise, color: '#10b981', onClick: () => navigate('/dashboard#ai-search-history') },
     { label: 'Tools used', value: 12, icon: Wrench, color: '#f59e0b', onClick: () => navigate('/tools') },
   ];
 
-  const recentAssets = favorites.slice(-5).reverse();
+  const recentAssets = favList.filter(Boolean).slice(-5).reverse();
 
   // Trending is dynamic: built from the user's real recent searches, with a
   // curated fallback so the panel is never empty.
   const trending = useMemo(() => {
     const seen = new Set();
     const fromHistory = [];
-    for (const q of searchHistory) {
-      const key = (q || '').trim().toLowerCase();
+    for (const q of searchList) {
+      const key = String(q || '').trim().toLowerCase();
       if (!key || seen.has(key)) continue;
       seen.add(key);
-      fromHistory.push({ label: q.trim(), note: 'Recent search', q: q.trim() });
+      fromHistory.push({ label: String(q).trim(), note: 'Recent search', q: String(q).trim() });
       if (fromHistory.length >= 5) break;
     }
     if (fromHistory.length >= 3) return fromHistory;
     const extra = TRENDING_DEFAULT.filter((d) => !seen.has(d.q.toLowerCase()));
     return [...fromHistory, ...extra].slice(0, 5);
-  }, [searchHistory]);
+  }, [searchList]);
 
   return (
     <div className="dash-grid">
@@ -156,12 +162,16 @@ export default function DashboardHome() {
           </div>
           {recentAssets.length > 0 ? (
             <div className="dash-assets">
-              {recentAssets.map((p) => (
-                <button key={p.id} className="dash-asset" onClick={() => navigate('/favorites')}>
-                  <img src={p.urls?.regular || p.urls?.full} alt={p.alt_description || 'Saved asset'} loading="lazy" />
-                  <span className="dash-asset-title">{p.alt_description || 'Saved asset'}</span>
-                </button>
-              ))}
+              {recentAssets.map((p, idx) => {
+                const imgUrl = p?.urls?.regular || p?.urls?.full || p?.urls?.small || p?.url || p?.src || (typeof p === 'string' ? p : '');
+                const title = p?.alt_description || p?.title || p?.description || 'Saved asset';
+                return (
+                  <button key={p?.id || idx} className="dash-asset" onClick={() => navigate('/favorites')}>
+                    {imgUrl && <img src={imgUrl} alt={title} loading="lazy" />}
+                    <span className="dash-asset-title">{title}</span>
+                  </button>
+                );
+              })}
             </div>
           ) : (
             <div className="empty-state">

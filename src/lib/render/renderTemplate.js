@@ -2,7 +2,7 @@
 // Pure, dependency-free template substitution shared by the browser (Business
 // Hub preview) and the server (api/generate/*). Takes Studio layer JSON with
 // {{placeholders}} + a data record and returns concrete layer JSON ready to
-// render. No canvas, no React — runs anywhere.
+// render. No canvas, no React - runs anywhere.
 
 // {{ field }}  or  {{ field | "fallback" }}
 const PLACEHOLDER = /\{\{\s*([\w.]+)\s*(?:\|\s*"([^"]*)"\s*)?\}\}/g;

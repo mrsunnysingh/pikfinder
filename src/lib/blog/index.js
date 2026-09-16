@@ -5,7 +5,7 @@
 //
 // The local Markdown source is imported statically (it's the safe default and
 // has bundled content). CMS adapters are loaded ON DEMAND so a misconfigured or
-// failing adapter can never break the default blog or the app at import time —
+// failing adapter can never break the default blog or the app at import time  - 
 // and their code isn't bundled unless that source is actually selected.
 
 import * as local from './source.local';
@@ -26,7 +26,7 @@ function getAdapter() {
   if (SOURCE === 'local' || !LOADERS[SOURCE]) return Promise.resolve(local);
   if (!adapterPromise) {
     adapterPromise = LOADERS[SOURCE]().catch((err) => {
-      console.error(`[blog] "${SOURCE}" source failed to load — falling back to local.`, err);
+      console.error(`[blog] "${SOURCE}" source failed to load - falling back to local.`, err);
       return local;
     });
   }

@@ -86,7 +86,7 @@ export default function BusinessHub() {
   const categories = useMemo(() => custom.length ? [...BUSINESS_CATEGORIES, 'Custom'] : BUSINESS_CATEGORIES, [custom]);
 
   useSeo({
-    title: 'Document Generator — Generate documents from your data | PikFinder',
+    title: 'Document Generator - Generate documents from your data | PikFinder',
     description: 'Turn business data into certificates, invoices, cards, and banners in seconds. Auto-fill from Zoho CRM and Creator.',
     canonical: `${SITE_URL}/business`,
   });
@@ -257,7 +257,7 @@ export default function BusinessHub() {
         <div>
           <span className="biz-hub-eyebrow"><Buildings weight="fill" /> Document Generator</span>
           <h1>Documents that fill themselves in</h1>
-          <p>Pick a template, add your details, and export a finished certificate, invoice or card in seconds — or connect Zoho to auto-fill from your records.</p>
+          <p>Pick a template, add your details, and export a finished certificate, invoice or card in seconds - or connect Zoho to auto-fill from your records.</p>
           <div className="biz-hub-badges">
             <span><ShieldCheck size={14} weight="fill" /> No design skills needed</span>
             <span><Sparkle size={14} weight="fill" /> {CATALOGUE.length} premium templates</span>
@@ -398,7 +398,7 @@ export default function BusinessHub() {
               <Plugs size={15} /> {busy === 'creator' ? 'Preparing…' : 'Send to Zoho Creator'}
             </button>
 
-            {/* Bulk from a spreadsheet — works for everyone, no Zoho needed */}
+            {/* Bulk from a spreadsheet - works for everyone, no Zoho needed */}
             <button className="biz-csv-cta" disabled={!!busy} onClick={() => csvRef.current?.click()}>
               <UploadSimple size={15} /> {busy === 'bulk' ? 'Generating batch…' : 'Bulk generate from CSV / spreadsheet'}
             </button>
@@ -462,7 +462,7 @@ function ExportsView({ history, onClear, onRemove, onReopen, onDownload, onNew }
       <div className="biz-empty">
         <ClockCounterClockwise size={40} />
         <h3>No documents yet</h3>
-        <p>Every document you generate is saved here — reopen, edit or re-download it anytime.</p>
+        <p>Every document you generate is saved here - reopen, edit or re-download it anytime.</p>
         <button className="btn-primary" style={{ marginTop: 14 }} onClick={onNew}>Create your first document</button>
       </div>
     );
@@ -472,7 +472,7 @@ function ExportsView({ history, onClear, onRemove, onReopen, onDownload, onNew }
       <div className="biz-docs-head">
         <div>
           <h3>Your documents</h3>
-          <p>{history.length} saved on this device — reopen, edit or re-download anytime.</p>
+          <p>{history.length} saved on this device - reopen, edit or re-download anytime.</p>
         </div>
         <button className="btn-ghost-danger" onClick={onClear}><Trash size={14} /> Clear all</button>
       </div>

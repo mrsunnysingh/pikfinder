@@ -103,7 +103,7 @@ export default function AuthModal() {
       const code = err?.code || err?.message || '';
       console.error('Google sign-in failed:', code, err);
       if (code.includes('popup-closed-by-user') || code.includes('cancelled-popup-request')) {
-        // User closed the popup — ignore.
+        // User closed the popup - ignore.
       } else if (code.includes('popup-blocked')) {
         setError('Your browser blocked the sign-in popup. Allow popups for this site and try again.');
       } else if (code.includes('unauthorized-domain')) {

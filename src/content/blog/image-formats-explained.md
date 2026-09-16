@@ -1,5 +1,5 @@
 ---
-title: JPG, PNG, WebP, AVIF — Which Image Format Should You Use?
+title: JPG, PNG, WebP, AVIF - Which Image Format Should You Use?
 description: A plain-English guide to the formats that matter, when to reach for each, and how to shrink files without wrecking quality.
 coverImage: https://images.unsplash.com/photo-1544731612-de7f96afe55f?q=80&w=1200&auto=format&fit=crop
 tags: Guides, Formats
@@ -11,7 +11,7 @@ The format you export decides how sharp your image looks and how fast your page 
 
 ## JPG
 
-Best for photographs. JPG uses "lossy" compression — it throws away detail your eye barely notices to make files small. That's perfect for hero images and photo galleries, where a little compression is invisible. Its one limitation: no transparency, so it always fills the background with a solid colour.
+Best for photographs. JPG uses "lossy" compression - it throws away detail your eye barely notices to make files small. That's perfect for hero images and photo galleries, where a little compression is invisible. Its one limitation: no transparency, so it always fills the background with a solid colour.
 
 ## PNG
 
@@ -19,7 +19,7 @@ Lossless with transparency. Reach for PNG with logos, icons, screenshots, and an
 
 ## WebP
 
-The modern default. WebP is roughly 25–35% smaller than JPG at the same quality, supports transparency like PNG, and is read by every current browser. If you're publishing to the web and unsure what to pick, **export WebP** — you get PNG-style features at JPG-style sizes.
+The modern default. WebP is roughly 25–35% smaller than JPG at the same quality, supports transparency like PNG, and is read by every current browser. If you're publishing to the web and unsure what to pick, **export WebP** - you get PNG-style features at JPG-style sizes.
 
 ## AVIF
 
@@ -28,7 +28,7 @@ The newest and smallest format, with excellent quality at very low file sizes. S
 ## What about HEIC and SVG?
 
 - **HEIC** is what modern iPhones save by default. It's efficient but not universally supported on the web, so convert it to JPG or WebP before uploading anywhere.
-- **SVG** isn't a pixel format at all — it's vector code. Use it for logos and icons that must stay razor-sharp at any size. It can't store photographs.
+- **SVG** isn't a pixel format at all - it's vector code. Use it for logos and icons that must stay razor-sharp at any size. It can't store photographs.
 
 ## A simple rule of thumb
 
@@ -37,7 +37,7 @@ The newest and smallest format, with excellent quality at very low file sizes. S
 - Maximum compatibility: **JPG**
 - iPhone photo to share anywhere: convert **HEIC → JPG**
 
-## File size vs quality — the real trick
+## File size vs quality - the real trick
 
 Format matters, but so does what you do after choosing it. Two quick wins:
 
@@ -47,7 +47,7 @@ Format matters, but so does what you do after choosing it. Two quick wins:
 ## FAQ
 
 **Does converting JPG to PNG improve quality?**
-No. Quality lost to JPG compression can't be recovered by switching format — you just get a bigger file. Start from the highest-quality original you have.
+No. Quality lost to JPG compression can't be recovered by switching format - you just get a bigger file. Start from the highest-quality original you have.
 
 **Is WebP safe to use everywhere now?**
 Yes, for the web. Every current browser supports it. For email or some older desktop software, JPG or PNG is still the safest bet.
@@ -55,4 +55,4 @@ Yes, for the web. Every current browser supports it. For email or some older des
 **Which format is smallest?**
 AVIF, then WebP, then JPG for photos. For graphics with few colours, PNG or SVG usually wins.
 
-You can convert and compress any of these in the [free tools](/tools) — no upload, everything runs in your browser. Start by [converting an image](/tools/convert-images).
+You can convert and compress any of these in the [free tools](/tools) - no upload, everything runs in your browser. Start by [converting an image](/tools/convert-images).

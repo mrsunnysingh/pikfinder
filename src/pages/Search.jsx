@@ -19,8 +19,8 @@ export default function Search() {
   useEffect(() => { setTerm(q); }, [q]);
 
   useSeo({
-    title: q ? `${q} — Search | PikFinder` : 'Search Free Images & Videos | PikFinder',
-    description: 'Search millions of free, copyright-safe images and videos across Unsplash, Pexels, Pixabay, and Openverse — with clear licensing.',
+    title: q ? `${q} - Search | PikFinder` : 'Search Free Images & Videos | PikFinder',
+    description: 'Search millions of free, copyright-safe images and videos across Unsplash, Pexels, Pixabay, and Openverse - with clear licensing.',
     canonical: `${SITE_URL}/search${q ? `?q=${encodeURIComponent(q)}` : ''}`,
   });
 

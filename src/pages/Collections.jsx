@@ -66,7 +66,7 @@ export default function Collections() {
     } catch (e) {
       console.error(e);
       setErr(e?.code === 'permission-denied'
-        ? 'Couldn’t save — the database permissions need updating. Please try again shortly.'
+        ? 'Couldn’t save - the database permissions need updating. Please try again shortly.'
         : 'Couldn’t save your collection. Please check your connection and try again.');
     } finally { setBusy(false); }
   };
@@ -76,7 +76,7 @@ export default function Collections() {
   };
 
   useSeo({
-    title: 'Curated Collections — Free Design Asset Sets | PikFinder',
+    title: 'Curated Collections - Free Design Asset Sets | PikFinder',
     description: 'Hand-picked collections of free-to-use images with clear licensing for SaaS, business, healthcare, travel, education and more. Click a collection to browse matching assets.',
     canonical: `${SITE_URL}/collections`,
   });

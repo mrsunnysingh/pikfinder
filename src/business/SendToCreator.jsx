@@ -1,7 +1,7 @@
 // src/business/SendToCreator.jsx
 // Modal that pushes a generated document into Zoho Creator: pick an app/report,
 // a file-upload field, then either attach to an existing record or create a new
-// one — the file uploads to that record's field. Self-contained; the parent just
+// one - the file uploads to that record's field. Self-contained; the parent just
 // passes the file as { base64, filename, contentType }.
 
 import React, { useEffect, useState } from 'react';
@@ -70,8 +70,8 @@ export default function SendToCreator({ file, onClose }) {
       const res = await attachToCreator(payload);
       if (!res.ok || !res.data?.ok) {
         const d = res.data || {};
-        setErr(d.error === 'upload_failed' ? 'Upload failed — check the field is a file-upload field and the report allows it.'
-          : d.error === 'create_failed' ? 'Could not create the record — the form may have required fields.'
+        setErr(d.error === 'upload_failed' ? 'Upload failed - check the field is a file-upload field and the report allows it.'
+          : d.error === 'create_failed' ? 'Could not create the record - the form may have required fields.'
           : d.error === 'not_connected' ? 'Zoho Creator is not connected.'
           : (d.error || `Failed (${res.status}).`));
         setPhase('form'); return;
@@ -150,7 +150,7 @@ export default function SendToCreator({ file, onClose }) {
                 </label>
                 <label className="stc-field">
                   <span>Record name <em>(optional)</em></span>
-                  <input value={newTitle} onChange={(e) => setNewTitle(e.target.value)} placeholder="e.g. Invoice — Acme Corp" />
+                  <input value={newTitle} onChange={(e) => setNewTitle(e.target.value)} placeholder="e.g. Invoice - Acme Corp" />
                 </label>
               </>
             )}

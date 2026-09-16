@@ -8,7 +8,7 @@ import { sceneToSvg } from '../../lib/render/sceneToSvg.node.js';
 import { TEMPLATE_SEO, seoBySlug, SITE } from './seoData';
 import EmailCapture from '../../components/EmailCapture';
 
-// Premium (modern) designs first, then base templates — same category filter.
+// Premium (modern) designs first, then base templates - same category filter.
 const CATALOGUE = [...PREMIUM_TEMPLATES, ...BUSINESS_TEMPLATES];
 
 function previewSvg(t) {
@@ -102,7 +102,7 @@ export default function TemplateCategory() {
         <h2>How to customize a {cat.keyword} template</h2>
         <ol>
           <li><strong>Pick a design</strong> above and open it in the free editor.</li>
-          <li><strong>Edit the text, colours and fonts</strong> — add your logo and details.</li>
+          <li><strong>Edit the text, colours and fonts</strong> - add your logo and details.</li>
           <li><strong>Download</strong> a print-ready PDF or a high-resolution PNG. No signup, no watermark.</li>
         </ol>
         <p className="tpl-seo-bulk">

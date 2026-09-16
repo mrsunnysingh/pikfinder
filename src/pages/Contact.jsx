@@ -52,7 +52,7 @@ export default function Contact() {
     e.preventDefault();
     if (submitting.current) return; // prevent duplicate submissions
 
-    // Spam guards (silent — don't tell bots why they failed).
+    // Spam guards (silent - don't tell bots why they failed).
     const tooFast = Date.now() - mountedAt.current < 2500;
     if (honeypot.current || tooFast) {
       setStatus('ok');
@@ -125,7 +125,7 @@ export default function Contact() {
     setLoading(false);
     if (delivered) {
       setStatus('ok');
-      toast("Message sent — we'll reply soon");
+      toast("Message sent - we'll reply soon");
       setForm({ name: '', email: '', category: 'Bug', message: '' });
       mountedAt.current = Date.now();
     } else {
@@ -142,7 +142,7 @@ export default function Contact() {
     <>
       <header className="page-header">
         <h1>Contact Us</h1>
-        <p>Report a bug, leave a review, or suggest a feature — we read everything.</p>
+        <p>Report a bug, leave a review, or suggest a feature - we read everything.</p>
       </header>
 
       <div className="contact-wrapper">

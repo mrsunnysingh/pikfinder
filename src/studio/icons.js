@@ -116,7 +116,7 @@ export function buildShapePath(ctx, kind, x, y, w, h, radius = 0) {
   }
 }
 
-// Records the same path calls buildShapePath makes, but as an SVG `d` string —
+// Records the same path calls buildShapePath makes, but as an SVG `d` string  - 
 // used by the vector SVG exporter. Curves stay curves; canvas arcs are sampled.
 const _round = (v) => Math.round(v * 100) / 100;
 class SvgPathRecorder {

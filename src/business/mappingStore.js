@@ -1,6 +1,6 @@
 // src/business/mappingStore.js
 // Remembers a user's field mapping per (service, module, template) so they
-// don't re-map every time. Stored in localStorage — instant, no server call.
+// don't re-map every time. Stored in localStorage - instant, no server call.
 // (A future phase can sync these to Firestore for cross-device reuse.)
 
 const KEY = 'pikfinder-business-mappings';

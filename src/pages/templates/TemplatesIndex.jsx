@@ -23,8 +23,8 @@ function sampleSvg(businessCategory) {
 export default function TemplatesIndex() {
   const canonical = `${SITE}/templates`;
   useSeo({
-    title: 'Free Templates — Certificates, Invoices, Flyers & More | PikFinder',
-    description: 'Browse free, professionally designed templates for certificates, invoices, business cards, flyers, gift certificates, coupons, proposals and more. Customize online and download — no signup, no watermark.',
+    title: 'Free Templates - Certificates, Invoices, Flyers & More | PikFinder',
+    description: 'Browse free, professionally designed templates for certificates, invoices, business cards, flyers, gift certificates, coupons, proposals and more. Customize online and download - no signup, no watermark.',
     canonical,
     jsonLd: {
       '@context': 'https://schema.org',
@@ -39,7 +39,7 @@ export default function TemplatesIndex() {
     <div className="tpl-seo page-shell">
       <header className="tpl-seo-head">
         <h1>Free Templates</h1>
-        <p>Professionally designed, fully editable templates for every occasion — certificates, invoices, cards, flyers and more. Customize online in minutes and download a print-ready PDF or high-resolution PNG. No signup, no watermark.</p>
+        <p>Professionally designed, fully editable templates for every occasion - certificates, invoices, cards, flyers and more. Customize online in minutes and download a print-ready PDF or high-resolution PNG. No signup, no watermark.</p>
       </header>
 
       <div className="tpl-seo-cat-grid">

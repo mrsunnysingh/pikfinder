@@ -114,7 +114,7 @@ export default function ResizeEngine({ presets = null, targetKB = null }) {
             <>
               <div className="tool-preview">
                 <img src={result.url} alt="Resized result" />
-                <p>{result.w} x {result.h} px — {formatBytes(result.blob.size)}</p>
+                <p>{result.w} x {result.h} px - {formatBytes(result.blob.size)}</p>
               </div>
               <ResultBar
                 originalSize={file.size}

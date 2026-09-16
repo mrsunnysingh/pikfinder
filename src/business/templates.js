@@ -1,5 +1,5 @@
 // src/business/templates.js
-// Starter Business Hub templates — the same Studio layer JSON, with
+// Starter Business Hub templates - the same Studio layer JSON, with
 // {{placeholders}} in text. Rendered by src/lib/render (renderTemplate +
 // sceneToSvg). `fields` gives the mapping form friendly labels + samples.
 
@@ -19,10 +19,10 @@ for (let i = 1; i <= INV_ROWS; i++) {
           : i === 2 ? { n: 'Hosting (1 year)', q: '1', r: '₹5,000', a: '₹5,000' }
           : { n: '', q: '', r: '', a: '' };
   INVOICE_ITEM_FIELDS.push(
-    { key: `item_${i}_name`, label: `Item ${i} — description`, sample: s.n, group: 'items' },
-    { key: `item_${i}_qty`, label: `Item ${i} — qty`, sample: s.q, group: 'items' },
-    { key: `item_${i}_rate`, label: `Item ${i} — rate`, sample: s.r, group: 'items' },
-    { key: `item_${i}_amount`, label: `Item ${i} — amount`, sample: s.a, group: 'items' },
+    { key: `item_${i}_name`, label: `Item ${i} - description`, sample: s.n, group: 'items' },
+    { key: `item_${i}_qty`, label: `Item ${i} - qty`, sample: s.q, group: 'items' },
+    { key: `item_${i}_rate`, label: `Item ${i} - rate`, sample: s.r, group: 'items' },
+    { key: `item_${i}_amount`, label: `Item ${i} - amount`, sample: s.a, group: 'items' },
   );
 }
 const INVOICE_FIELDS = [
@@ -37,7 +37,7 @@ const INVOICE_FIELDS = [
   { key: 'notes', label: 'Notes (optional)', sample: 'Payment due within 14 days.' },
 ];
 
-// Certificate — 1200×850. `style`: 'frame' | 'bar' | 'ribbon' | 'plain'.
+// Certificate - 1200×850. `style`: 'frame' | 'bar' | 'ribbon' | 'plain'.
 function cert(id, name, o) {
   const nameFont = o.nameFont || 'Playfair Display';
   const title = o.title || 'CERTIFICATE OF ACHIEVEMENT';
@@ -64,7 +64,7 @@ function cert(id, name, o) {
   return { id, name, category: 'Education', dims: { w: 1200, h: 850 }, bg: o.bg, fields: CERT_FIELDS, layers: L };
 }
 
-// Invoice — 900×1160. `header`: 'band' | 'minimal' | 'left'.
+// Invoice - 900×1160. `header`: 'band' | 'minimal' | 'left'.
 function invoice(id, name, o) {
   const ink = o.ink || '#0f172a';
   const sub = o.sub || '#475569';
@@ -121,33 +121,33 @@ function invoice(id, name, o) {
 }
 
 const CERTIFICATES = [
-  cert('cert-gold', 'Certificate — Classic Gold', { style: 'frame', bg: { type: 'solid', color: '#0b1020' }, accent: '#c9a227', frame: '#3a3f52', name: '#ffffff', sub: '#cbd5e1', sub2: '#94a3b8' }),
-  cert('cert-navy', 'Certificate — Navy Elegant', { style: 'frame', bg: { type: 'solid', color: '#0f172a' }, accent: '#60a5fa', frame: '#1e293b', name: '#ffffff', sub: '#cbd5e1' }),
-  cert('cert-emerald', 'Certificate — Emerald', { style: 'ribbon', bg: { type: 'solid', color: '#052e2b' }, accent: '#34d399', name: '#ecfdf5', sub: '#a7f3d0' }),
-  cert('cert-royal', 'Certificate — Royal Purple', { style: 'frame', bg: { type: 'gradient', color: '#2e1065', color2: '#1e1b4b', angle: 135 }, accent: '#c4b5fd', frame: '#4c1d95', name: '#ffffff', sub: '#ddd6fe' }),
-  cert('cert-light', 'Certificate — Minimal Light', { style: 'frame', bg: { type: 'solid', color: '#ffffff' }, accent: '#b45309', frame: '#e5e7eb', name: '#111827', sub: '#6b7280', nameFont: 'Playfair Display' }),
-  cert('cert-cream', 'Certificate — Cream Classic', { style: 'frame', bg: { type: 'solid', color: '#fbf7ef' }, accent: '#9a6a2f', frame: '#e7d8bd', name: '#3f2d16', sub: '#7c6a52' }),
-  cert('cert-teal', 'Certificate — Teal Bar', { style: 'bar', bg: { type: 'solid', color: '#ffffff' }, accent: '#0d9488', name: '#0f172a', sub: '#64748b' }),
-  cert('cert-rose', 'Certificate — Rose Bar', { style: 'bar', bg: { type: 'solid', color: '#fff1f2' }, accent: '#e11d48', name: '#4c0519', sub: '#9f1239' }),
-  cert('cert-slate', 'Certificate — Modern Slate', { style: 'ribbon', bg: { type: 'gradient', color: '#1e293b', color2: '#0f172a', angle: 135 }, accent: '#38bdf8', name: '#ffffff', sub: '#94a3b8' }),
+  cert('cert-gold', 'Certificate - Classic Gold', { style: 'frame', bg: { type: 'solid', color: '#0b1020' }, accent: '#c9a227', frame: '#3a3f52', name: '#ffffff', sub: '#cbd5e1', sub2: '#94a3b8' }),
+  cert('cert-navy', 'Certificate - Navy Elegant', { style: 'frame', bg: { type: 'solid', color: '#0f172a' }, accent: '#60a5fa', frame: '#1e293b', name: '#ffffff', sub: '#cbd5e1' }),
+  cert('cert-emerald', 'Certificate - Emerald', { style: 'ribbon', bg: { type: 'solid', color: '#052e2b' }, accent: '#34d399', name: '#ecfdf5', sub: '#a7f3d0' }),
+  cert('cert-royal', 'Certificate - Royal Purple', { style: 'frame', bg: { type: 'gradient', color: '#2e1065', color2: '#1e1b4b', angle: 135 }, accent: '#c4b5fd', frame: '#4c1d95', name: '#ffffff', sub: '#ddd6fe' }),
+  cert('cert-light', 'Certificate - Minimal Light', { style: 'frame', bg: { type: 'solid', color: '#ffffff' }, accent: '#b45309', frame: '#e5e7eb', name: '#111827', sub: '#6b7280', nameFont: 'Playfair Display' }),
+  cert('cert-cream', 'Certificate - Cream Classic', { style: 'frame', bg: { type: 'solid', color: '#fbf7ef' }, accent: '#9a6a2f', frame: '#e7d8bd', name: '#3f2d16', sub: '#7c6a52' }),
+  cert('cert-teal', 'Certificate - Teal Bar', { style: 'bar', bg: { type: 'solid', color: '#ffffff' }, accent: '#0d9488', name: '#0f172a', sub: '#64748b' }),
+  cert('cert-rose', 'Certificate - Rose Bar', { style: 'bar', bg: { type: 'solid', color: '#fff1f2' }, accent: '#e11d48', name: '#4c0519', sub: '#9f1239' }),
+  cert('cert-slate', 'Certificate - Modern Slate', { style: 'ribbon', bg: { type: 'gradient', color: '#1e293b', color2: '#0f172a', angle: 135 }, accent: '#38bdf8', name: '#ffffff', sub: '#94a3b8' }),
   cert('cert-appreciation', 'Certificate of Appreciation', { style: 'frame', title: 'CERTIFICATE OF APPRECIATION', bg: { type: 'solid', color: '#0b1020' }, accent: '#f59e0b', frame: '#3a3f52', name: '#ffffff', sub: '#cbd5e1' }),
   cert('cert-completion', 'Certificate of Completion', { style: 'bar', title: 'CERTIFICATE OF COMPLETION', bg: { type: 'solid', color: '#ffffff' }, accent: '#4f46e5', name: '#111827', sub: '#6b7280' }),
   cert('cert-participation', 'Certificate of Participation', { style: 'ribbon', title: 'CERTIFICATE OF PARTICIPATION', bg: { type: 'solid', color: '#0c0a09' }, accent: '#eab308', name: '#fafaf9', sub: '#a8a29e' }),
 ];
 
 const INVOICES = [
-  invoice('inv-slate', 'Invoice — Slate Band', { header: 'band', bg: { type: 'solid', color: '#ffffff' }, accent: '#0f172a', badge: '#38bdf8', totalBg: '#f1f5f9' }),
-  invoice('inv-blue', 'Invoice — Ocean Blue', { header: 'band', bg: { type: 'solid', color: '#ffffff' }, accent: '#2563eb', badge: '#bfdbfe', totalBg: '#eff6ff' }),
-  invoice('inv-emerald', 'Invoice — Emerald', { header: 'band', bg: { type: 'solid', color: '#ffffff' }, accent: '#059669', badge: '#a7f3d0', totalBg: '#ecfdf5' }),
-  invoice('inv-violet', 'Invoice — Violet', { header: 'band', bg: { type: 'solid', color: '#ffffff' }, accent: '#7c3aed', badge: '#ddd6fe', totalBg: '#f5f3ff' }),
-  invoice('inv-rose', 'Invoice — Rose', { header: 'band', bg: { type: 'solid', color: '#ffffff' }, accent: '#e11d48', badge: '#fecdd3', totalBg: '#fff1f2' }),
-  invoice('inv-amber', 'Invoice — Amber', { header: 'band', bg: { type: 'solid', color: '#ffffff' }, accent: '#d97706', badge: '#fde68a', totalBg: '#fffbeb' }),
-  invoice('inv-minimal', 'Invoice — Minimal Line', { header: 'minimal', bg: { type: 'solid', color: '#ffffff' }, accent: '#111827', totalBg: '#f5f5f5' }),
-  invoice('inv-minimal-teal', 'Invoice — Minimal Teal', { header: 'minimal', bg: { type: 'solid', color: '#ffffff' }, accent: '#0d9488', totalBg: '#f0fdfa' }),
-  invoice('inv-left-indigo', 'Invoice — Left Accent', { header: 'left', bg: { type: 'solid', color: '#ffffff' }, accent: '#4f46e5', totalBg: '#eef2ff' }),
-  invoice('inv-left-black', 'Invoice — Left Mono', { header: 'left', bg: { type: 'solid', color: '#ffffff' }, accent: '#111827', totalBg: '#f4f4f5' }),
-  invoice('inv-dark', 'Invoice — Dark Mode', { header: 'band', bg: { type: 'solid', color: '#0f172a' }, accent: '#38bdf8', badge: '#7dd3fc', ink: '#e2e8f0', sub: '#94a3b8', line: '#1e293b', totalBg: '#1e293b' }),
-  invoice('inv-receipt', 'Receipt — Simple', { header: 'minimal', bg: { type: 'solid', color: '#ffffff' }, accent: '#334155', totalBg: '#f8fafc' }),
+  invoice('inv-slate', 'Invoice - Slate Band', { header: 'band', bg: { type: 'solid', color: '#ffffff' }, accent: '#0f172a', badge: '#38bdf8', totalBg: '#f1f5f9' }),
+  invoice('inv-blue', 'Invoice - Ocean Blue', { header: 'band', bg: { type: 'solid', color: '#ffffff' }, accent: '#2563eb', badge: '#bfdbfe', totalBg: '#eff6ff' }),
+  invoice('inv-emerald', 'Invoice - Emerald', { header: 'band', bg: { type: 'solid', color: '#ffffff' }, accent: '#059669', badge: '#a7f3d0', totalBg: '#ecfdf5' }),
+  invoice('inv-violet', 'Invoice - Violet', { header: 'band', bg: { type: 'solid', color: '#ffffff' }, accent: '#7c3aed', badge: '#ddd6fe', totalBg: '#f5f3ff' }),
+  invoice('inv-rose', 'Invoice - Rose', { header: 'band', bg: { type: 'solid', color: '#ffffff' }, accent: '#e11d48', badge: '#fecdd3', totalBg: '#fff1f2' }),
+  invoice('inv-amber', 'Invoice - Amber', { header: 'band', bg: { type: 'solid', color: '#ffffff' }, accent: '#d97706', badge: '#fde68a', totalBg: '#fffbeb' }),
+  invoice('inv-minimal', 'Invoice - Minimal Line', { header: 'minimal', bg: { type: 'solid', color: '#ffffff' }, accent: '#111827', totalBg: '#f5f5f5' }),
+  invoice('inv-minimal-teal', 'Invoice - Minimal Teal', { header: 'minimal', bg: { type: 'solid', color: '#ffffff' }, accent: '#0d9488', totalBg: '#f0fdfa' }),
+  invoice('inv-left-indigo', 'Invoice - Left Accent', { header: 'left', bg: { type: 'solid', color: '#ffffff' }, accent: '#4f46e5', totalBg: '#eef2ff' }),
+  invoice('inv-left-black', 'Invoice - Left Mono', { header: 'left', bg: { type: 'solid', color: '#ffffff' }, accent: '#111827', totalBg: '#f4f4f5' }),
+  invoice('inv-dark', 'Invoice - Dark Mode', { header: 'band', bg: { type: 'solid', color: '#0f172a' }, accent: '#38bdf8', badge: '#7dd3fc', ink: '#e2e8f0', sub: '#94a3b8', line: '#1e293b', totalBg: '#1e293b' }),
+  invoice('inv-receipt', 'Receipt - Simple', { header: 'minimal', bg: { type: 'solid', color: '#ffffff' }, accent: '#334155', totalBg: '#f8fafc' }),
 ];
 
 import { PREMIUM_TEMPLATES } from './premiumTemplates.js';

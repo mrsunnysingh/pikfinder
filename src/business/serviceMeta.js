@@ -14,6 +14,6 @@ export const SERVICE_META = {
     label: 'Zoho Creator',
     emoji: '🧩',
     tint: 'rgba(139,92,246,0.16)',
-    desc: 'Generate documents from form records — IDs, passes, certificates.',
+    desc: 'Generate documents from form records - IDs, passes, certificates.',
   },
 };

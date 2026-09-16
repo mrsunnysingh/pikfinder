@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-// Scrolls to the top whenever the route changes — covers both the window
+// Scrolls to the top whenever the route changes - covers both the window
 // (public pages) and the dashboard's internal scroll container.
 export default function ScrollToTop() {
   const { pathname } = useLocation();

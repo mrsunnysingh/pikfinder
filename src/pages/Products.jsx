@@ -110,14 +110,14 @@ const features = [
     icon: Palette,
     title: 'AI-Powered Curation',
     description:
-      'Our intelligent search understands aesthetics—not just keywords. Find the vibe, not just the subject.',
+      'Our intelligent search understands aesthetics - not just keywords. Find the vibe, not just the subject.',
     link: '/collections',
   },
   {
     icon: ShieldCheck,
     title: 'Clear Licensing',
     description:
-      'Every item shows its license, creator, and source. Review the terms before use — no guesswork, no false "copyright-free" claims.',
+      'Every item shows its license, creator, and source. Review the terms before use - no guesswork, no false "copyright-free" claims.',
     link: '/licenses',
   },
   {
@@ -200,7 +200,7 @@ export default function Products() {
             <span className="text-gradient">visual discovery.</span>
           </h1>
           <p>
-            From free exploration to enterprise-grade APIs—choose the plan that
+            From free exploration to enterprise-grade APIs - choose the plan that
             fits your creative ambition.
           </p>
 
@@ -264,11 +264,11 @@ export default function Products() {
           </div>
 
           <h3>Creator Pro</h3>
-          <p className="plan-description">Everything you need to create without limits — HD exports, AI tools, and premium Studio features.</p>
+          <p className="plan-description">Everything you need to create without limits - HD exports, AI tools, and premium Studio features.</p>
 
           <div className="price-display">
             <span className="price-amount">₹199</span>
-            <span className="price-period">/month — or ₹1,990/year</span>
+            <span className="price-period">/month - or ₹1,990/year</span>
           </div>
 
           <div style={{ marginBottom: '24px', fontSize: '0.85rem', color: 'var(--primary)', fontWeight: '600' }}>
@@ -341,7 +341,7 @@ export default function Products() {
             <span className="text-gradient">create without limits.</span>
           </h2>
           <p>
-            PikFinder is more than a search engine—it's a creative platform built
+            PikFinder is more than a search engine - it's a creative platform built
             for modern visual storytelling.
           </p>
         </motion.div>

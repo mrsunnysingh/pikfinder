@@ -38,7 +38,7 @@ export default function Help() {
   const [cat, setCat] = useState('all');
 
   useSeo({
-    title: 'Help Center — Guides, Best Practices & API | PikFinder',
+    title: 'Help Center - Guides, Best Practices & API | PikFinder',
     description: 'Learn how to use PikFinder: searching free media, the Creator Studio, PDF editor, Document Generator & Zoho, free tools, best practices, and the developer API. Searchable guides.',
     canonical: `${SITE_URL}/help`,
     jsonLd: {

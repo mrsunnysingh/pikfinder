@@ -1,6 +1,6 @@
 // src/lib/crmLead.js
 // Fire-and-forget: push any website form submission into the owner's Zoho CRM.
-// Non-blocking — never delays or breaks the form's own behaviour. Server writes
+// Non-blocking - never delays or breaks the form's own behaviour. Server writes
 // to the connected CRM only if ZOHO_OWNER_UID is configured; otherwise it no-ops.
 
 export function submitLeadToCrm(data = {}) {

@@ -4,7 +4,7 @@
 // (no JSX) so the prerender script can import it. `businessCategory` maps to
 // BUSINESS_TEMPLATES[].category; `templatesSlug` links to the /templates hub page.
 
-// Canonical host — MUST match SITE_URL (registry.js), index.html canonical, robots.txt.
+// Canonical host - MUST match SITE_URL (registry.js), index.html canonical, robots.txt.
 // www is the Vercel production domain (apex 308-redirects to it).
 export const SITE = 'https://www.pikfinder.com';
 
@@ -15,21 +15,21 @@ export const GENERATORS = [
     templatesSlug: 'free-certificate-templates',
     name: 'Certificate Generator',
     keyword: 'certificate',
-    title: 'Free Certificate Generator — Create & Download in Minutes | PikFinder',
+    title: 'Free Certificate Generator - Create & Download in Minutes | PikFinder',
     description: 'Create professional certificates online for free. Customize a template, add names and details, and download a print-ready PDF or PNG. No design skills, no signup, no watermark.',
     h1: 'Free Certificate Generator',
-    tagline: 'Design a professional certificate in minutes — then make one, or a thousand.',
+    tagline: 'Design a professional certificate in minutes - then make one, or a thousand.',
     valueProps: [
-      'Editable templates — change names, courses, dates, colours and fonts',
+      'Editable templates - change names, courses, dates, colours and fonts',
       'Add your logo and signature; export print-ready PDF or high-res PNG',
       'Generate hundreds at once from a spreadsheet or your CRM',
     ],
     useCases: ['Course & training completion', 'Awards & appreciation', 'Workshops & webinars', 'Schools & academies'],
-    howTo: ['Pick a certificate design and open the free editor.', 'Add the recipient, course, date and your logo.', 'Download a PDF or PNG — or bulk-generate for a whole group.'],
+    howTo: ['Pick a certificate design and open the free editor.', 'Add the recipient, course, date and your logo.', 'Download a PDF or PNG - or bulk-generate for a whole group.'],
     faq: [
-      { q: 'Is the certificate generator really free?', a: 'Yes — customize and download with no watermark and no account required.' },
+      { q: 'Is the certificate generator really free?', a: 'Yes - customize and download with no watermark and no account required.' },
       { q: 'Can I generate many certificates at once?', a: 'Yes. Upload a spreadsheet or connect your CRM and generate one certificate per row automatically.' },
-      { q: 'Can I add a logo and signature?', a: 'Yes — drop your logo in a corner and a signature image above the signature line.' },
+      { q: 'Can I add a logo and signature?', a: 'Yes - drop your logo in a corner and a signature image above the signature line.' },
     ],
   },
   {
@@ -38,7 +38,7 @@ export const GENERATORS = [
     templatesSlug: 'free-invoice-templates',
     name: 'Invoice Generator',
     keyword: 'invoice',
-    title: 'Free Invoice Generator — Professional Invoices Online | PikFinder',
+    title: 'Free Invoice Generator - Professional Invoices Online | PikFinder',
     description: 'Create and download professional invoices for free. Add your company, line items and totals, then export a clean PDF. Perfect for freelancers and small businesses.',
     h1: 'Free Invoice Generator',
     tagline: 'Send invoices that look professional and get you paid.',
@@ -48,11 +48,11 @@ export const GENERATORS = [
       'Auto-fill from your CRM or a spreadsheet for bulk billing',
     ],
     useCases: ['Freelancers & consultants', 'Agencies & studios', 'Small businesses', 'Service providers'],
-    howTo: ['Choose an invoice design and open the editor.', 'Fill in your company, the customer, amount and due date.', 'Download a PDF ready to email — or generate a batch.'],
+    howTo: ['Choose an invoice design and open the editor.', 'Fill in your company, the customer, amount and due date.', 'Download a PDF ready to email - or generate a batch.'],
     faq: [
-      { q: 'Can I use these invoices for my business?', a: 'Yes — they are free for commercial use. Add your branding and export a PDF.' },
-      { q: 'Can I auto-fill invoices from my data?', a: 'Yes — connect the Document Generator to generate invoices straight from your records.' },
-      { q: 'Is there a watermark?', a: 'No — exports are clean, with no watermark and no signup.' },
+      { q: 'Can I use these invoices for my business?', a: 'Yes - they are free for commercial use. Add your branding and export a PDF.' },
+      { q: 'Can I auto-fill invoices from my data?', a: 'Yes - connect the Document Generator to generate invoices straight from your records.' },
+      { q: 'Is there a watermark?', a: 'No - exports are clean, with no watermark and no signup.' },
     ],
   },
   {
@@ -61,20 +61,20 @@ export const GENERATORS = [
     templatesSlug: 'free-invoice-templates',
     name: 'Quotation Generator',
     keyword: 'quotation',
-    title: 'Free Quotation Generator — Quotes & Estimates Online | PikFinder',
+    title: 'Free Quotation Generator - Quotes & Estimates Online | PikFinder',
     description: 'Create professional quotations and estimates online for free. Add your details, pricing and terms, and export a polished PDF to send to clients.',
     h1: 'Free Quotation Generator',
     tagline: 'Turn an enquiry into a professional quote in minutes.',
     valueProps: [
       'Clean quote & estimate layouts with clear pricing',
       'Add your company, client, amount and validity; export PDF',
-      'Reuse the same design for every quote — stay consistent',
+      'Reuse the same design for every quote - stay consistent',
     ],
     useCases: ['Sales teams', 'Freelancers', 'Contractors & trades', 'Agencies'],
-    howTo: ['Pick a layout and open the editor.', 'Add your company, the client, the amount and terms.', 'Export a PDF and send it — or generate quotes in bulk.'],
+    howTo: ['Pick a layout and open the editor.', 'Add your company, the client, the amount and terms.', 'Export a PDF and send it - or generate quotes in bulk.'],
     faq: [
-      { q: 'What is the difference from an invoice?', a: 'A quotation is an offer of price before work; the same clean layouts work for both — just change the labels.' },
-      { q: 'Can I add my logo and terms?', a: 'Yes — add your logo and edit any text, including terms and validity.' },
+      { q: 'What is the difference from an invoice?', a: 'A quotation is an offer of price before work; the same clean layouts work for both - just change the labels.' },
+      { q: 'Can I add my logo and terms?', a: 'Yes - add your logo and edit any text, including terms and validity.' },
     ],
   },
   {
@@ -83,7 +83,7 @@ export const GENERATORS = [
     templatesSlug: 'free-business-card-templates',
     name: 'Business Card Maker',
     keyword: 'business card',
-    title: 'Free Business Card Maker — Design & Download | PikFinder',
+    title: 'Free Business Card Maker - Design & Download | PikFinder',
     description: 'Make a professional business card online for free. Customize your name, title and contact details and download a print-ready file in minutes.',
     h1: 'Free Business Card Maker',
     tagline: 'A business card that looks designed, not templated.',
@@ -95,8 +95,8 @@ export const GENERATORS = [
     useCases: ['Founders & freelancers', 'Sales & networking', 'Small businesses', 'Events'],
     howTo: ['Choose a card design and open the editor.', 'Add your name, role and contact details.', 'Download a crisp, print-ready file.'],
     faq: [
-      { q: 'Are the cards print-ready?', a: 'Yes — they export at high resolution and print sharply at standard business-card sizes.' },
-      { q: 'Can I match my brand?', a: 'Yes — set your brand colours, fonts and logo.' },
+      { q: 'Are the cards print-ready?', a: 'Yes - they export at high resolution and print sharply at standard business-card sizes.' },
+      { q: 'Can I match my brand?', a: 'Yes - set your brand colours, fonts and logo.' },
     ],
   },
   {
@@ -105,7 +105,7 @@ export const GENERATORS = [
     templatesSlug: 'free-flyer-templates',
     name: 'Flyer Maker',
     keyword: 'flyer',
-    title: 'Free Flyer Maker — Event & Promo Flyers Online | PikFinder',
+    title: 'Free Flyer Maker - Event & Promo Flyers Online | PikFinder',
     description: 'Create bold event and promotion flyers online for free. Customize the title, date and details, then download a share-ready flyer to print or post.',
     h1: 'Free Flyer Maker',
     tagline: 'Promote an event or offer with a flyer that stops the scroll.',
@@ -117,8 +117,8 @@ export const GENERATORS = [
     useCases: ['Events & parties', 'Sales & promotions', 'Community & clubs', 'Small businesses'],
     howTo: ['Pick a flyer design and open the editor.', 'Add your title, date, venue and details.', 'Download to print or post online.'],
     faq: [
-      { q: 'Can I use a flyer on social media?', a: 'Yes — export a high-resolution image, or resize it to any social format in the editor.' },
-      { q: 'Is it free to download?', a: 'Yes — no watermark, no signup.' },
+      { q: 'Can I use a flyer on social media?', a: 'Yes - export a high-resolution image, or resize it to any social format in the editor.' },
+      { q: 'Is it free to download?', a: 'Yes - no watermark, no signup.' },
     ],
   },
   {
@@ -134,13 +134,13 @@ export const GENERATORS = [
     valueProps: [
       'Elegant gift certificate and voucher designs',
       'Add your brand, amount and a unique code',
-      'Download to print or email — or generate a batch',
+      'Download to print or email - or generate a batch',
     ],
     useCases: ['Salons & spas', 'Restaurants & cafes', 'Retail & e-commerce', 'Holidays & promotions'],
     howTo: ['Choose a gift certificate design and open the editor.', 'Add your brand, amount and code.', 'Download to print or send.'],
     faq: [
-      { q: 'Can I add a unique code to each card?', a: 'Yes — edit the code per card, or generate a batch with unique codes from a list.' },
-      { q: 'Can I print them?', a: 'Yes — export a high-resolution file for printing.' },
+      { q: 'Can I add a unique code to each card?', a: 'Yes - edit the code per card, or generate a batch with unique codes from a list.' },
+      { q: 'Can I print them?', a: 'Yes - export a high-resolution file for printing.' },
     ],
   },
   {
@@ -149,7 +149,7 @@ export const GENERATORS = [
     templatesSlug: 'free-coupon-templates',
     name: 'Coupon Maker',
     keyword: 'coupon',
-    title: 'Free Coupon Maker — Discount Vouchers Online | PikFinder',
+    title: 'Free Coupon Maker - Discount Vouchers Online | PikFinder',
     description: 'Create discount coupons online for free. Customize the offer, code and expiry, then download a ticket-style voucher for your promotion.',
     h1: 'Free Coupon Maker',
     tagline: 'Run a promotion with a coupon that looks the part.',
@@ -161,8 +161,8 @@ export const GENERATORS = [
     useCases: ['Retail promotions', 'Restaurants & cafes', 'Online stores', 'Events'],
     howTo: ['Pick a coupon design and open the editor.', 'Set the offer, code and expiry.', 'Download and share.'],
     faq: [
-      { q: 'Can I use a coupon online?', a: 'Yes — download it as an image and add it to emails, social posts or your website.' },
-      { q: 'Is it free?', a: 'Yes — no watermark, no signup.' },
+      { q: 'Can I use a coupon online?', a: 'Yes - download it as an image and add it to emails, social posts or your website.' },
+      { q: 'Is it free?', a: 'Yes - no watermark, no signup.' },
     ],
   },
   {
@@ -183,7 +183,7 @@ export const GENERATORS = [
     useCases: ['Agencies & consultants', 'Sales proposals', 'Freelancers', 'Startups & pitches'],
     howTo: ['Choose a cover design and open the editor.', 'Add your proposal title, client and date.', 'Export a PDF and lead your proposal with it.'],
     faq: [
-      { q: 'Is this the full proposal or the cover?', a: 'These are designed cover pages — the professional first impression. Add your content pages in your document tool.' },
+      { q: 'Is this the full proposal or the cover?', a: 'These are designed cover pages - the professional first impression. Add your content pages in your document tool.' },
     ],
   },
   {
@@ -192,7 +192,7 @@ export const GENERATORS = [
     templatesSlug: 'free-letterhead-templates',
     name: 'Letterhead Maker',
     keyword: 'letterhead',
-    title: 'Free Letterhead Maker — Branded Stationery Online | PikFinder',
+    title: 'Free Letterhead Maker - Branded Stationery Online | PikFinder',
     description: 'Create a company letterhead online for free. Add your logo, company name and contact details for branded stationery you can print or export as PDF.',
     h1: 'Free Letterhead Maker',
     tagline: 'Give every letter a professional, branded header.',
@@ -204,7 +204,7 @@ export const GENERATORS = [
     useCases: ['Small businesses', 'Law & accounting', 'Consultants', 'Official correspondence'],
     howTo: ['Pick a letterhead design and open the editor.', 'Add your company name, tagline and contact details.', 'Export a PDF, or type your letter into the template.'],
     faq: [
-      { q: 'Can I type my letter into the template?', a: 'Yes — open it in the editor and replace the body text, or export a blank branded letterhead to write on.' },
+      { q: 'Can I type my letter into the template?', a: 'Yes - open it in the editor and replace the body text, or export a blank branded letterhead to write on.' },
     ],
   },
   {
@@ -213,19 +213,19 @@ export const GENERATORS = [
     templatesSlug: 'free-thank-you-card-templates',
     name: 'Thank-You Card Maker',
     keyword: 'thank you card',
-    title: 'Free Thank You Card Maker — Customize & Print | PikFinder',
+    title: 'Free Thank You Card Maker - Customize & Print | PikFinder',
     description: 'Create beautiful thank-you cards online for free. Personalize the message and colours, then download a card to print or send.',
     h1: 'Free Thank-You Card Maker',
     tagline: 'Say thank you in style.',
     valueProps: [
       'Elegant thank-you card designs',
       'Personalize the message and colours',
-      'Download to print or send — or generate a batch',
+      'Download to print or send - or generate a batch',
     ],
     useCases: ['Customer thank-yous', 'Weddings & events', 'Businesses & clients', 'Personal notes'],
     howTo: ['Choose a card design and open the editor.', 'Personalize the message and colours.', 'Download to print or send.'],
     faq: [
-      { q: 'Can I personalise each card?', a: 'Yes — edit the message per recipient, or generate a batch from a list.' },
+      { q: 'Can I personalise each card?', a: 'Yes - edit the message per recipient, or generate a batch from a list.' },
     ],
   },
   {
@@ -234,10 +234,10 @@ export const GENERATORS = [
     templatesSlug: 'free-resume-templates',
     name: 'Resume Maker',
     keyword: 'resume',
-    title: 'Free Resume Maker — Build a Professional CV Online | PikFinder',
+    title: 'Free Resume Maker - Build a Professional CV Online | PikFinder',
     description: 'Build a professional resume online for free. Customize a modern template, add your experience, and download a clean PDF. No signup, no watermark.',
     h1: 'Free Resume Maker',
-    tagline: 'A resume that looks professionally designed — in minutes.',
+    tagline: 'A resume that looks professionally designed - in minutes.',
     valueProps: [
       'Modern, recruiter-friendly resume & CV designs',
       'Edit your experience, skills and education',
@@ -246,8 +246,8 @@ export const GENERATORS = [
     useCases: ['Job seekers', 'Students & graduates', 'Career changers', 'Freelancers'],
     howTo: ['Pick a resume design and open the free editor.', 'Add your details, experience and skills.', 'Download a professional PDF.'],
     faq: [
-      { q: 'Is the resume maker free?', a: 'Yes — customize and download as PDF with no watermark and no account.' },
-      { q: 'Which format do recruiters prefer?', a: 'PDF — export a clean PDF that keeps your layout on any device.' },
+      { q: 'Is the resume maker free?', a: 'Yes - customize and download as PDF with no watermark and no account.' },
+      { q: 'Which format do recruiters prefer?', a: 'PDF - export a clean PDF that keeps your layout on any device.' },
     ],
   },
   {
@@ -256,7 +256,7 @@ export const GENERATORS = [
     templatesSlug: 'free-menu-templates',
     name: 'Menu Maker',
     keyword: 'menu',
-    title: 'Free Menu Maker — Restaurant & Cafe Menus Online | PikFinder',
+    title: 'Free Menu Maker - Restaurant & Cafe Menus Online | PikFinder',
     description: 'Create a restaurant or cafe menu online for free. Add your dishes and prices, customize the style, and download a print-ready menu.',
     h1: 'Free Menu Maker',
     tagline: 'A menu your guests will love to read.',
@@ -268,8 +268,8 @@ export const GENERATORS = [
     useCases: ['Restaurants & cafes', 'Bars & bistros', 'Food trucks', 'Events & catering'],
     howTo: ['Choose a menu design and open the editor.', 'Add your dishes, prices and sections.', 'Download a print-ready menu.'],
     faq: [
-      { q: 'Can I edit the dishes and prices?', a: 'Yes — every item and price is fully editable.' },
-      { q: 'Can I print it?', a: 'Yes — export a high-resolution PDF or PNG for print.' },
+      { q: 'Can I edit the dishes and prices?', a: 'Yes - every item and price is fully editable.' },
+      { q: 'Can I print it?', a: 'Yes - export a high-resolution PDF or PNG for print.' },
     ],
   },
   {
@@ -278,20 +278,20 @@ export const GENERATORS = [
     templatesSlug: 'free-id-card-templates',
     name: 'ID Card Maker',
     keyword: 'ID card',
-    title: 'Free ID Card Maker — Employee & Student IDs | PikFinder',
+    title: 'Free ID Card Maker - Employee & Student IDs | PikFinder',
     description: 'Create employee, student or member ID cards online for free. Add a name, role, photo and ID number, then download a print-ready card.',
     h1: 'Free ID Card Maker',
     tagline: 'Professional identity cards for your team, school or members.',
     valueProps: [
       'Clean employee, student and member ID designs',
       'Add a name, role, photo and ID number',
-      'Generate one — or a whole batch from a list',
+      'Generate one - or a whole batch from a list',
     ],
     useCases: ['Companies & staff', 'Schools & colleges', 'Clubs & memberships', 'Events & passes'],
-    howTo: ['Pick an ID card design and open the editor.', 'Add the name, role, photo and ID number.', 'Download a print-ready card — or bulk-generate.'],
+    howTo: ['Pick an ID card design and open the editor.', 'Add the name, role, photo and ID number.', 'Download a print-ready card - or bulk-generate.'],
     faq: [
-      { q: 'Can I add a photo?', a: 'Yes — replace the photo placeholder with any image.' },
-      { q: 'Can I make many at once?', a: 'Yes — generate one per person from a spreadsheet or your CRM.' },
+      { q: 'Can I add a photo?', a: 'Yes - replace the photo placeholder with any image.' },
+      { q: 'Can I make many at once?', a: 'Yes - generate one per person from a spreadsheet or your CRM.' },
     ],
   },
 ];

@@ -117,14 +117,14 @@ export default function RecordPicker({ template, connectedServices, onFill, onBu
             <>
               {/* Field mapping review */}
               <div className="biz-mapbox">
-                <div className="biz-mapbox-title">Field mapping <span>{savedUsed ? 'using your saved mapping' : 'auto-matched — adjust if needed'}</span></div>
+                <div className="biz-mapbox-title">Field mapping <span>{savedUsed ? 'using your saved mapping' : 'auto-matched - adjust if needed'}</span></div>
                 <div className="biz-maprows">
                   {placeholders.map((ph) => (
                     <div key={ph} className="biz-maprow">
                       <code>{labelFor[ph] || ph}</code>
                       <span className="biz-maparrow">←</span>
                       <select value={map[ph] || ''} onChange={(e) => changeMap(ph, e.target.value)}>
-                        <option value="">— none —</option>
+                        <option value=""> -  none  - </option>
                         {fields.map((f) => <option key={f.key} value={f.key}>{f.label}</option>)}
                       </select>
                     </div>

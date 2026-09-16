@@ -147,7 +147,7 @@ export default function ImageModal({ photo: initialPhoto, onClose }) {
           <ColorPalette src={photo.urls.regular} />
           <FontPairing />
 
-          {/* More like this — related media via the existing search API */}
+          {/* More like this - related media via the existing search API */}
           <div className="related-strip">
             <h5 className="related-title">More like this</h5>
             {relatedLoading ? (

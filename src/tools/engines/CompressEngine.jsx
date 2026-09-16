@@ -57,7 +57,7 @@ export default function CompressEngine({ targetKB = null }) {
           onFiles={onFiles}
           accept="image/jpeg,image/png,image/webp"
           label="Drop your image here, or click to browse"
-          hint="JPG, PNG, or WebP — processed on your device"
+          hint="JPG, PNG, or WebP - processed on your device"
         />
       )}
 
@@ -106,11 +106,11 @@ export default function CompressEngine({ targetKB = null }) {
               <div className="tool-compare">
                 <figure>
                   <img src={previewUrl} alt="Original" />
-                  <figcaption>Original — {formatBytes(file.size)}</figcaption>
+                  <figcaption>Original - {formatBytes(file.size)}</figcaption>
                 </figure>
                 <figure>
                   <img src={result.url} alt="Compressed result" />
-                  <figcaption>Compressed — {formatBytes(result.blob.size)} ({result.width}x{result.height})</figcaption>
+                  <figcaption>Compressed - {formatBytes(result.blob.size)} ({result.width}x{result.height})</figcaption>
                 </figure>
               </div>
               <ResultBar

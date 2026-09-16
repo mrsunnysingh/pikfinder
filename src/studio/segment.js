@@ -1,7 +1,7 @@
 // src/studio/segment.js
 // In-browser subject segmentation for the Studio (Remove / Blur background).
 // Uses the same U2-Netp ONNX model as the standalone Background Remover tool,
-// run via onnxruntime-web — no uploads, no API. Kept separate so the existing
+// run via onnxruntime-web - no uploads, no API. Kept separate so the existing
 // tool is untouched, and loaded lazily so the model/runtime stay out of the
 // main bundle until used.
 

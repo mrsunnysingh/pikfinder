@@ -13,7 +13,7 @@ export default function DashboardLayout() {
   return (
     <div className={`dashboard-layout${navOpen ? ' nav-open' : ''}`}>
       <Sidebar open={navOpen} onClose={() => setNavOpen(false)} />
-      {/* Dim overlay — only interactive on mobile when the drawer is open. */}
+      {/* Dim overlay - only interactive on mobile when the drawer is open. */}
       <div
         className="dashboard-overlay"
         onClick={() => setNavOpen(false)}

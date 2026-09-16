@@ -44,7 +44,7 @@ export default function Base64Engine() {
       {dataUri && (
         <>
           <p className="tool-note">
-            {file.name} — {formatBytes(file.size)} encodes to a {formatBytes(dataUri.length)} string.
+            {file.name} - {formatBytes(file.size)} encodes to a {formatBytes(dataUri.length)} string.
           </p>
 
           {snippets.map((s) => (

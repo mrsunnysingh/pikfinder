@@ -28,7 +28,7 @@ function loadCheckout() {
  * @param {string} [o.receipt]
  * @param {object} [o.notes]   e.g. { plan: 'creator-pro' }
  * @param {object} [o.prefill] { name, email, contact }
- * @param {string} [o.authToken]  Firebase ID token (optional — links the payment to the user)
+ * @param {string} [o.authToken]  Firebase ID token (optional - links the payment to the user)
  * @returns {Promise<{ok:boolean, dismissed?:boolean, orderId?:string, paymentId?:string, error?:string}>}
  */
 export async function payWithRazorpay(o = {}) {
@@ -90,7 +90,7 @@ export async function payWithRazorpay(o = {}) {
  * @param {object} o
  * @param {string} o.plan   'creator-pro-monthly' | 'creator-pro-yearly'
  * @param {object} [o.prefill]
- * @param {string} [o.authToken]  Firebase ID token (required — subscriptions are per-user)
+ * @param {string} [o.authToken]  Firebase ID token (required - subscriptions are per-user)
  */
 export async function subscribeWithRazorpay(o = {}) {
   await loadCheckout();
@@ -103,7 +103,7 @@ export async function subscribeWithRazorpay(o = {}) {
   const sub = await subRes.json().catch(() => ({}));
   if (!subRes.ok || !sub.ok) {
     const e = new Error(sub.detail || sub.error || 'Could not start the subscription.');
-    e.code = sub.error; // e.g. 'plan_not_configured' — lets callers fall back to one-time
+    e.code = sub.error; // e.g. 'plan_not_configured' - lets callers fall back to one-time
     throw e;
   }
 

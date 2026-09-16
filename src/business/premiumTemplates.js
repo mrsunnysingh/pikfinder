@@ -1,5 +1,5 @@
 // src/business/premiumTemplates.js
-// PikFinder EXCLUSIVE premium templates — original, high-quality vector designs
+// PikFinder EXCLUSIVE premium templates - original, high-quality vector designs
 // authored as layer JSON. These render identically in the Studio and in the
 // headless PNG/PDF generator (src/lib/render). Kept in their own file so the
 // exclusive set is easy to find, extend, and protect.
@@ -40,7 +40,7 @@ const seal = (cx, cy, r, accent, inner) => ([
   { type: 'shape', shape: 'star5', x: cx - (r - 16), y: cy - (r - 16), w: (r - 16) * 2, h: (r - 16) * 2, color: accent },
 ]);
 
-// ── Certificate style A — formal double-frame with corner ornaments + seal ──
+// ── Certificate style A - formal double-frame with corner ornaments + seal ──
 function certSeal(id, name, p) {
   return {
     id, name, category: 'Education', dims: { w: 1200, h: 850 },
@@ -71,7 +71,7 @@ function certSeal(id, name, p) {
   };
 }
 
-// ── Certificate style B — modern gradient with white card + hexagon badge ──
+// ── Certificate style B - modern gradient with white card + hexagon badge ──
 function certPanel(id, name, p) {
   return {
     id, name, category: 'Education', dims: { w: 1200, h: 850 },
@@ -98,7 +98,7 @@ function certPanel(id, name, p) {
   };
 }
 
-// ── Invoice style A — executive header band, table, accent total panel ──
+// ── Invoice style A - executive header band, table, accent total panel ──
 function invExec(id, name, p) {
   const ink = '#0f172a', sub = '#64748b', line = '#e2e8f0';
   return {
@@ -129,7 +129,7 @@ function invExec(id, name, p) {
   };
 }
 
-// ── Invoice style B — minimal luxe, thin accent rule, big total ──
+// ── Invoice style B - minimal luxe, thin accent rule, big total ──
 function invLuxe(id, name, p) {
   const ink = '#1a1a1a', sub = '#8a8a8a', line = '#ececec';
   return {
@@ -156,7 +156,7 @@ function invLuxe(id, name, p) {
   };
 }
 
-// ── Business card — premium dark gradient, monogram, accent rail ──
+// ── Business card - premium dark gradient, monogram, accent rail ──
 function cardPremium(id, name, p) {
   return {
     id, name, category: 'Branding', dims: { w: 1050, h: 600 },
@@ -347,11 +347,11 @@ function resume(id, name, p) {
       ...sec('Profile', 66),
       { type: 'text', text: '{{summary}}', x: 320, y: 104, size: 14, weight: 400, align: 'left', color: sub, font: 'Inter', lineHeight: 1.6 },
       ...sec('Experience', 230),
-      { type: 'text', text: 'Senior Manager — Company', x: 320, y: 268, size: 16, weight: 700, align: 'left', color: ink, font: 'Inter' },
+      { type: 'text', text: 'Senior Manager - Company', x: 320, y: 268, size: 16, weight: 700, align: 'left', color: ink, font: 'Inter' },
       { type: 'text', text: '2022 – Present', x: 320, y: 292, size: 12, weight: 500, align: 'left', color: sub, font: 'Inter' },
       { type: 'text', text: 'Led campaigns and delivered results.\nReplace with your own experience.', x: 320, y: 318, size: 13, weight: 400, align: 'left', color: sub, font: 'Inter', lineHeight: 1.5 },
       ...sec('Education', 460),
-      { type: 'text', text: 'B.A. Marketing — University', x: 320, y: 498, size: 14, weight: 600, align: 'left', color: ink, font: 'Inter' },
+      { type: 'text', text: 'B.A. Marketing - University', x: 320, y: 498, size: 14, weight: 600, align: 'left', color: ink, font: 'Inter' },
       { type: 'text', text: '2014 – 2018', x: 320, y: 522, size: 12, weight: 400, align: 'left', color: sub, font: 'Inter' },
     ],
   };
@@ -399,74 +399,74 @@ function idCard(id, name, p) {
 }
 
 export const PREMIUM_TEMPLATES = [
-  // Certificates — formal seal
-  certSeal('pro-cert-navy-gold', 'Certificate — Navy & Gold Seal', { bg: '#0b1836', frame: '#c9a227', accent: '#c9a227', ink: '#ffffff', sub: '#9fb3d1', name: '#ffffff' }),
-  certSeal('pro-cert-emerald', 'Certificate — Emerald & Gold', { bg: '#06281f', frame: '#d4af37', accent: '#d4af37', ink: '#ffffff', sub: '#93c9b4', name: '#ffffff' }),
-  certSeal('pro-cert-burgundy', 'Certificate — Burgundy Royal', { bg: '#2a0a12', frame: '#d4af37', accent: '#d4af37', ink: '#ffffff', sub: '#d9a7b0', name: '#ffffff' }),
-  certSeal('pro-cert-classic', 'Certificate — Classic Ivory', { bg: '#ffffff', frame: '#1f2937', accent: '#b58b2a', ink: '#111827', sub: '#6b7280', name: '#111827' }),
-  // Certificates — modern panel
-  certPanel('pro-cert-indigo', 'Certificate — Indigo Modern', { bg1: '#4f46e5', bg2: '#7c3aed', accent: '#6366f1' }),
-  certPanel('pro-cert-teal', 'Certificate — Teal Modern', { bg1: '#0d9488', bg2: '#0891b2', accent: '#0d9488' }),
-  certPanel('pro-cert-sunset', 'Certificate — Sunset Modern', { bg1: '#db2777', bg2: '#f97316', accent: '#db2777' }),
-  // Invoices — executive band
-  invExec('pro-inv-navy', 'Invoice — Executive Navy', { band: '#0f172a', badge: '#38bdf8', mono: 'N' }),
-  invExec('pro-inv-emerald', 'Invoice — Executive Emerald', { band: '#065f46', badge: '#6ee7b7', mono: 'E' }),
-  invExec('pro-inv-violet', 'Invoice — Executive Violet', { band: '#5b21b6', badge: '#c4b5fd', mono: 'V' }),
-  invExec('pro-inv-slate', 'Invoice — Executive Slate', { band: '#334155', badge: '#cbd5e1', mono: 'S' }),
-  // Invoices — minimal luxe
-  invLuxe('pro-inv-gold', 'Invoice — Minimal Gold', { accent: '#b58b2a' }),
-  invLuxe('pro-inv-teal', 'Invoice — Minimal Teal', { accent: '#0d9488' }),
-  invLuxe('pro-inv-indigo', 'Invoice — Minimal Indigo', { accent: '#4f46e5' }),
-  invLuxe('pro-inv-rose', 'Invoice — Minimal Rose', { accent: '#db2777' }),
+  // Certificates - formal seal
+  certSeal('pro-cert-navy-gold', 'Certificate - Navy & Gold Seal', { bg: '#0b1836', frame: '#c9a227', accent: '#c9a227', ink: '#ffffff', sub: '#9fb3d1', name: '#ffffff' }),
+  certSeal('pro-cert-emerald', 'Certificate - Emerald & Gold', { bg: '#06281f', frame: '#d4af37', accent: '#d4af37', ink: '#ffffff', sub: '#93c9b4', name: '#ffffff' }),
+  certSeal('pro-cert-burgundy', 'Certificate - Burgundy Royal', { bg: '#2a0a12', frame: '#d4af37', accent: '#d4af37', ink: '#ffffff', sub: '#d9a7b0', name: '#ffffff' }),
+  certSeal('pro-cert-classic', 'Certificate - Classic Ivory', { bg: '#ffffff', frame: '#1f2937', accent: '#b58b2a', ink: '#111827', sub: '#6b7280', name: '#111827' }),
+  // Certificates - modern panel
+  certPanel('pro-cert-indigo', 'Certificate - Indigo Modern', { bg1: '#4f46e5', bg2: '#7c3aed', accent: '#6366f1' }),
+  certPanel('pro-cert-teal', 'Certificate - Teal Modern', { bg1: '#0d9488', bg2: '#0891b2', accent: '#0d9488' }),
+  certPanel('pro-cert-sunset', 'Certificate - Sunset Modern', { bg1: '#db2777', bg2: '#f97316', accent: '#db2777' }),
+  // Invoices - executive band
+  invExec('pro-inv-navy', 'Invoice - Executive Navy', { band: '#0f172a', badge: '#38bdf8', mono: 'N' }),
+  invExec('pro-inv-emerald', 'Invoice - Executive Emerald', { band: '#065f46', badge: '#6ee7b7', mono: 'E' }),
+  invExec('pro-inv-violet', 'Invoice - Executive Violet', { band: '#5b21b6', badge: '#c4b5fd', mono: 'V' }),
+  invExec('pro-inv-slate', 'Invoice - Executive Slate', { band: '#334155', badge: '#cbd5e1', mono: 'S' }),
+  // Invoices - minimal luxe
+  invLuxe('pro-inv-gold', 'Invoice - Minimal Gold', { accent: '#b58b2a' }),
+  invLuxe('pro-inv-teal', 'Invoice - Minimal Teal', { accent: '#0d9488' }),
+  invLuxe('pro-inv-indigo', 'Invoice - Minimal Indigo', { accent: '#4f46e5' }),
+  invLuxe('pro-inv-rose', 'Invoice - Minimal Rose', { accent: '#db2777' }),
   // Business cards
-  cardPremium('pro-card-violet', 'Business Card — Midnight Violet', { bg1: '#0f172a', bg2: '#312e81', accent: '#8b5cf6', ink: '#ffffff', sub: '#cbd5e1', mono: 'A' }),
-  cardPremium('pro-card-emerald', 'Business Card — Emerald Noir', { bg1: '#052e2b', bg2: '#064e3b', accent: '#34d399', ink: '#ffffff', sub: '#a7f3d0', mono: 'A' }),
-  cardPremium('pro-card-gold', 'Business Card — Charcoal Gold', { bg1: '#1c1917', bg2: '#292524', accent: '#d4af37', ink: '#ffffff', sub: '#d6d3d1', mono: 'A' }),
+  cardPremium('pro-card-violet', 'Business Card - Midnight Violet', { bg1: '#0f172a', bg2: '#312e81', accent: '#8b5cf6', ink: '#ffffff', sub: '#cbd5e1', mono: 'A' }),
+  cardPremium('pro-card-emerald', 'Business Card - Emerald Noir', { bg1: '#052e2b', bg2: '#064e3b', accent: '#34d399', ink: '#ffffff', sub: '#a7f3d0', mono: 'A' }),
+  cardPremium('pro-card-gold', 'Business Card - Charcoal Gold', { bg1: '#1c1917', bg2: '#292524', accent: '#d4af37', ink: '#ffffff', sub: '#d6d3d1', mono: 'A' }),
 
   // More certificates & invoices
-  certSeal('pro-cert-slate', 'Certificate — Slate Minimal', { bg: '#f8fafc', frame: '#334155', accent: '#0ea5e9', ink: '#0f172a', sub: '#64748b', name: '#0f172a' }),
-  certPanel('pro-cert-rose', 'Certificate — Rose Modern', { bg1: '#e11d48', bg2: '#9f1239', accent: '#e11d48' }),
-  invExec('pro-inv-teal2', 'Invoice — Executive Teal', { band: '#0f766e', badge: '#5eead4', mono: 'T' }),
-  invLuxe('pro-inv-charcoal', 'Invoice — Minimal Charcoal', { accent: '#1f2937' }),
+  certSeal('pro-cert-slate', 'Certificate - Slate Minimal', { bg: '#f8fafc', frame: '#334155', accent: '#0ea5e9', ink: '#0f172a', sub: '#64748b', name: '#0f172a' }),
+  certPanel('pro-cert-rose', 'Certificate - Rose Modern', { bg1: '#e11d48', bg2: '#9f1239', accent: '#e11d48' }),
+  invExec('pro-inv-teal2', 'Invoice - Executive Teal', { band: '#0f766e', badge: '#5eead4', mono: 'T' }),
+  invLuxe('pro-inv-charcoal', 'Invoice - Minimal Charcoal', { accent: '#1f2937' }),
 
   // Letterheads
-  letterhead('pro-letter-navy', 'Letterhead — Navy', { accent: '#1e3a8a', mono: 'N' }),
-  letterhead('pro-letter-emerald', 'Letterhead — Emerald', { accent: '#047857', mono: 'E' }),
-  letterhead('pro-letter-rose', 'Letterhead — Rose', { accent: '#be185d', mono: 'R' }),
+  letterhead('pro-letter-navy', 'Letterhead - Navy', { accent: '#1e3a8a', mono: 'N' }),
+  letterhead('pro-letter-emerald', 'Letterhead - Emerald', { accent: '#047857', mono: 'E' }),
+  letterhead('pro-letter-rose', 'Letterhead - Rose', { accent: '#be185d', mono: 'R' }),
 
   // Event flyers
-  flyer('pro-flyer-violet', 'Flyer — Night Violet', { bg1: '#2e1065', bg2: '#4c1d95', accent: '#a78bfa', accent2: '#fde047' }),
-  flyer('pro-flyer-sunset', 'Flyer — Sunset', { bg1: '#9a3412', bg2: '#b91c1c', accent: '#fca5a5', accent2: '#fde047' }),
-  flyer('pro-flyer-teal', 'Flyer — Ocean', { bg1: '#0e7490', bg2: '#155e75', accent: '#67e8f9', accent2: '#fde047' }),
+  flyer('pro-flyer-violet', 'Flyer - Night Violet', { bg1: '#2e1065', bg2: '#4c1d95', accent: '#a78bfa', accent2: '#fde047' }),
+  flyer('pro-flyer-sunset', 'Flyer - Sunset', { bg1: '#9a3412', bg2: '#b91c1c', accent: '#fca5a5', accent2: '#fde047' }),
+  flyer('pro-flyer-teal', 'Flyer - Ocean', { bg1: '#0e7490', bg2: '#155e75', accent: '#67e8f9', accent2: '#fde047' }),
 
   // Gift cards
-  giftCert('pro-gift-black', 'Gift Card — Black & Gold', { bg: '#0b0b0d', accent: '#d4af37', ink: '#ffffff', sub: '#9ca3af' }),
-  giftCert('pro-gift-emerald', 'Gift Card — Emerald', { bg: '#052e2b', accent: '#34d399', ink: '#ffffff', sub: '#6ee7b7' }),
-  giftCert('pro-gift-blush', 'Gift Card — Blush', { bg: '#fdf2f8', accent: '#db2777', ink: '#831843', sub: '#9d174d' }),
+  giftCert('pro-gift-black', 'Gift Card - Black & Gold', { bg: '#0b0b0d', accent: '#d4af37', ink: '#ffffff', sub: '#9ca3af' }),
+  giftCert('pro-gift-emerald', 'Gift Card - Emerald', { bg: '#052e2b', accent: '#34d399', ink: '#ffffff', sub: '#6ee7b7' }),
+  giftCert('pro-gift-blush', 'Gift Card - Blush', { bg: '#fdf2f8', accent: '#db2777', ink: '#831843', sub: '#9d174d' }),
 
   // Coupons
-  coupon('pro-coupon-red', 'Coupon — Bold Red', { panel: '#dc2626', onPanelSub: '#fecaca' }),
-  coupon('pro-coupon-indigo', 'Coupon — Indigo', { panel: '#4338ca', onPanelSub: '#c7d2fe' }),
-  coupon('pro-coupon-green', 'Coupon — Fresh Green', { panel: '#15803d', onPanelSub: '#bbf7d0' }),
+  coupon('pro-coupon-red', 'Coupon - Bold Red', { panel: '#dc2626', onPanelSub: '#fecaca' }),
+  coupon('pro-coupon-indigo', 'Coupon - Indigo', { panel: '#4338ca', onPanelSub: '#c7d2fe' }),
+  coupon('pro-coupon-green', 'Coupon - Fresh Green', { panel: '#15803d', onPanelSub: '#bbf7d0' }),
 
   // Proposals
-  proposal('pro-proposal-indigo', 'Proposal — Indigo Cover', { bg1: '#312e81', bg2: '#1e1b4b', accent: '#818cf8' }),
-  proposal('pro-proposal-slate', 'Proposal — Slate Cover', { bg1: '#0f172a', bg2: '#334155', accent: '#38bdf8' }),
+  proposal('pro-proposal-indigo', 'Proposal - Indigo Cover', { bg1: '#312e81', bg2: '#1e1b4b', accent: '#818cf8' }),
+  proposal('pro-proposal-slate', 'Proposal - Slate Cover', { bg1: '#0f172a', bg2: '#334155', accent: '#38bdf8' }),
 
   // Thank-you cards
-  thankYou('pro-thanks-violet', 'Thank You — Violet', { bg: '#2e1065', bg2: '#4c1d95', accent: '#c4b5fd', sub: '#e9d5ff' }),
-  thankYou('pro-thanks-emerald', 'Thank You — Emerald', { bg: '#064e3b', bg2: '#065f46', accent: '#6ee7b7', sub: '#d1fae5' }),
+  thankYou('pro-thanks-violet', 'Thank You - Violet', { bg: '#2e1065', bg2: '#4c1d95', accent: '#c4b5fd', sub: '#e9d5ff' }),
+  thankYou('pro-thanks-emerald', 'Thank You - Emerald', { bg: '#064e3b', bg2: '#065f46', accent: '#6ee7b7', sub: '#d1fae5' }),
 
   // Resumes / CVs
-  resume('pro-resume-navy', 'Resume — Navy Sidebar', { side: '#0f172a', onSide: '#ffffff', onSideSub: '#cbd5e1', accent: '#2563eb', accent2: '#93c5fd' }),
-  resume('pro-resume-emerald', 'Resume — Emerald Sidebar', { side: '#064e3b', onSide: '#ffffff', onSideSub: '#a7f3d0', accent: '#059669', accent2: '#6ee7b7' }),
-  resume('pro-resume-charcoal', 'Resume — Charcoal Minimal', { side: '#1f2937', onSide: '#ffffff', onSideSub: '#d1d5db', accent: '#4b5563', accent2: '#9ca3af' }),
+  resume('pro-resume-navy', 'Resume - Navy Sidebar', { side: '#0f172a', onSide: '#ffffff', onSideSub: '#cbd5e1', accent: '#2563eb', accent2: '#93c5fd' }),
+  resume('pro-resume-emerald', 'Resume - Emerald Sidebar', { side: '#064e3b', onSide: '#ffffff', onSideSub: '#a7f3d0', accent: '#059669', accent2: '#6ee7b7' }),
+  resume('pro-resume-charcoal', 'Resume - Charcoal Minimal', { side: '#1f2937', onSide: '#ffffff', onSideSub: '#d1d5db', accent: '#4b5563', accent2: '#9ca3af' }),
 
   // Menus
-  menu('pro-menu-cream', 'Menu — Cream Classic', { bg: '#fdfaf3', accent: '#b45309', ink: '#3f2d1a', sub: '#8a6d4b' }),
-  menu('pro-menu-dark', 'Menu — Dark Elegant', { bg: '#111827', accent: '#f59e0b', ink: '#f9fafb', sub: '#9ca3af' }),
+  menu('pro-menu-cream', 'Menu - Cream Classic', { bg: '#fdfaf3', accent: '#b45309', ink: '#3f2d1a', sub: '#8a6d4b' }),
+  menu('pro-menu-dark', 'Menu - Dark Elegant', { bg: '#111827', accent: '#f59e0b', ink: '#f9fafb', sub: '#9ca3af' }),
 
   // ID cards
-  idCard('pro-id-blue', 'ID Card — Corporate Blue', { accent: '#1d4ed8', photo: '#dbeafe' }),
-  idCard('pro-id-emerald', 'ID Card — Emerald', { accent: '#047857', photo: '#d1fae5' }),
+  idCard('pro-id-blue', 'ID Card - Corporate Blue', { accent: '#1d4ed8', photo: '#dbeafe' }),
+  idCard('pro-id-emerald', 'ID Card - Emerald', { accent: '#047857', photo: '#d1fae5' }),
 ];

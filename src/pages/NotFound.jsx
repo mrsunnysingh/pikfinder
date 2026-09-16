@@ -11,7 +11,7 @@ export default function NotFound() {
   const [q, setQ] = useState('');
 
   useSeo({
-    title: 'Page not found (404) — PikFinder',
+    title: 'Page not found (404) - PikFinder',
     description: 'That page doesn’t exist or has moved. Search millions of free photos and videos, or jump back into PikFinder.',
     canonical: `${SITE_URL}/404`,
   });

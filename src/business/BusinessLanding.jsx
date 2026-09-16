@@ -8,7 +8,7 @@ import { useSeo } from '../hooks/useSeo';
 import { SITE_URL } from '../tools/registry';
 
 const FAQS = [
-  ['How do I generate documents from Zoho CRM?', 'Connect Zoho CRM in the PikFinder Document Generator, pick a template (certificate, invoice, ID card or banner), and PikFinder auto-fills it from your CRM records. Export one document or bulk-generate hundreds as a zip — no coding required.'],
+  ['How do I generate documents from Zoho CRM?', 'Connect Zoho CRM in the PikFinder Document Generator, pick a template (certificate, invoice, ID card or banner), and PikFinder auto-fills it from your CRM records. Export one document or bulk-generate hundreds as a zip - no coding required.'],
   ['Can I create certificates in bulk from a Zoho Creator report?', 'Yes. Connect Zoho Creator, choose a report, select the records you want, and PikFinder renders one certificate per record and downloads them together as a zip.'],
   ['Do I need any coding or Deluge scripts?', 'No. The Document Generator is a no-code tool. You connect your Zoho app, map fields once (it auto-matches for you), and generate. Optional Deluge/webhook triggers are available for advanced users.'],
   ['Which document types can I generate?', 'Certificates of achievement, invoices, business cards, ID cards, sale and event banners, and any custom design you build in the PikFinder Studio with fillable fields.'],
@@ -21,7 +21,7 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'SoftwareApplication',
-      name: 'PikFinder Document Generator — Zoho Document Automation',
+      name: 'PikFinder Document Generator - Zoho Document Automation',
       description: 'Generate certificates, invoices, ID cards and marketing banners automatically from Zoho CRM and Zoho Creator records. No-code document generation and bulk export.',
       url: `${SITE_URL}/business-automation`,
       applicationCategory: 'BusinessApplication',
@@ -43,15 +43,15 @@ const USE_CASES = [
 ];
 
 const STEPS = [
-  ['Connect Zoho', 'Securely connect Zoho CRM or Zoho Creator — read-only, revoke anytime.'],
-  ['Pick a template', 'Choose a certificate, invoice, card or banner — or design your own in the Studio.'],
+  ['Connect Zoho', 'Securely connect Zoho CRM or Zoho Creator - read-only, revoke anytime.'],
+  ['Pick a template', 'Choose a certificate, invoice, card or banner - or design your own in the Studio.'],
   ['Auto-fill & map', 'PikFinder matches your Zoho fields to the template automatically. Adjust once, it remembers.'],
-  ['Generate & export', 'Download one document, or bulk-generate hundreds as a single zip — PNG, PDF or SVG.'],
+  ['Generate & export', 'Download one document, or bulk-generate hundreds as a single zip - PNG, PDF or SVG.'],
 ];
 
 export default function BusinessLanding() {
   useSeo({
-    title: 'Zoho CRM Document Generator — Certificates, Invoices & Cards | PikFinder',
+    title: 'Zoho CRM Document Generator - Certificates, Invoices & Cards | PikFinder',
     description: 'Automatically generate certificates, invoices, ID cards and banners from Zoho CRM and Zoho Creator. No-code document automation with bulk export. Free to start.',
     canonical: `${SITE_URL}/business-automation`,
     jsonLd,
@@ -61,7 +61,7 @@ export default function BusinessLanding() {
     <div className="biz-land">
       <section className="biz-land-hero">
         <span className="biz-land-kicker"><Buildings weight="duotone" /> PikFinder Document Generator</span>
-        <h1>Generate documents from Zoho CRM &amp; Creator — automatically</h1>
+        <h1>Generate documents from Zoho CRM &amp; Creator - automatically</h1>
         <p>Turn your Zoho records into certificates, invoices, ID cards and marketing banners in seconds. No-code, no designer, bulk-ready. PikFinder auto-fills professional templates from your CRM data and exports PNG, PDF or SVG.</p>
         <div className="biz-land-cta">
           <Link to="/business" className="btn-primary"><ArrowRight size={16} /> Open the Document Generator</Link>
@@ -98,7 +98,7 @@ export default function BusinessLanding() {
           ))}
         </ol>
         <div className="biz-land-cta center">
-          <Link to="/business" className="btn-primary"><Lightning size={16} weight="fill" /> Try it now — it’s free</Link>
+          <Link to="/business" className="btn-primary"><Lightning size={16} weight="fill" /> Try it now - it’s free</Link>
         </div>
       </section>
 
@@ -106,7 +106,7 @@ export default function BusinessLanding() {
         <h2>Built for Zoho teams</h2>
         <div className="biz-land-feats">
           <div className="biz-land-feat"><Plugs weight="duotone" /><div><strong>Zoho CRM &amp; Creator</strong><p>Connect Contacts, Deals and Creator reports. Books, Forms, Desk and Analytics are on the roadmap.</p></div></div>
-          <div className="biz-land-feat"><Stack weight="duotone" /><div><strong>Bulk generation</strong><p>Select many records and get one document each, zipped and named — perfect for cohorts, invoices and teams.</p></div></div>
+          <div className="biz-land-feat"><Stack weight="duotone" /><div><strong>Bulk generation</strong><p>Select many records and get one document each, zipped and named - perfect for cohorts, invoices and teams.</p></div></div>
           <div className="biz-land-feat"><ShieldCheck weight="duotone" /><div><strong>Secure by design</strong><p>Tokens are encrypted server-side; your browser never sees them. Read-only access you can revoke anytime.</p></div></div>
           <div className="biz-land-feat"><Lightning weight="duotone" /><div><strong>No-code &amp; fast</strong><p>Auto field-matching, saved mappings and live preview. Design custom templates in the built-in Studio.</p></div></div>
         </div>

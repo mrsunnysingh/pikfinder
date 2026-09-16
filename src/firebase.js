@@ -16,7 +16,7 @@ const firebaseConfig = {
 };
 
 // Guard against missing config. If keys are absent, we export stubs so the
-// rest of the app (tools, wallpapers, meme finder, etc.) still renders —
+// rest of the app (tools, wallpapers, meme finder, etc.) still renders  - 
 // only auth/firestore features are disabled. This is much friendlier than
 // letting getAuth() throw and taking the whole page down.
 export const isFirebaseConfigured = Boolean(

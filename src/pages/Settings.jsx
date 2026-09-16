@@ -46,7 +46,7 @@ export default function Settings() {
           setUsername(claimed);
         } catch (err) {
           const code = String(err?.code || '');
-          const msg = code.includes('taken') ? 'That username is already taken — try another.'
+          const msg = code.includes('taken') ? 'That username is already taken - try another.'
             : code.includes('too-short') ? 'Username must be at least 3 characters.'
             : code.includes('invalid') ? 'Use only letters, numbers, and underscores.'
             : 'Could not save username. Try again.';
@@ -77,7 +77,7 @@ export default function Settings() {
   };
 
   const inviteLink = `https://www.pikfinder.com/?ref=${user?.uid || ''}`;
-  const inviteText = 'Found this — free stock media search, a design studio and 30+ image/PDF tools, all free: ';
+  const inviteText = 'Found this - free stock media search, a design studio and 30+ image/PDF tools, all free: ';
   const copyInvite = async () => {
     try { await navigator.clipboard.writeText(inviteLink); toast('Invite link copied'); }
     catch { toast('Select the link and copy it manually', 'error'); }
@@ -224,7 +224,7 @@ export default function Settings() {
         <div className="settings-row">
           <div>
             <span className="settings-label">Share PikFinder</span>
-            <p className="settings-hint">Send friends your link — help more creators discover free tools (and grow the community).</p>
+            <p className="settings-hint">Send friends your link - help more creators discover free tools (and grow the community).</p>
           </div>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap', flex: 1, maxWidth: 420 }}>
             <input className="settings-input" style={{ flex: 1, minWidth: 160, fontSize: 12 }} value={inviteLink} readOnly onFocus={(e) => e.target.select()} />

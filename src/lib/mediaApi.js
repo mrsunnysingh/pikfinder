@@ -14,7 +14,7 @@
  * @returns {Promise<{ results: object[], sources: string[], count: number, type: string, providerErrors?: object }>}
  */
 export async function searchMedia(query, opts = {}) {
-  // Icons come from Iconify (free, open-source, 200k+ icons, CORS-enabled) — no
+  // Icons come from Iconify (free, open-source, 200k+ icons, CORS-enabled) - no
   // provider key and no server round-trip needed.
   if (opts.type === 'icon') return searchIcons(query, opts);
   const { type = 'photo', page = 1, perPage = 24, sources, orientation, color, sort, signal } = opts;
@@ -28,7 +28,7 @@ export async function searchMedia(query, opts = {}) {
   if (sort && sort !== 'relevance') params.set('sort', sort);
 
   const res = await fetch(`/api/search?${params.toString()}`, { signal });
-  if (res.status === 429) throw new Error('Too many searches — please slow down a moment.');
+  if (res.status === 429) throw new Error('Too many searches - please slow down a moment.');
   if (res.status === 503) {
     const body = await res.json().catch(() => ({}));
     const err = new Error(body.detail || 'No providers configured.');
@@ -41,7 +41,7 @@ export async function searchMedia(query, opts = {}) {
 
 /**
  * Turn a natural-language description into optimized keywords + detected facets.
- * Never throws on AI failure server-side — falls back to a local optimizer.
+ * Never throws on AI failure server-side - falls back to a local optimizer.
  * @returns {Promise<{ primary_query: string, search_queries: string[], synonyms: string[], colors?: string[], orientation?: string, subjects?: string[], _source?: 'ai'|'local' }>}
  */
 export async function optimizeQuery(prompt, { signal } = {}) {

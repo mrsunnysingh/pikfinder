@@ -1,5 +1,5 @@
 // Compatibility shim: some pdf.js builds call the very new (2025) TC39 methods
-// Map.prototype.getOrInsert / getOrInsertComputed, which older browsers lack —
+// Map.prototype.getOrInsert / getOrInsertComputed, which older browsers lack  - 
 // causing "getOrInsertComputed is not a function" when opening a PDF. We use
 // pdfjs v4 (which doesn't need them), but define them harmlessly just in case.
 function ensureMapPolyfills() {

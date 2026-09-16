@@ -34,7 +34,7 @@ export default function RazorpayButton({
         try {
           r = await subscribeWithRazorpay({ plan, description, prefill, authToken: token });
         } catch (e) {
-          // Recurring plans aren't set up in Razorpay yet — fall back to a normal
+          // Recurring plans aren't set up in Razorpay yet - fall back to a normal
           // one-time payment so checkout still works.
           if (e.code === 'plan_not_configured' || e.code === 'not_configured') r = await oneTime();
           else throw e;
@@ -43,10 +43,10 @@ export default function RazorpayButton({
         r = await oneTime();
       }
       if (r.ok) {
-        toast('Payment successful — thank you! 🎉', 'success');
+        toast('Payment successful - thank you! 🎉', 'success');
         onPaid && onPaid(r);
       } else if (r.dismissed) {
-        /* user closed the modal — stay quiet */
+        /* user closed the modal - stay quiet */
       } else {
         toast('Payment could not be completed. Please try again.', 'error');
       }

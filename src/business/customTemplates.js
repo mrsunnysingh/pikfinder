@@ -1,7 +1,7 @@
 // src/business/customTemplates.js
 // Stores the user's own uploaded designs as Business Hub templates (localStorage).
-// A custom template has the exact same shape as a built-in one — an image layer
-// (their design) plus {{placeholder}} text layers — so it flows through preview,
+// A custom template has the exact same shape as a built-in one - an image layer
+// (their design) plus {{placeholder}} text layers - so it flows through preview,
 // fill-fields, Zoho auto-fill and export unchanged.
 
 const KEY = 'pikfinder-business-custom';
@@ -13,7 +13,7 @@ export function loadCustom() {
 
 export function saveCustomList(list) {
   try { localStorage.setItem(KEY, JSON.stringify(list)); return true; }
-  catch { return false; } // likely quota — image too large
+  catch { return false; } // likely quota - image too large
 }
 
 export function addCustom(tpl) {

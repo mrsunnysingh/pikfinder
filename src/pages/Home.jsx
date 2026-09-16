@@ -36,7 +36,7 @@ const HOME_FEATURES = [
   { icon: ShieldCheck, title: 'Safe & Licensed', description: '100% copyright-safe content for your projects.', link: '/licenses' },
 ];
 
-// Small curated preview strip — links straight into the search page.
+// Small curated preview strip - links straight into the search page.
 const SHOWCASE = [
   { q: 'minimal workspace', img: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=600&auto=format&fit=crop' },
   { q: 'moody nature', img: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=600&auto=format&fit=crop' },
@@ -64,7 +64,7 @@ export default function Home() {
         ))}
       </section>
 
-      {/* Curated preview — each tile deep-links into the search page */}
+      {/* Curated preview - each tile deep-links into the search page */}
       <section className="home-showcase" aria-label="Popular searches">
         <span className="section-eyebrow">{t('home.trending_now')}</span>
         <div className="section-header">
@@ -101,7 +101,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Spotlight — the document automation flagship */}
+      {/* Spotlight - the document automation flagship */}
       <section className="home-docgen" aria-label="Document automation">
         <div className="home-docgen-inner">
           <div className="home-docgen-copy">
@@ -134,7 +134,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Spotlight — Creator Studio */}
+      {/* Spotlight - Creator Studio */}
       <section className="home-docgen home-studio" aria-label="Creator Studio">
         <div className="home-docgen-inner">
           <div className="home-docgen-visual home-studio-visual" aria-hidden="true">

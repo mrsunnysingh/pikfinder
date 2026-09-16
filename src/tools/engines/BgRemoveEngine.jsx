@@ -3,7 +3,7 @@ import { Dropzone, ResultBar, saveBlob, loadImageFromFile } from '../ToolShell';
 import { drawToCanvas, canvasToBlob, baseName } from './canvas-utils';
 import { Eraser, PaintBrush, Check } from '@phosphor-icons/react';
 
-// U2-Netp (Apache 2.0) — small portrait/object segmentation model, ~4.5MB.
+// U2-Netp (Apache 2.0) - small portrait/object segmentation model, ~4.5MB.
 // Runs fully in-browser via onnxruntime-web. No uploads, no API costs.
 const MODEL_URL = 'https://huggingface.co/tomjackson2023/rembg/resolve/main/u2netp.onnx';
 const MODEL_SIZE = 320;
@@ -201,7 +201,7 @@ export default function BgRemoveEngine() {
         <Dropzone
           onFiles={onFiles}
           label="Drop a photo here, or click to browse"
-          hint="Works best with a clear subject — people, products, animals"
+          hint="Works best with a clear subject - people, products, animals"
         />
       )}
 

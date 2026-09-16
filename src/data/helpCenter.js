@@ -21,7 +21,7 @@ export const HELP_ARTICLES = [
     tags: ['overview', 'about', 'start'],
     blocks: [
       { t: 'p', c: 'PikFinder is a free creator platform that combines a multi-source media search engine with a full design suite. In one place you can find copyright-safe photos and video, design graphics in the Creator Studio, edit PDFs, run in-browser image tools, and auto-generate business documents from your data.' },
-      { t: 'list', c: ['Search millions of free images & videos across providers', 'Design social posts, banners and more in the Creator Studio', 'Edit PDFs — text, images, signatures — in your browser', 'Generate certificates, invoices and cards (optionally from Zoho)', 'Use 20+ free image tools (compress, convert, resize, OCR, QR…)'] },
+      { t: 'list', c: ['Search millions of free images & videos across providers', 'Design social posts, banners and more in the Creator Studio', 'Edit PDFs - text, images, signatures - in your browser', 'Generate certificates, invoices and cards (optionally from Zoho)', 'Use 20+ free image tools (compress, convert, resize, OCR, QR…)'] },
       { t: 'note', c: 'Everything core is free, and most features work without an account.' },
     ],
   },
@@ -37,7 +37,7 @@ export const HELP_ARTICLES = [
     tags: ['navigation', 'menu', 'dashboard'],
     blocks: [
       { t: 'p', c: 'The main areas are reachable from the top navigation and your dashboard:' },
-      { t: 'list', c: ['Search — find free media with filters', 'Creator Studio — the full design editor', 'PDF Editor — edit any PDF', 'Document Generator — data-driven document generation', 'Free Tools — quick image utilities', 'Collections & Favorites — your saved items'] },
+      { t: 'list', c: ['Search - find free media with filters', 'Creator Studio - the full design editor', 'PDF Editor - edit any PDF', 'Document Generator - data-driven document generation', 'Free Tools - quick image utilities', 'Collections & Favorites - your saved items'] },
     ],
   },
 
@@ -46,7 +46,7 @@ export const HELP_ARTICLES = [
     id: 'how-to-search', cat: 'search', title: 'How to search for media',
     tags: ['search', 'photos', 'images', 'video', 'filters'],
     blocks: [
-      { t: 'steps', c: ['Open Search and type what you need in plain language (e.g. "mountain lake sunrise").', 'Browse results — scroll to load more automatically.', 'Use the source buttons to include/exclude specific providers.', 'Open any result for a larger preview, download options and license details.'] },
+      { t: 'steps', c: ['Open Search and type what you need in plain language (e.g. "mountain lake sunrise").', 'Browse results - scroll to load more automatically.', 'Use the source buttons to include/exclude specific providers.', 'Open any result for a larger preview, download options and license details.'] },
       { t: 'note', c: 'If a very specific phrase returns little, the search auto-broadens the term. Try fewer, broader keywords for more results.' },
     ],
   },
@@ -78,7 +78,7 @@ export const HELP_ARTICLES = [
     tags: ['studio', 'template', 'blank', 'photo', 'canvas'],
     blocks: [
       { t: 'p', c: 'When you open the Studio you can choose how to begin:' },
-      { t: 'steps', c: ['Blank canvas — start from scratch at any size.', 'Edit a photo — upload an image; the canvas auto-fits it.', 'Browse templates — pick a ready-made design and customize.'] },
+      { t: 'steps', c: ['Blank canvas - start from scratch at any size.', 'Edit a photo - upload an image; the canvas auto-fits it.', 'Browse templates - pick a ready-made design and customize.'] },
       { t: 'p', c: 'Set a preset size (e.g. Instagram Post 1080×1080) from the top bar, or Custom for exact dimensions.' },
     ],
   },
@@ -86,7 +86,7 @@ export const HELP_ARTICLES = [
     id: 'studio-elements', cat: 'studio', title: 'Adding text, images, shapes & icons',
     tags: ['text', 'image', 'shape', 'icon', 'elements'],
     blocks: [
-      { t: 'list', c: ['Text — Text tool or Elements → Text presets.', 'Images — Uploads, drag-and-drop onto the canvas, paste (Ctrl/⌘+V), or the free Photos search.', 'Shapes — the Shape/Elements panel (rectangles, circles, lines and more).', 'Icons — Elements → "Icons from the web": search 200k+ open-source icons and click to place.'] },
+      { t: 'list', c: ['Text - Text tool or Elements → Text presets.', 'Images - Uploads, drag-and-drop onto the canvas, paste (Ctrl/⌘+V), or the free Photos search.', 'Shapes - the Shape/Elements panel (rectangles, circles, lines and more).', 'Icons - Elements → "Icons from the web": search 200k+ open-source icons and click to place.'] },
     ],
   },
   {
@@ -94,14 +94,14 @@ export const HELP_ARTICLES = [
     tags: ['properties', 'size', 'radius', 'aspect ratio', 'resize', 'crop'],
     blocks: [
       { t: 'p', c: 'Select any layer to open Properties on the right. There you can set exact X/Y, width and height, rotation, opacity, and corner Radius (for shapes and images).' },
-      { t: 'steps', c: ['To keep proportions, turn on the chain / aspect-lock next to W and H — changing one updates the other.', 'To round corners, set the Radius value.', 'To crop an image, double-click it. To resize the whole artboard, use the Crop button in the top bar.'] },
+      { t: 'steps', c: ['To keep proportions, turn on the chain / aspect-lock next to W and H - changing one updates the other.', 'To round corners, set the Radius value.', 'To crop an image, double-click it. To resize the whole artboard, use the Crop button in the top bar.'] },
     ],
   },
   {
     id: 'studio-brandkit', cat: 'studio', title: 'Backgrounds & Brand Kit',
     tags: ['background', 'brand kit', 'colors', 'logo'],
     blocks: [
-      { t: 'p', c: 'Use the Background tab for solid colors and gradients. The Brand Kit tab stores your brand colors and logo — click a color to apply it to the selection or background, and add your logo to drop it onto the canvas.' },
+      { t: 'p', c: 'Use the Background tab for solid colors and gradients. The Brand Kit tab stores your brand colors and logo - click a color to apply it to the selection or background, and add your logo to drop it onto the canvas.' },
     ],
   },
   {
@@ -118,7 +118,7 @@ export const HELP_ARTICLES = [
     tags: ['pdf', 'edit text', 'image', 'sign', 'whiteout'],
     blocks: [
       { t: 'steps', c: ['Open the PDF Editor and upload a file or paste a link.', 'Double-click any text to edit it in place; drag to move elements.', 'Use the tools to add text, images, highlights, whiteout, shapes or a signature.', 'Adjust font, size, color, alignment and opacity in the right panel.', 'Click Download PDF (or export the current page as PNG).'] },
-      { t: 'note', c: 'Everything runs in your browser — your document is not uploaded to a server.' },
+      { t: 'note', c: 'Everything runs in your browser - your document is not uploaded to a server.' },
     ],
   },
 
@@ -127,7 +127,7 @@ export const HELP_ARTICLES = [
     id: 'business-generate', cat: 'business', title: 'Generating documents',
     tags: ['business', 'certificate', 'invoice', 'template', 'generate'],
     blocks: [
-      { t: 'steps', c: ['Open the Document Generator and pick a template (certificate, invoice, card, banner).', 'Fill in the fields — the preview updates live.', 'Download as SVG, PNG or PDF.'] },
+      { t: 'steps', c: ['Open the Document Generator and pick a template (certificate, invoice, card, banner).', 'Fill in the fields - the preview updates live.', 'Download as SVG, PNG or PDF.'] },
     ],
   },
   {
@@ -142,7 +142,7 @@ export const HELP_ARTICLES = [
     id: 'business-bulk', cat: 'business', title: 'Bulk-generating from records',
     tags: ['bulk', 'zip', 'records', 'mapping'],
     blocks: [
-      { t: 'p', c: 'In the "Fill from Zoho" dialog, PikFinder auto-maps template fields to your Zoho fields (adjust any mapping — it is remembered). Select multiple records, choose a format, and PikFinder renders one document per record and downloads them together as a zip.' },
+      { t: 'p', c: 'In the "Fill from Zoho" dialog, PikFinder auto-maps template fields to your Zoho fields (adjust any mapping - it is remembered). Select multiple records, choose a format, and PikFinder renders one document per record and downloads them together as a zip.' },
     ],
   },
 
@@ -159,7 +159,7 @@ export const HELP_ARTICLES = [
     id: 'tools-privacy', cat: 'tools', title: 'Are the tools private?',
     tags: ['privacy', 'browser', 'upload'],
     blocks: [
-      { t: 'p', c: 'Yes. The image tools process files entirely in your browser — your images are not uploaded to a server, and nothing is retained after you close the tab.' },
+      { t: 'p', c: 'Yes. The image tools process files entirely in your browser - your images are not uploaded to a server, and nothing is retained after you close the tab.' },
     ],
   },
 
@@ -168,7 +168,7 @@ export const HELP_ARTICLES = [
     id: 'account-signup', cat: 'account', title: 'Sign up & verify your email',
     tags: ['signup', 'verify', 'login'],
     blocks: [
-      { t: 'steps', c: ['Create an account with email or Google.', 'For email sign-ups, open the verification link we send you.', 'Log in — you can now save favorites, collections and history.'] },
+      { t: 'steps', c: ['Create an account with email or Google.', 'For email sign-ups, open the verification link we send you.', 'Log in - you can now save favorites, collections and history.'] },
     ],
   },
   {
@@ -191,7 +191,7 @@ export const HELP_ARTICLES = [
     id: 'bp-design', cat: 'best-practices', title: 'Design best practices',
     tags: ['design', 'tips', 'typography', 'layout'],
     blocks: [
-      { t: 'list', c: ['Start from a template, then make it yours.', 'Limit to 2–3 fonts; pair a bold display font with a clean body font.', 'Reuse your Brand Kit colors for consistency across posts.', 'Build hierarchy with size, weight and contrast — one clear focal point.', 'Leave breathing room near the edges (safe margins).', 'Export at 2× for crisp results on modern screens.'] },
+      { t: 'list', c: ['Start from a template, then make it yours.', 'Limit to 2–3 fonts; pair a bold display font with a clean body font.', 'Reuse your Brand Kit colors for consistency across posts.', 'Build hierarchy with size, weight and contrast - one clear focal point.', 'Leave breathing room near the edges (safe margins).', 'Export at 2× for crisp results on modern screens.'] },
     ],
   },
   {
@@ -208,7 +208,7 @@ export const HELP_ARTICLES = [
     tags: ['api', 'developers', 'endpoints', 'rest'],
     blocks: [
       { t: 'p', c: 'PikFinder exposes a small set of serverless REST endpoints under /api. Responses are JSON unless a binary asset is requested. All endpoints accept standard HTTP and CORS is restricted to allowed origins.' },
-      { t: 'note', c: 'These endpoints power the app. If you want programmatic access for your own product, contact us — some endpoints require configuration or keys.' },
+      { t: 'note', c: 'These endpoints power the app. If you want programmatic access for your own product, contact us - some endpoints require configuration or keys.' },
     ],
   },
   {
@@ -240,7 +240,7 @@ export const HELP_ARTICLES = [
     id: 'api-auth', cat: 'api', title: 'Authentication',
     tags: ['api', 'auth', 'token', 'firebase'],
     blocks: [
-      { t: 'p', c: 'User-scoped endpoints authenticate with a Firebase ID token passed as a Bearer token. The server verifies it with the Firebase Admin SDK and derives the user id — the client never handles third-party secrets.' },
+      { t: 'p', c: 'User-scoped endpoints authenticate with a Firebase ID token passed as a Bearer token. The server verifies it with the Firebase Admin SDK and derives the user id - the client never handles third-party secrets.' },
     ],
   },
 ];

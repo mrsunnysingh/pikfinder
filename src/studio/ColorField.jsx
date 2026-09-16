@@ -1,5 +1,5 @@
 // src/studio/ColorField.jsx
-// A reusable colour control with an ALPHA (transparency) channel — the native
+// A reusable colour control with an ALPHA (transparency) channel - the native
 // <input type="color"> can't do alpha, so this wraps it with an opacity slider.
 // Value is any CSS colour string (hex, #RRGGBBAA, or rgba()); it emits rgba()
 // when alpha < 1 and plain hex when fully opaque, both of which canvas fillStyle

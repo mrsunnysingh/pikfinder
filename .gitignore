@@ -21,6 +21,10 @@ dist/
 .next/
 build/
 
+# ── Standalone Repositories ───────────────────────────────────
+figma-plugin/
+chrome-extension/
+
 # ── Vercel ────────────────────────────────────────────────────
 .vercel/
 

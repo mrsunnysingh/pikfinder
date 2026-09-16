@@ -4,8 +4,8 @@ description: Stop guessing with typography. Learn how to pair display headers wi
 coverImage: https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1200&auto=format&fit=crop
 tags: Typography, Design, Guides
 author: PikFinder Team
-publishedAt: 2026-09-16
-updatedAt: 2026-09-16
+publishedAt: 2026-09-12
+updatedAt: 2026-09-12
 ---
 Typography makes up over 90% of the information on the web. Great font pairings establish instant trust, guide the reader's eye, and make your message easy to digest. Poor font pairings create cognitive friction and look amateur.
 

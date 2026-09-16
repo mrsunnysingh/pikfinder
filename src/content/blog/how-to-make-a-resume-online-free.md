@@ -4,8 +4,8 @@ description: Build a clean, professional resume in minutes - free, no signup. St
 coverImage: https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=1200&auto=format&fit=crop
 tags: Guides, Resume, Templates
 author: PikFinder Team
-publishedAt: 2026-07-29
-updatedAt: 2026-07-29
+publishedAt: 2026-08-18
+updatedAt: 2026-08-18
 ---
 A strong resume gets you the interview. You don't need expensive software or design skills to make one that looks professionally built - you can do it free, in your browser, in a few minutes.
 

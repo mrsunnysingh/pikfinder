@@ -4,8 +4,8 @@ description: Design a professional business card in minutes - free, no signup. C
 coverImage: https://images.unsplash.com/photo-1589041280419-9b5c9a1d9c0d?q=80&w=1200&auto=format&fit=crop
 tags: Guides, Business Cards, Templates
 author: PikFinder Team
-publishedAt: 2026-07-29
-updatedAt: 2026-07-29
+publishedAt: 2026-08-14
+updatedAt: 2026-08-14
 ---
 A good business card still does a lot of work - it's the thing people keep after a meeting. You can design one that looks professionally made in just a few minutes, for free.
 

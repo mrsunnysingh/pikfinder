@@ -4,8 +4,8 @@ description: A clear, practical breakdown of SVG, PNG, JPG, and WebP image forma
 coverImage: https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1200&auto=format&fit=crop
 tags: Formats, Web Performance, Optimization
 author: PikFinder Team
-publishedAt: 2026-09-16
-updatedAt: 2026-09-16
+publishedAt: 2026-09-02
+updatedAt: 2026-09-02
 ---
 Every time you export an image or upload an asset to a website, you face the same question: should this be an SVG, a PNG, a JPG, or a modern WebP file?
 

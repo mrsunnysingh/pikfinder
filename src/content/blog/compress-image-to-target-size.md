@@ -4,8 +4,8 @@ description: Reduce any image to an exact file size - 20KB, 50KB or 100KB - righ
 coverImage: https://images.unsplash.com/photo-1526406915894-7bcd65f60845?q=80&w=1200&auto=format&fit=crop
 tags: Guides, Image Tools
 author: PikFinder Team
-publishedAt: 2026-07-29
-updatedAt: 2026-07-29
+publishedAt: 2026-07-14
+updatedAt: 2026-07-14
 ---
 Government forms, job portals and exam applications often demand a photo under a strict size - exactly 20KB, 50KB or 100KB. Hitting that target by hand is frustrating. Here's the quick, free way to do it.
 

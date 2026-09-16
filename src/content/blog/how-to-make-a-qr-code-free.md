@@ -4,8 +4,8 @@ description: Create a QR code for a link, menu, Wi-Fi or contact card in seconds
 coverImage: https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?q=80&w=1200&auto=format&fit=crop
 tags: Guides, Tools
 author: PikFinder Team
-publishedAt: 2026-07-29
-updatedAt: 2026-07-29
+publishedAt: 2026-08-07
+updatedAt: 2026-08-07
 ---
 QR codes turn a printed poster, menu or business card into a tap-to-open link. Making one is free and takes seconds - and unlike some sites, you don't need to sign up or pay to keep it working.
 

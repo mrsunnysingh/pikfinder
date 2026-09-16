@@ -4,8 +4,8 @@ description: Convert PNG images to JPG right in your browser - free, fast and pr
 coverImage: https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop
 tags: Guides, Image Tools
 author: PikFinder Team
-publishedAt: 2026-07-29
-updatedAt: 2026-07-29
+publishedAt: 2026-07-17
+updatedAt: 2026-07-17
 ---
 PNG is great for logos and screenshots, but the files are large and some websites only accept JPG. Converting between them is simple, free, and takes seconds - no software to install.
 

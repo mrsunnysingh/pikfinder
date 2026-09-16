@@ -4,8 +4,8 @@ description: A plain-English guide to the formats that matter, when to reach for
 coverImage: https://images.unsplash.com/photo-1544731612-de7f96afe55f?q=80&w=1200&auto=format&fit=crop
 tags: Guides, Formats
 author: PikFinder Team
-publishedAt: 2026-02-11
-updatedAt: 2026-08-05
+publishedAt: 2026-07-09
+updatedAt: 2026-07-09
 ---
 The format you export decides how sharp your image looks and how fast your page loads. Pick the wrong one and you either get a blurry photo or a file so heavy it slows your whole page down. Here's the plain-English version of what to use, and when.
 

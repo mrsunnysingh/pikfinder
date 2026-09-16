@@ -4,8 +4,8 @@ description: Create a passport or visa size photo with the correct dimensions an
 coverImage: https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=1200&auto=format&fit=crop
 tags: Guides, Photo Tools
 author: PikFinder Team
-publishedAt: 2026-07-29
-updatedAt: 2026-07-29
+publishedAt: 2026-07-31
+updatedAt: 2026-07-31
 ---
 Passport, visa and exam applications all want a photo at an exact size with a plain background. A studio trip costs money and takes time - but you can make a compliant photo from a phone snap in a couple of minutes, for free.
 

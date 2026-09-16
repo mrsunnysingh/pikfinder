@@ -4,8 +4,8 @@ description: The up-to-date dimension cheat sheet for Instagram, YouTube, Linked
 coverImage: https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1200&auto=format&fit=crop
 tags: Social Media, Marketing, Guides
 author: PikFinder Team
-publishedAt: 2026-09-16
-updatedAt: 2026-09-16
+publishedAt: 2026-09-08
+updatedAt: 2026-09-08
 ---
 Nothing ruins a great design faster than having key text cut off by a circular profile avatar, a mobile navigation bar, or compression artifacts from uploading the wrong canvas size.
 

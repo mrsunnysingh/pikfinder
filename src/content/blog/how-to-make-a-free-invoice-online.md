@@ -4,8 +4,8 @@ description: Create a professional invoice in minutes - free, no signup, no wate
 coverImage: https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1200&auto=format&fit=crop
 tags: Guides, Invoices, Templates
 author: PikFinder Team
-publishedAt: 2026-07-29
-updatedAt: 2026-07-29
+publishedAt: 2026-08-11
+updatedAt: 2026-08-11
 ---
 Sending a clean, professional invoice makes you look organised and helps you get paid faster. You don't need accounting software or a designer - you can make one online for free in a couple of minutes.
 

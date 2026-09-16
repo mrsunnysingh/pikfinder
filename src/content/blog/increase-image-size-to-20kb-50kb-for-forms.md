@@ -4,8 +4,8 @@ description: Some forms reject photos that are too small. Learn how to increase 
 coverImage: https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1200&auto=format&fit=crop
 tags: Guides, Image Tools
 author: PikFinder Team
-publishedAt: 2026-08-06
-updatedAt: 2026-08-06
+publishedAt: 2026-08-04
+updatedAt: 2026-08-04
 ---
 Most people fight to make photos *smaller*. But if you've filled out an exam or government form, you may have hit the opposite problem: the portal demands a photo of **at least** a certain size - say "20KB to 50KB" - and rejects your file for being **too small**. Here's how to fix that in seconds, for free.
 

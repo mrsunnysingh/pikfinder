@@ -4,8 +4,8 @@ description: A no-nonsense walkthrough on building cohesive color palettes for w
 coverImage: https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=1200&auto=format&fit=crop
 tags: Design, Color Theory, Guides
 author: PikFinder Team
-publishedAt: 2026-09-16
-updatedAt: 2026-09-16
+publishedAt: 2026-09-05
+updatedAt: 2026-09-05
 ---
 Most designers and creators have been there: you pick five colors you like individually, put them on a canvas or web page, and everything looks messy, overwhelming, or hard to read.
 

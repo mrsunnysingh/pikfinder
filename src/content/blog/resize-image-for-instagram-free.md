@@ -4,8 +4,8 @@ description: Resize any photo to the perfect Instagram size - post, story or ree
 coverImage: https://images.unsplash.com/photo-1611262588024-d12430b98920?q=80&w=1200&auto=format&fit=crop
 tags: Guides, Social Media
 author: PikFinder Team
-publishedAt: 2026-07-29
-updatedAt: 2026-07-29
+publishedAt: 2026-07-24
+updatedAt: 2026-07-24
 ---
 Upload a photo that's the wrong shape and Instagram crops it - often chopping off the important part. Resizing to the right dimensions first keeps your whole image visible and sharp. Here's the free way to do it.
 

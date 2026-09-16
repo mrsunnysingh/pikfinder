@@ -4,8 +4,8 @@ description: What "free to use" really means, when you need to credit a creator,
 coverImage: https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop
 tags: Guides, Licensing
 author: PikFinder Team
-publishedAt: 2026-02-18
-updatedAt: 2026-08-05
+publishedAt: 2026-07-02
+updatedAt: 2026-07-02
 ---
 "Free" is not one thing. A free image can still come with conditions, and ignoring them is the most common way creators get into trouble - a takedown notice, a bill, or worse if it's for a client. Here's what actually matters, in plain language.
 

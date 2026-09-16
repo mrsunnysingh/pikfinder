@@ -4,8 +4,8 @@ description: Design an eye-catching event or promo flyer in minutes - free, no s
 coverImage: https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop
 tags: Guides, Flyers, Templates
 author: PikFinder Team
-publishedAt: 2026-07-29
-updatedAt: 2026-08-05
+publishedAt: 2026-08-21
+updatedAt: 2026-08-21
 ---
 Whether it's an event, a sale or an announcement, a bold flyer gets attention. You can make one that looks designed - not thrown together - in a few minutes, for free, with no design experience.
 

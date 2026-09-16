@@ -4,8 +4,8 @@ description: Photos secretly store your GPS location, camera model and timestamp
 coverImage: https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1200&auto=format&fit=crop
 tags: Guides, Privacy, Photo Tools
 author: PikFinder Team
-publishedAt: 2026-08-05
-updatedAt: 2026-08-05
+publishedAt: 2026-07-28
+updatedAt: 2026-07-28
 ---
 Every photo you take carries a hidden layer of data you never see. Before you upload a picture to a marketplace, a forum, or a dating profile, it's worth knowing what that data reveals - and how to remove it in a few seconds, for free.
 

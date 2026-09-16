@@ -38,31 +38,38 @@ export default function Footer() {
             <Link to="/pdf-editor">PDF Editor</Link>
             <Link to="/tools">Free Tools</Link>
             <a href="https://www.figma.com/community/plugin/1663285303127319860" target="_blank" rel="noopener noreferrer">Figma Plugin ↗</a>
-            <Link to="/waitlist">Creator Pro</Link>
+            <Link to="/billing">Creator Pro</Link>
+          </div>
+          <div className="link-group">
+            <h4>Popular Tools</h4>
+            <Link to="/tools/compress-image">Compress Image</Link>
+            <Link to="/tools/compress-image-to-1mb">Compress to 1MB</Link>
+            <Link to="/tools/image-upscaler">Image Upscaler</Link>
+            <Link to="/tools/bg-remover">Remove Background</Link>
+            <Link to="/tools/crop-image">Crop Image</Link>
+            <Link to="/tools/png-to-jpg">PNG to JPG</Link>
           </div>
           <div className="link-group">
             <h4>Generators</h4>
             <Link to="/certificate-generator">Certificate Generator</Link>
             <Link to="/invoice-generator">Invoice Generator</Link>
+            <Link to="/quotation-generator">Quotation Generator</Link>
             <Link to="/business-card-maker">Business Card Maker</Link>
             <Link to="/flyer-maker">Flyer Maker</Link>
             <Link to="/coupon-maker">Coupon Maker</Link>
             <Link to="/templates">All Templates</Link>
           </div>
           <div className="link-group">
-            <h4>Company</h4>
+            <h4>Company & Legal</h4>
             <Link to="/about">About Us</Link>
             <Link to="/blog">Blog</Link>
             <Link to="/contact">Contact Us</Link>
             <Link to="/help">Help Center</Link>
-            <Link to="/billing">Pricing</Link>
-          </div>
-          <div className="link-group">
-            <h4>Legal</h4>
+            <Link to="/legal">Legal & Licensing</Link>
             <Link to="/terms">Terms of Service</Link>
             <Link to="/privacy">Privacy Policy</Link>
             <Link to="/licenses">License Center</Link>
-            <Link to="/dmca">DMCA / Copyright</Link>
+            <Link to="/dmca">DMCA Policy</Link>
           </div>
         </div>
       </div>

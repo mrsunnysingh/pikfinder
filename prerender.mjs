@@ -280,6 +280,8 @@ const STATIC_PAGES = [
   { slug: 'terms', title: 'Terms of Service | PikFinder', description: 'Terms of Service and usage guidelines for PikFinder.', h1: 'Terms of Service', intro: 'Rules, terms and guidelines for using PikFinder services.' },
   { slug: 'dmca', title: 'DMCA & Copyright Policy | PikFinder', description: 'DMCA notices, copyright requests and intellectual property policies on PikFinder.', h1: 'DMCA & Copyright Policy', intro: 'How PikFinder handles intellectual property and copyright inquiries.' },
   { slug: 'licenses', title: 'License Center | PikFinder', description: 'Clear licensing information for all free stock photos, videos, and design assets on PikFinder.', h1: 'License Center', intro: 'Understand the free and commercial licenses of media assets on PikFinder.' },
+  { slug: 'license', title: 'Content License Agreement | PikFinder', description: 'PikFinder Content License Agreement covering terms of use, permissible commercial applications, and attribution.', h1: 'Content License Agreement', intro: 'Review permitted uses, attribution rules, and guidelines for assets discovered on PikFinder.' },
+  { slug: 'legal', title: 'Legal & Licensing Information | PikFinder', description: 'Transparency and licensing rules for media on PikFinder. Understand copyright, commercial use, and attribution requirements.', h1: 'Legal & Licensing', intro: 'Transparency and freedom are at the core of PikFinder. Review licensing and copyright terms across providers.' },
 ];
 for (const p of STATIC_PAGES) {
   const path = `/${p.slug}`;
@@ -386,7 +388,7 @@ if (existsSync(blogDir)) {
     { loc: '/license', priority: '0.4', changefreq: 'yearly' },
     { loc: '/legal', priority: '0.3', changefreq: 'yearly' },
   ];
-  const toolUrls = TOOLS.map((t) => ({
+  const toolUrls = TOOLS.filter((t) => t.engine !== 'external').map((t) => ({
     loc: `/tools/${t.slug}`,
     priority: '0.8',
     changefreq: 'monthly',

@@ -53,7 +53,9 @@ Most creator workflows require switching between 10 different tabs: an image sea
 
 **PikFinder brings everything into one unified, ultra-fast workspace:**
 - 🔒 **100% Client-Side Privacy:** Image compression, PDF editing, format conversion, and EXIF cleaning run entirely in your browser using WebAssembly and Web Workers. Your files never leave your device.
-- ⚡ **No Sign-Up Paywalls:** Use 55+ design and image tools instantly without creating an account or paying per-tool fees.
+- 💎 **100% Free - No Paywalls:** Every single tool, template, and export feature is completely free with no subscriptions, paid tiers, or watermarks.
+- ⚡ **No Sign-Up Barriers:** Use 58+ design, conversion, and editing tools immediately without creating an account or paying fees.
+- 🌐 **Global Multi-Language Support:** Full internationalization (i18n) across 10 global languages (English, Spanish, Hindi, German, French, Italian, Polish, Romanian, Urdu).
 - 🎯 **Aggregated Multi-Library Search:** Query Unsplash, Pexels, Pixabay, Openverse, and Wikimedia Commons simultaneously with transparent licensing.
 - 💼 **Enterprise Automation:** Directly connect Zoho CRM and Zoho Creator to generate personalized certificates, invoices, and cards in bulk.
 
@@ -64,6 +66,7 @@ Most creator workflows require switching between 10 different tabs: an image sea
 ### 1. 🔍 Unified Media Discovery Engine
 - **Multi-Source Aggregator:** Search 100M+ royalty-free photos, 4K videos, vector icons, and illustrations.
 - **Smart AI Search Mode:** Automatically enhances natural language queries into optimized keyword filters and orientation targets.
+- **Visual & Color Search:** Filter assets by HEX/palette colors, dominant tones, and visual similarity.
 - **License Transparency:** Displays clear attribution requirements (CC0, CC BY, Unsplash, Pexels, Pixabay) on every card with one-click copyable citations.
 
 ### 2. 🎨 PikFinder Creator Studio
@@ -77,12 +80,12 @@ Most creator workflows require switching between 10 different tabs: an image sea
 - **Annotation & Editing:** Add text, freehand signatures, shapes, highlighting, stamps, and whiteout.
 - **Form Filling & Page Reordering:** Rotate, split, merge, and export print-ready PDFs without watermarks.
 
-### 4. ⚡ 55+ Client-Side Image Tools
-- **Exact Size Compression:** Compress images to exact file sizes (20KB, 50KB, 100KB, 200KB) for government and exam portals.
+### 4. ⚡ 58+ Client-Side Image Tools
+- **Exact Size Compression:** Compress images to exact file sizes (20KB, 50KB, 100KB, 200KB, 1MB) for government and exam portals.
 - **Next-Gen Format Conversion:** Convert between PNG, JPG, WebP, AVIF, SVG, and HEIC/HEIF.
+- **Advanced QR Code Studio:** Generate custom QR codes with custom colors, dot styles, corner markers, logo embeds, gradient fills, and SVG/PNG exports.
 - **Security & Metadata Stripper:** Inspect and remove sensitive EXIF metadata, camera settings, and GPS coordinates before sharing photos.
 - **OCR & Text Extraction:** Extract text from photos and screenshots locally using Tesseract.js.
-- **QR Code & Barcode Generator:** Generate customizable SVG and PNG QR codes with logos and colors.
 
 ### 5. 🏢 Document Automation for Zoho CRM & Creator
 - **Data-Driven Templating:** Bind dynamic record fields (`{{contact_name}}`, `{{invoice_total}}`, `{{qr_code}}`) directly to layout layers.
@@ -96,10 +99,12 @@ Most creator workflows require switching between 10 different tabs: an image sea
 | :--- | :--- |
 | **Frontend Core** | React 19, Vite, React Router v7 |
 | **Styling & Theme** | Custom Design System (Dynamic Dark/Light Glassmorphic Theme) |
+| **Internationalization** | i18next, react-i18next (10 Supported Locales) |
 | **Iconography & Animation** | Phosphor Icons, Framer Motion |
 | **In-Browser Processing** | WebAssembly, Web Workers, `@jsquash/avif`, `pdf-lib`, `tesseract.js`, `gifenc` |
 | **Authentication & Cloud** | Firebase Authentication, Cloud Firestore |
 | **Edge Hosting & API** | Vercel Serverless Functions, Dynamic Edge Rewrites |
+| **Prerender & SEO** | Static Node.js prerenderer (124+ pre-baked HTML pages + auto sitemap) |
 | **Integrations** | Figma Plugin SDK, Chrome Extension Manifest v3, Zoho Creator API |
 
 ---

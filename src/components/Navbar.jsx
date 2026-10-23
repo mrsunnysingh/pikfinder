@@ -10,6 +10,7 @@ import { PAYMENTS_ENABLED } from '../config/features';
 
 const NAV_ITEMS = [
   { to: '/', labelKey: 'nav.discover', end: true },
+  { to: '/community', labelKey: 'nav.community' },
   { to: '/templates', labelKey: 'nav.templates' },
   { to: '/studio', labelKey: 'nav.studio', badge: 'Beta' },
   { to: '/business-automation', labelKey: 'nav.documents', badge: 'New' },

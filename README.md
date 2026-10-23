@@ -91,6 +91,14 @@ Most creator workflows require switching between 10 different tabs: an image sea
 - **Data-Driven Templating:** Bind dynamic record fields (`{{contact_name}}`, `{{invoice_total}}`, `{{qr_code}}`) directly to layout layers.
 - **Native Zoho Extensions:** Includes prebuilt Zoho CRM Widgets and Zoho Creator Widgets for one-click bulk generation.
 
+### 6. 🌐 PikCircle — The Creative Community
+- **Your Creative Space:** An integrated social ecosystem for UI/UX designers, illustrators, 3D artists, and digital creators.
+- **Curated Discovery Feeds:** Browse creative work across *For You*, *Latest*, *Following*, *Popular*, and *Unanswered* discussions.
+- **Multi-Image Showcases & Critiques:** Upload portfolio works with high-res aspect-ratio galleries, request constructive feedback, and share design resources.
+- **Creator Profiles & Follows:** Public design handles with follower stats, skill tags, social links, and showcase galleries.
+- **Threaded Discussions:** Nested comments, likes, personal bookmarks, and live interaction notifications.
+- **Dual-Mode Backend Resilience:** Integrates with Cloud Firestore and Firebase Storage with automatic offline persistent localStorage synchronization.
+
 ---
 
 ## 🛠️ Technology Stack
@@ -115,6 +123,7 @@ Most creator workflows require switching between 10 different tabs: an image sea
 pikfinder/
 ├── src/
 │   ├── business/          # Document automation, Zoho connectors & template engines
+│   ├── community/         # PikCircle Creative Community (Feeds, Posts, Comments, Profiles)
 │   ├── components/        # Reusable UI component library (Modals, Navbars, Hero, Cards)
 │   ├── content/blog/      # 22+ SEO-optimized markdown guides & tutorials
 │   ├── context/           # React Global Context (Auth, Theme, Favorites, History)

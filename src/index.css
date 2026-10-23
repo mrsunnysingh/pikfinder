@@ -5171,7 +5171,7 @@ html { scroll-behavior: smooth; }
 
 /* Hero Magnific Centered Layout */
 .hero-magnific-style {
-  padding: 48px 24px 40px;
+  padding: calc(var(--nav-height, 80px) + 36px) 24px 48px;
   position: relative;
   overflow: visible;
 }
@@ -5192,7 +5192,7 @@ html { scroll-behavior: smooth; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 16px;
+  padding: 6px 18px;
   border-radius: 999px;
   background: rgba(139, 92, 246, 0.12);
   border: 1px solid rgba(139, 92, 246, 0.28);
@@ -5200,7 +5200,7 @@ html { scroll-behavior: smooth; }
   font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
   backdrop-filter: blur(10px);
 }
 .hero-pill-badge .badge-sparkle {

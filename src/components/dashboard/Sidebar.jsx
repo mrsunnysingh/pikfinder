@@ -60,6 +60,10 @@ export default function Sidebar({ open = false, onClose = () => {} }) {
           <NavLink to="/dashboard" className={linkClass} end onClick={onClose}>
             <House weight="fill" size={18} /> <span>Home</span>
           </NavLink>
+          <NavLink to="/community" className={linkClass} onClick={onClose}>
+            <Sparkle weight="fill" size={18} /> <span>PikCircle</span>
+            <span className="sidebar-chip-badge pink">Hot</span>
+          </NavLink>
           <NavLink to="/search" className={linkClass} onClick={onClose}>
             <MagnifyingGlass weight="bold" size={18} /> <span>Search</span>
           </NavLink>

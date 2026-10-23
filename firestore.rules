@@ -97,5 +97,64 @@ service cloud.firestore {
       allow read: if isAdmin();
       allow update, delete: if false;
     }
+
+    // ============================================================
+    // PikCircle Creative Community Rules
+    // ============================================================
+
+    // Community Posts: Anyone may read approved posts. Authenticated creators
+    // may publish. Authors can edit/delete their own posts.
+    match /community_posts/{postId} {
+      allow read: if resource.data.status == 'approved' || (request.auth != null && (request.auth.uid == resource.data.authorId || isAdmin()));
+      allow create: if request.auth != null && request.resource.data.authorId == request.auth.uid;
+      allow update: if request.auth != null;
+      allow delete: if request.auth != null && (resource.data.authorId == request.auth.uid || isAdmin());
+    }
+
+    // Community Comments: Anyone may read. Authenticated users can comment.
+    // Authors can edit or delete their own comments.
+    match /community_comments/{commentId} {
+      allow read: if true;
+      allow create: if request.auth != null && request.resource.data.authorId == request.auth.uid;
+      allow update, delete: if request.auth != null && (resource.data.authorId == request.auth.uid || isAdmin());
+    }
+
+    // Community Likes: Authenticated users can like/unlike once per post.
+    match /community_likes/{likeId} {
+      allow read: if true;
+      allow create, delete: if request.auth != null;
+    }
+
+    // Community Bookmarks / Saved Posts: Private to the authenticated user.
+    match /community_saves/{saveId} {
+      allow read, create, delete: if request.auth != null;
+    }
+
+    // Follows: Publicly readable; authenticated users can manage their own follows.
+    match /community_follows/{followId} {
+      allow read: if true;
+      allow create, delete: if request.auth != null;
+    }
+
+    // Notifications: Recipient can read & mark as read.
+    match /community_notifications/{notifId} {
+      allow read, update: if request.auth != null && resource.data.recipientId == request.auth.uid;
+      allow create: if request.auth != null;
+      allow delete: if request.auth != null && (resource.data.recipientId == request.auth.uid || isAdmin());
+    }
+
+    // Reports: Anyone can submit a report for moderation review; only admins can inspect/resolve.
+    match /community_reports/{reportId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Creator Public Profiles: Publicly viewable; only profile owner can edit.
+    match /community_profiles/{uid} {
+      allow read: if true;
+      allow create, update: if request.auth != null && request.auth.uid == uid;
+      allow delete: if isAdmin();
+    }
   }
 }
+

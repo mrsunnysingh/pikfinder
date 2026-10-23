@@ -33,6 +33,7 @@ export default function Footer() {
           <div className="link-group">
             <h4>Platform</h4>
             <Link to="/">Discover</Link>
+            <Link to="/community">PikCircle Community</Link>
             <Link to="/collections">Collections</Link>
             <Link to="/studio">Creator Studio</Link>
             <Link to="/business-automation">Document Generator</Link>

@@ -58,7 +58,18 @@ const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Search = lazy(() => import('./pages/Search'));
 const Admin = lazy(() => import('./pages/Admin'));
 
+// PikCircle — Creative Community
+const CommunityLayout = lazy(() => import('./community/CommunityLayout'));
+const CommunityFeed = lazy(() => import('./community/CommunityFeed'));
+const CommunityExplore = lazy(() => import('./community/CommunityExplore'));
+const PostDetail = lazy(() => import('./community/PostDetail'));
+const CreatePost = lazy(() => import('./community/CreatePost'));
+const CreatorProfile = lazy(() => import('./community/CreatorProfile'));
+const SavedPosts = lazy(() => import('./community/SavedPosts'));
+const CommunityNotifications = lazy(() => import('./community/CommunityNotifications'));
+
 import EcosystemModals from './components/EcosystemModals';
+
 
 function App() {
   const { isAuthModalOpen, isLoggedIn } = useContext(AppContext);
@@ -134,6 +145,18 @@ function App() {
           {GENERATORS.map((g) => (
             <Route key={g.slug} path={`/${g.slug}`} element={<GeneratorPage slug={g.slug} />} />
           ))}
+
+          {/* PikCircle Creative Community Routes */}
+          <Route path="/community" element={<CommunityLayout />}>
+            <Route index element={<CommunityFeed />} />
+            <Route path="explore" element={<CommunityExplore />} />
+            <Route path="post/:postId" element={<PostDetail />} />
+            <Route path="create" element={<CreatePost />} />
+            <Route path="profile/:username" element={<CreatorProfile />} />
+            <Route path="saved" element={<SavedPosts />} />
+            <Route path="notifications" element={<CommunityNotifications />} />
+          </Route>
+
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

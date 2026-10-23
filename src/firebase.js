@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 // Config is read from environment variables (.env file at project root).
 // Get these values from Firebase Console → Project settings → Your apps → Web app,
@@ -25,12 +26,18 @@ export const isFirebaseConfigured = Boolean(
 
 let auth = null;
 let db = null;
+let storage = null;
 let googleProvider = null;
 
 if (isFirebaseConfigured) {
   const app = initializeApp(firebaseConfig);
   auth = getAuth(app);
   db = getFirestore(app);
+  try {
+    storage = getStorage(app);
+  } catch (err) {
+    console.warn("[Firebase] Storage initialization skipped:", err?.message || err);
+  }
   googleProvider = new GoogleAuthProvider();
 } else {
   console.error(
@@ -40,4 +47,4 @@ if (isFirebaseConfigured) {
   );
 }
 
-export { auth, db, googleProvider };
+export { auth, db, storage, googleProvider };

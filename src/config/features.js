@@ -3,7 +3,7 @@
 // fit: the Stripe code stays in the repo but every live flow is gated off here.
 // Flip PAYMENTS_ENABLED back to true (and set the Stripe env vars) to re-enable.
 
-export const PAYMENTS_ENABLED = true;
+export const PAYMENTS_ENABLED = false;
 
 // Waitlist replaces checkout while payments are off.
 export const WAITLIST_ENABLED = false;

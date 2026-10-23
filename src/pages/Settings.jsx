@@ -3,6 +3,7 @@ import { AppContext } from '../context/AppContext';
 import { useToast } from '../components/Toast';
 import { User, Camera, Trash, Bell, Warning, Check, GlobeSimple, Moon, Sun, PuzzlePiece, Copy } from '@phosphor-icons/react';
 import ProviderStatus from '../components/ProviderStatus';
+import { PAYMENTS_ENABLED } from '../config/features';
 
 const AVATAR_STYLES = ['thumbs', 'bottts', 'avataaars', 'notionists', 'shapes', 'fun-emoji'];
 
@@ -196,10 +197,10 @@ export default function Settings() {
       {/* FIGMA PLUGIN */}
       <section className="settings-section">
         <div className="settings-section-title"><PuzzlePiece weight="fill" /> Figma plugin</div>
-        {user?.isPremium ? (
+        {(user?.isPremium || !PAYMENTS_ENABLED) ? (
           <div className="settings-row">
             <div>
-              <span className="settings-label">Your Pro key</span>
+              <span className="settings-label">Your Plugin Key</span>
               <p className="settings-hint">Paste this into the PikFinder Figma plugin → “Activate” to unlock unlimited inserts.</p>
             </div>
             <div style={{ display: 'flex', gap: 8, alignItems: 'center', flex: 1, maxWidth: 360 }}>

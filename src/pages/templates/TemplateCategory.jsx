@@ -85,11 +85,12 @@ export default function TemplateCategory() {
       <div className="tpl-seo-grid">
         {items.map((t) => (
           <Link key={t.id} to={`/studio?template=${t.id}`} className="tpl-seo-card" title={`Customize “${t.name}” free`}>
-            <span
-              className="tpl-seo-preview"
-              style={{ aspectRatio: `${t.dims.w} / ${t.dims.h}` }}
-              dangerouslySetInnerHTML={{ __html: previewSvg(t) }}
-            />
+            <span className="tpl-seo-preview">
+              <span
+                className="tpl-seo-preview-inner"
+                dangerouslySetInnerHTML={{ __html: previewSvg(t) }}
+              />
+            </span>
             <span className="tpl-seo-card-foot">
               <strong>{t.name}</strong>
               <em>Customize free →</em>

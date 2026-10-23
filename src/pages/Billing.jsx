@@ -4,13 +4,14 @@
 // feature list, trust row, and Razorpay checkout. Requires sign-in.
 
 import React, { useContext, useState, useEffect } from 'react';
-import { useSearchParams, useNavigate, Link } from 'react-router-dom';
+import { useSearchParams, useNavigate, Link, Navigate } from 'react-router-dom';
 import { Crown, Check, ShieldCheck, Lightning, Sparkle, Lock } from '@phosphor-icons/react';
 import { AppContext } from '../context/AppContext';
 import { useToast } from '../components/Toast';
 import { useSeo } from '../hooks/useSeo';
 import RazorpayButton from '../components/RazorpayButton';
 import ProWelcome from '../components/ProWelcome';
+import { PAYMENTS_ENABLED } from '../config/features';
 
 const SITE_URL = 'https://www.pikfinder.com';
 
@@ -37,6 +38,10 @@ const PRICING = {
 };
 
 export default function Billing() {
+  if (!PAYMENTS_ENABLED) {
+    return <Navigate to="/" replace />;
+  }
+
   const { isLoggedIn, user, toggleAuthModal } = useContext(AppContext);
   const toast = useToast();
   const navigate = useNavigate();

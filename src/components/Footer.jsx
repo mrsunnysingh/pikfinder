@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { LinkedinLogo, XLogo, FacebookLogo, InstagramLogo, YoutubeLogo, PinterestLogo } from '@phosphor-icons/react';
 import Logo from './Logo';
 import { SOCIAL_LIST } from '../config/socialLinks';
+import { PAYMENTS_ENABLED } from '../config/features';
 
 const ICONS = { LinkedinLogo, XLogo, FacebookLogo, InstagramLogo, YoutubeLogo, PinterestLogo };
 
@@ -38,7 +39,7 @@ export default function Footer() {
             <Link to="/pdf-editor">PDF Editor</Link>
             <Link to="/tools">Free Tools</Link>
             <a href="https://www.figma.com/community/plugin/1663285303127319860" target="_blank" rel="noopener noreferrer">Figma Plugin ↗</a>
-            <Link to="/billing">Creator Pro</Link>
+            {PAYMENTS_ENABLED && <Link to="/billing">Creator Pro</Link>}
           </div>
           <div className="link-group">
             <h4>Popular Tools</h4>

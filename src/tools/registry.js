@@ -411,10 +411,33 @@ export const TOOLS = [
 
   // ============ GENERATE ============
   t({
-    slug: 'qr-code-generator', name: 'QR Code Generator', short: 'QR Generator', category: 'generate', engine: 'qr',
-    description: 'Generate QR codes for links, text, WiFi, and more. Customize the size and colors, and export as PNG or SVG - free, no signup.',
-    keywords: ['qr code generator', 'create qr code free', 'qr code for link', 'qr code png svg'],
-    howTo: ['Type or paste your link or text.', 'Adjust size and colors if you like.', 'Download as PNG or SVG.'],
+    slug: 'qr-code-generator', name: 'Advanced QR Code Generator', short: 'QR Generator', category: 'generate', engine: 'qr',
+    description: 'Create high-precision QR codes for URLs, Wi-Fi, vCard contacts, WhatsApp, payments & social profiles. Customize with gradients, custom eye shapes, logos, CTA frame badges, and export up to Ultra 4K PNG, vector SVG, and print PDF.',
+    keywords: [
+      'qr code generator',
+      'custom qr code generator',
+      'qr code with logo',
+      'wifi qr code generator',
+      'vcard qr code maker',
+      'whatsapp qr code generator',
+      'gradient qr code',
+      'vector svg qr code',
+      'qr code 4k print high resolution',
+      'free online qr code studio'
+    ],
+    howTo: [
+      'Choose your data type: Website URL, Wi-Fi, vCard contact, WhatsApp, Email, Event, or Payment.',
+      'Enter your information and customize the design with colors, linear gradients, custom dot patterns, corner eye shapes, and your brand logo.',
+      'Select a frame style like "SCAN ME" or a smartphone card mockup.',
+      'Download your QR code in Ultra High-Res PNG (up to 4096px), Vector SVG, or Print-Ready PDF.'
+    ],
+    faq: [
+      { q: 'What types of QR codes can I create?', a: 'You can generate 12 different formats: Website URLs (with UTM campaign builder), Wi-Fi passwords, vCard digital business cards, WhatsApp direct chats, SMS, Emails, Phone calls, Google Map locations, Calendar events, UPI/Crypto payments, and Social media profiles.' },
+      { q: 'Can I add my logo and customize colors?', a: 'Yes! You can upload your own company logo, pick from vector icon presets, customize foreground and background colors, apply multi-stop linear/radial gradients, and customize the 3 corner finder eye frames and center dots.' },
+      { q: 'Will my QR code scan reliably with a center logo?', a: 'Yes. When you add a logo or custom shapes, the generator automatically switches to Error Correction Level H (30% redundancy) and pads the center area with a protective badge so scanners read it instantly.' },
+      { q: 'What file formats and resolutions can I download?', a: 'You can export high-resolution PNGs (512px up to 4096px Ultra 4K), infinite-resolution Vector SVG for print designers, Print-Ready A4 PDFs with center guides, or copy the image directly to your clipboard.' },
+      PRIVACY_FAQ, FREE_FAQ,
+    ],
   }),
   t({
     slug: 'ocr-image-to-text', name: 'OCR - Image to Text', short: 'Image to Text (OCR)', category: 'generate', engine: 'ocr', heavy: true,

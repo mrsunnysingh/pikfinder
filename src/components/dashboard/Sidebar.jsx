@@ -1,15 +1,16 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Logo from '../Logo';
 import { AppContext } from '../../context/AppContext';
 import {
-  House, SquaresFour, Heart, PaintBrush, DownloadSimple, ClockCounterClockwise, Gear,
-  EnvelopeSimple, GridFour, InstagramLogo, TwitterLogo, GithubLogo, Crown, Buildings, FilePdf,
-  ChartLineUp, X
+  House, MagnifyingGlass, SquaresFour, Heart, PaintBrush, DownloadSimple,
+  ClockCounterClockwise, Gear, EnvelopeSimple, GridFour, Crown, Buildings,
+  FilePdf, ChartLineUp, X, Plus, Sparkle, ChatCircleDots, Sun, Moon,
+  Desktop, DeviceMobile, Cpu, Code, Lightning, DotsThree, QrCode
 } from '@phosphor-icons/react';
+import ThemeToggle from '../ThemeToggle';
+import { PAYMENTS_ENABLED } from '../../config/features';
 
-// Set VITE_ADMIN_UID (your Firebase uid) in Vercel to reveal the Admin link.
-// Security is still enforced server-side; this only decides who sees the link.
 const ADMIN_UID = import.meta.env.VITE_ADMIN_UID || '';
 
 const SOCIALS = {
@@ -19,15 +20,18 @@ const SOCIALS = {
 };
 
 export default function Sidebar({ open = false, onClose = () => {} }) {
-  const { user } = useContext(AppContext);
+  const { user, openModal } = useContext(AppContext);
+  const navigate = useNavigate();
   const isAdmin = ADMIN_UID && user?.uid === ADMIN_UID;
-  const isPro = !!user?.isPremium || !!user?.isAdmin || isAdmin; // hide upsell for these
+  const isPro = !!user?.isPremium || !!user?.isAdmin || isAdmin;
+
   const linkClass = ({ isActive }) => (isActive ? 'nav-item active' : 'nav-item');
 
   return (
-    <aside className={`dashboard-sidebar${open ? ' open' : ''}`}>
+    <aside className={`dashboard-sidebar modern-sidebar${open ? ' open' : ''}`}>
+      {/* Sidebar Header with Brand */}
       <div className="sidebar-header">
-        <NavLink to="/dashboard" className="logo" onClick={onClose}>
+        <NavLink to="/" className="logo" onClick={onClose} title="PikFinder Home">
           <Logo size={28} />
         </NavLink>
         <button type="button" className="sidebar-close" onClick={onClose} aria-label="Close menu">
@@ -36,71 +40,194 @@ export default function Sidebar({ open = false, onClose = () => {} }) {
       </div>
 
       <div className="sidebar-scrollable">
+        {/* "+ Create" Action Button (Magnific Style) */}
+        <div className="sidebar-create-wrap">
+          <button
+            type="button"
+            className="sidebar-create-btn"
+            onClick={() => {
+              openModal('create');
+              onClose();
+            }}
+          >
+            <Plus weight="bold" size={18} />
+            <span>Create</span>
+          </button>
+        </div>
+
+        {/* Primary Navigation */}
         <nav className="sidebar-nav">
-          <NavLink to="/dashboard" className={linkClass} end>
-            <House weight="fill" /> Home
+          <NavLink to="/dashboard" className={linkClass} end onClick={onClose}>
+            <House weight="fill" size={18} /> <span>Home</span>
           </NavLink>
-          <NavLink to="/collections" className={linkClass}>
-            <SquaresFour /> Collections
+          <NavLink to="/search" className={linkClass} onClick={onClose}>
+            <MagnifyingGlass weight="bold" size={18} /> <span>Search</span>
           </NavLink>
-          <NavLink to="/favorites" className={linkClass}>
-            <Heart /> Favorites
+          <NavLink to="/search?type=photo" className={linkClass} onClick={onClose}>
+            <SquaresFour weight="fill" size={18} /> <span>Stock Assets</span>
           </NavLink>
-          <NavLink to="/studio" className={linkClass}>
-            <PaintBrush /> Creator Studio
+          <NavLink to="/studio" className={linkClass} onClick={onClose}>
+            <PaintBrush weight="duotone" size={18} /> <span>Studio</span>
+            <span className="sidebar-chip-badge new">Pro</span>
           </NavLink>
-          <NavLink to="/business" className={linkClass}>
-            <Buildings /> Document Generator
+          <NavLink to="/favorites" className={linkClass} onClick={onClose}>
+            <Heart weight="duotone" size={18} /> <span>Favorites</span>
           </NavLink>
-          <NavLink to="/pdf-editor" className={linkClass}>
-            <FilePdf /> PDF Editor
-          </NavLink>
-          <NavLink to="/dashboard#downloads" className="nav-item">
-            <DownloadSimple /> Downloads
-          </NavLink>
-          <NavLink to="/search" className={linkClass}>
-            <ClockCounterClockwise /> AI Search History
-          </NavLink>
-          <NavLink to="/settings" className={linkClass}>
-            <Gear /> Settings
-          </NavLink>
+        </nav>
+
+        {/* Integrations & AI Plugins (Magnific Style) */}
+        <div className="sidebar-section-label">AI &amp; Plugins</div>
+        <nav className="sidebar-nav">
+          <button
+            type="button"
+            className="nav-item-btn"
+            onClick={() => { openModal('ai_prompts'); onClose(); }}
+          >
+            <Sparkle weight="duotone" size={18} className="plugin-icon claude-color" />
+            <span>Claude AI</span>
+          </button>
+          <button
+            type="button"
+            className="nav-item-btn"
+            onClick={() => { openModal('ai_prompts'); onClose(); }}
+          >
+            <ChatCircleDots weight="duotone" size={18} className="plugin-icon chatgpt-color" />
+            <span>ChatGPT</span>
+          </button>
+          <button
+            type="button"
+            className="nav-item-btn"
+            onClick={() => { openModal('plugins'); onClose(); }}
+          >
+            <span className="adobe-badge ps-badge">Ps</span>
+            <span>Photoshop</span>
+          </button>
+          <button
+            type="button"
+            className="nav-item-btn"
+            onClick={() => { openModal('plugins'); onClose(); }}
+          >
+            <span className="adobe-badge pr-badge">Pr</span>
+            <span>Premiere Pro</span>
+          </button>
+          <button
+            type="button"
+            className="nav-item-btn"
+            onClick={() => { openModal('plugins'); onClose(); }}
+          >
+            <span className="adobe-badge figma-badge">❖</span>
+            <span>Figma Plugin</span>
+          </button>
+          <button
+            type="button"
+            className="nav-item-btn"
+            onClick={() => { openModal('plugins'); onClose(); }}
+          >
+            <Lightning weight="duotone" size={18} />
+            <span>More plugins</span>
+            <span className="sidebar-chip-badge pink">New</span>
+          </button>
+        </nav>
+
+        {/* Multi-Platform Ecosystem */}
+        <div className="sidebar-section-label">Platforms</div>
+        <nav className="sidebar-nav">
+          <button
+            type="button"
+            className="nav-item-btn"
+            onClick={() => { openModal('desktop'); onClose(); }}
+          >
+            <Desktop weight="duotone" size={18} />
+            <span>Desktop App</span>
+            <span className="sidebar-chip-badge">New</span>
+          </button>
+          <button
+            type="button"
+            className="nav-item-btn"
+            onClick={() => { openModal('mobile'); onClose(); }}
+          >
+            <DeviceMobile weight="duotone" size={18} />
+            <span>Mobile App</span>
+          </button>
+          <button
+            type="button"
+            className="nav-item-btn"
+            onClick={() => { openModal('mcp'); onClose(); }}
+          >
+            <Cpu weight="duotone" size={18} />
+            <span>MCP Server</span>
+            <span className="sidebar-chip-badge pink">New</span>
+          </button>
+          <button
+            type="button"
+            className="nav-item-btn"
+            onClick={() => { openModal('api'); onClose(); }}
+          >
+            <Code weight="duotone" size={18} />
+            <span>API Docs</span>
+          </button>
           {isAdmin && (
-            <NavLink to="/admin" className={linkClass}>
-              <ChartLineUp weight="fill" /> Admin
+            <NavLink to="/admin" className={linkClass} onClick={onClose}>
+              <ChartLineUp weight="fill" size={18} /> <span>Admin Panel</span>
             </NavLink>
           )}
         </nav>
 
-        <div className="sidebar-section-label">Tools</div>
+        {/* Tools & Settings */}
+        <div className="sidebar-section-label">Workspace</div>
         <nav className="sidebar-nav">
-          <NavLink to="/backgrounds" className={linkClass}>
-            <PaintBrush /> Backgrounds
+          <NavLink to="/tools/qr-code-generator" className={linkClass} onClick={onClose}>
+            <QrCode weight="duotone" size={18} /> <span>QR Studio</span>
+            <span className="sidebar-chip-badge pink">New</span>
           </NavLink>
-          <NavLink to="/gradient" className={linkClass}>
-            <GridFour /> Gradient
+          <NavLink to="/collections" className={linkClass} onClick={onClose}>
+            <GridFour weight="duotone" size={18} /> <span>Collections</span>
           </NavLink>
-          <NavLink to="/tools" className={linkClass}>
-            <GridFour /> Free Tools
+          <NavLink to="/business" className={linkClass} onClick={onClose}>
+            <Buildings weight="duotone" size={18} /> <span>Document AI</span>
           </NavLink>
-          <NavLink to="/contact" className={linkClass}>
-            <EnvelopeSimple /> Contact
+          <NavLink to="/pdf-editor" className={linkClass} onClick={onClose}>
+            <FilePdf weight="duotone" size={18} /> <span>PDF Editor</span>
+          </NavLink>
+          <NavLink to="/settings" className={linkClass} onClick={onClose}>
+            <Gear weight="duotone" size={18} /> <span>Settings</span>
           </NavLink>
         </nav>
       </div>
 
-      {!isPro && (
-        <NavLink to="/billing" className="sidebar-upgrade">
-          <span className="sidebar-upgrade-icon"><Crown weight="fill" /></span>
-          <strong>Upgrade to Pro</strong>
-          <span>Unlimited downloads, premium tools, and more.</span>
-          <span className="sidebar-upgrade-btn">Upgrade Now</span>
-        </NavLink>
+      {/* Upgrade Callout if not Pro */}
+      {PAYMENTS_ENABLED && !isPro && (
+        <div className="sidebar-pro-box">
+          <NavLink to="/billing" className="sidebar-upgrade-card" onClick={onClose}>
+            <div className="sidebar-upgrade-header">
+              <span className="sidebar-upgrade-icon"><Crown weight="fill" /></span>
+              <strong>Creator Pro</strong>
+            </div>
+            <p>Unlock 4K exports, unlimited AI search, and all integrations.</p>
+            <span className="sidebar-upgrade-btn">Upgrade Now</span>
+          </NavLink>
+        </div>
       )}
 
-      <div className="sidebar-footer sidebar-socials">
-        <a href={SOCIALS.instagram} target="_blank" rel="noopener noreferrer" className="icon-btn-small" title="Instagram"><InstagramLogo /></a>
-        <a href={SOCIALS.twitter} target="_blank" rel="noopener noreferrer" className="icon-btn-small" title="Twitter"><TwitterLogo /></a>
-        <a href={SOCIALS.github} target="_blank" rel="noopener noreferrer" className="icon-btn-small" title="GitHub"><GithubLogo /></a>
+      {/* Modern Sidebar Footer */}
+      <div className="sidebar-footer-controls">
+        <ThemeToggle />
+        <button
+          type="button"
+          className="sidebar-footer-btn"
+          title="Creator Studio"
+          onClick={() => { navigate('/studio'); onClose(); }}
+        >
+          <PaintBrush size={16} />
+        </button>
+        <button
+          type="button"
+          className="sidebar-footer-btn"
+          title="Settings"
+          onClick={() => { navigate('/settings'); onClose(); }}
+        >
+          <DotsThree weight="bold" size={18} />
+        </button>
       </div>
     </aside>
   );

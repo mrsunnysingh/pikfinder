@@ -38,6 +38,10 @@ export const AppProvider = ({ children }) => {
   const [downloadHistory, setDownloadHistory] = useState([]);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState('signup');
+  const [activeModal, setActiveModal] = useState(null); // 'create' | 'desktop' | 'mobile' | 'mcp' | 'plugins' | 'api' | 'visual_search' | 'ai_prompts'
+
+  const openModal = (modalName) => setActiveModal(modalName);
+  const closeModal = () => setActiveModal(null);
   const [theme, setTheme] = useState(() => {
     if (typeof localStorage !== 'undefined') return localStorage.getItem('pf-theme') || 'system';
     return 'system';
@@ -351,6 +355,7 @@ export const AppProvider = ({ children }) => {
       downloadHistory, logDownload,
       isAuthModalOpen, setIsAuthModalOpen, toggleAuthModal,
       authMode, setAuthMode,
+      activeModal, openModal, closeModal,
       theme, toggleTheme, updateUserProfile, saveExtras, claimUsername, deleteAccount
     }}>
       {children}

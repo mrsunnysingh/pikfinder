@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../context/AppContext';
 import { House, UserCircle, CreditCard, Gear, SignOut } from '@phosphor-icons/react';
+import { PAYMENTS_ENABLED } from '../../config/features';
 
 export default function ProfileDropdown({ onClose }) {
   const { user, logoutUser } = useContext(AppContext);
@@ -27,7 +28,9 @@ export default function ProfileDropdown({ onClose }) {
       <ul className="dropdown-menu-list">
         <li><div className="menu-item" onClick={() => go('/dashboard')}><House /> Dashboard</div></li>
         <li><div className="menu-item" onClick={() => go('/profile')}><UserCircle /> Profile</div></li>
-        <li><div className="menu-item" onClick={() => go('/billing')}><CreditCard /> Billing</div></li>
+        {PAYMENTS_ENABLED && (
+          <li><div className="menu-item" onClick={() => go('/billing')}><CreditCard /> Billing</div></li>
+        )}
         <li><div className="menu-item" onClick={() => go('/settings')}><Gear /> Settings</div></li>
 
         <div className="dropdown-divider"></div>

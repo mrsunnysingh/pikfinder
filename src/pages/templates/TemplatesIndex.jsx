@@ -44,14 +44,15 @@ export default function TemplatesIndex() {
 
       <div className="tpl-seo-cat-grid">
         {TEMPLATE_SEO.map((c) => {
-          const { svg, dims } = sampleSvg(c.businessCategory);
+          const { svg } = sampleSvg(c.businessCategory);
           return (
             <Link key={c.slug} to={`/templates/${c.slug}`} className="tpl-seo-cat-card">
-              <span
-                className="tpl-seo-preview"
-                style={{ aspectRatio: `${dims.w} / ${dims.h}` }}
-                dangerouslySetInnerHTML={{ __html: svg }}
-              />
+              <span className="tpl-seo-preview">
+                <span
+                  className="tpl-seo-preview-inner"
+                  dangerouslySetInnerHTML={{ __html: svg }}
+                />
+              </span>
               <span className="tpl-seo-cat-body">
                 <strong>{c.name}</strong>
                 <em>Browse & customize →</em>

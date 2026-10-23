@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Image as ImageIcon,
   Users,
@@ -14,44 +14,112 @@ import {
   ArrowRight,
   CheckCircle,
   Lightning,
+  Sparkle,
+  DownloadSimple,
+  Heart,
+  Copy,
 } from '@phosphor-icons/react';
 import Hero from '../components/Hero';
+import SearchFilters from '../components/SearchFilters';
+import Gallery from '../components/Gallery';
 import { GENERATORS } from './generators/generators';
 import { PAYMENTS_ENABLED } from '../config/features';
 import { useTranslation } from 'react-i18next';
+import { useToast } from '../components/Toast';
 
 const HERO_STATS = [
-  { icon: ImageIcon, value: '100M+', label: 'Free Media' },
-  { icon: Users, value: '2M+', label: 'Creators' },
-  { icon: Clock, value: '99.9%', label: 'Uptime' },
-  { icon: Star, value: '4.9', label: 'User Rating' },
+  { icon: ImageIcon, value: '100M+', label: 'Free Media & Assets' },
+  { icon: Users, value: '2.4M+', label: 'Global Creators' },
+  { icon: Clock, value: '99.9%', label: 'Uptime & Speed' },
+  { icon: Star, value: '4.9/5', label: 'User Satisfaction' },
+];
+
+const CURATED_ASSETS = [
+  {
+    id: 'cur-1',
+    title: 'Minimal Glass Magnifying Glass 3D',
+    q: '3d magnifying glass search',
+    type: '3D Render',
+    img: 'https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=600&auto=format&fit=crop',
+    author: 'Studio Craft',
+    badge: 'Trending 3D',
+  },
+  {
+    id: 'cur-2',
+    title: 'Neon Cyberpunk Futuristic Cityscape',
+    q: 'cyberpunk neon city night',
+    type: 'AI Concept',
+    img: 'https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=600&auto=format&fit=crop',
+    author: 'Neo Visions',
+    badge: 'Popular',
+  },
+  {
+    id: 'cur-3',
+    title: 'Minimalist Clean Desk Workspace',
+    q: 'minimal desk workspace modern',
+    type: 'Photography',
+    img: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=600&auto=format&fit=crop',
+    author: 'Nordic Studio',
+    badge: 'Staff Pick',
+  },
+  {
+    id: 'cur-4',
+    title: 'Vibrant Abstract Holographic Gradient',
+    q: 'abstract liquid gradient 4k',
+    type: 'Vector/3D',
+    img: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600&auto=format&fit=crop',
+    author: 'Prism Lab',
+    badge: '4K Asset',
+  },
+  {
+    id: 'cur-5',
+    title: 'Emerald Forest Misty Sunlight',
+    q: 'misty nature mountain forest',
+    type: 'Landscape',
+    img: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=600&auto=format&fit=crop',
+    author: 'Alpine Shots',
+    badge: 'High-Res',
+  },
+  {
+    id: 'cur-6',
+    title: 'Modern Architectural Geometry',
+    q: 'modern architecture geometry white',
+    type: 'Architecture',
+    img: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=600&auto=format&fit=crop',
+    author: 'Urban Form',
+    badge: 'Creative Safe',
+  },
 ];
 
 const HOME_FEATURES = [
-  { icon: MagnifyingGlass, title: 'AI Search', description: 'Describe what you need in natural language.', link: '/search?q=nature%20landscape' },
-  { icon: PaintBrush, title: 'Creator Studio', description: 'Edit, design and export like a pro.', link: '/studio' },
-  { icon: Buildings, title: 'Document Generator', description: 'Generate certificates & invoices from Zoho CRM.', link: '/business-automation' },
-  { icon: FilePdf, title: 'PDF Editor', description: 'Edit text & images in any PDF, free in your browser.', link: '/pdf-editor' },
-  { icon: FolderSimple, title: 'Collections', description: 'Organize, save and access your favorites.', link: '/collections' },
-  { icon: ShieldCheck, title: 'Safe & Licensed', description: '100% copyright-safe content for your projects.', link: '/licenses' },
-];
-
-// Small curated preview strip - links straight into the search page.
-const SHOWCASE = [
-  { q: 'minimal workspace', img: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=600&auto=format&fit=crop' },
-  { q: 'moody nature', img: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=600&auto=format&fit=crop' },
-  { q: 'abstract gradient', img: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600&auto=format&fit=crop' },
-  { q: 'city architecture', img: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=600&auto=format&fit=crop' },
-  { q: 'ocean waves', img: 'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=600&auto=format&fit=crop' },
-  { q: 'neon night', img: 'https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=600&auto=format&fit=crop' },
+  { icon: MagnifyingGlass, title: 'AI Search & Prompt Finder', description: 'Search across 100M+ assets with natural language prompt optimization.', link: '/search' },
+  { icon: PaintBrush, title: 'Creator Studio & Canvas', description: 'Design, edit, add filters, remove backgrounds and export in 4K.', link: '/studio' },
+  { icon: Buildings, title: 'Document Automation', description: 'Auto-generate bulk invoices, certificates & badges directly from Zoho CRM.', link: '/business-automation' },
+  { icon: FilePdf, title: 'PDF Editor & Form Filler', description: 'Edit text, replace images & sign documents in your browser for free.', link: '/pdf-editor' },
+  { icon: FolderSimple, title: 'Cloud Collections', description: 'Organize your design assets into synced team collections with 1 click.', link: '/collections' },
+  { icon: ShieldCheck, title: '100% Copyright Safe', description: 'Commercial-ready licenses for YouTube, clients, advertising and websites.', link: '/licenses' },
 ];
 
 export default function Home() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const toast = useToast();
+  const [filters, setFilters] = useState({});
+  const [type, setType] = useState('photo');
+
+  const copyPrompt = (e, promptText) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText(promptText);
+    toast(`Copied prompt: "${promptText}"`, 'success');
+  };
+
   return (
     <>
+      {/* Magnific / Finder Hero */}
       <Hero />
 
+      {/* Stats Bar */}
       <section className="hero-stats-bar" aria-label="PikFinder at a glance">
         {HERO_STATS.map(({ icon: Icon, value, label }) => (
           <div key={label} className="hero-stat">
@@ -64,23 +132,72 @@ export default function Home() {
         ))}
       </section>
 
-      {/* Curated preview - each tile deep-links into the search page */}
-      <section className="home-showcase" aria-label="Popular searches">
-        <span className="section-eyebrow">{t('home.trending_now')}</span>
-        <div className="section-header">
-          <h2>{t('home.explore_creators_love')}</h2>
-          <p>{t('home.explore_creators_love_desc')}</p>
-        </div>
-        <div className="showcase-grid">
-          {SHOWCASE.map(({ q, img }) => (
-            <Link key={q} to={`/search?q=${encodeURIComponent(q)}`} className="showcase-tile" aria-label={`Search ${q}`}>
-              <img src={img} alt={q} loading="lazy" />
-              <span className="showcase-label">{q}</span>
+      {/* Magnific Finder Asset Explorer */}
+      <section className="home-finder-explorer" aria-label="Explore Finder Images">
+        <div className="finder-explorer-inner">
+          <SearchFilters
+            filters={filters}
+            setFilters={setFilters}
+            type={type}
+            setType={setType}
+            title="Finder Images"
+          />
+
+          {/* Curated High-Intent Asset Grid */}
+          <div className="magnific-asset-grid">
+            {CURATED_ASSETS.map((asset) => (
+              <div
+                key={asset.id}
+                className="magnific-card"
+                onClick={() => navigate(`/search?q=${encodeURIComponent(asset.q)}&type=${type}`)}
+              >
+                <div className="magnific-card-media">
+                  <img src={asset.img} alt={asset.title} loading="lazy" />
+                  <span className="magnific-card-badge">{asset.badge}</span>
+                  <div className="magnific-card-hover-actions">
+                    <button
+                      type="button"
+                      className="card-quick-btn"
+                      title="Copy Prompt"
+                      onClick={(e) => copyPrompt(e, asset.q)}
+                    >
+                      <Copy size={16} weight="bold" />
+                      <span>Prompt</span>
+                    </button>
+                    <button
+                      type="button"
+                      className="card-quick-btn card-quick-primary"
+                      title="Open in Studio"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate('/studio');
+                      }}
+                    >
+                      <PaintBrush size={16} weight="bold" />
+                      <span>Edit</span>
+                    </button>
+                  </div>
+                </div>
+                <div className="magnific-card-info">
+                  <strong>{asset.title}</strong>
+                  <div className="magnific-card-meta">
+                    <span>{asset.type}</span>
+                    <span className="meta-author">by {asset.author}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="finder-explore-more">
+            <Link to="/search" className="btn-primary finder-more-btn">
+              Explore 100M+ Stock Assets <ArrowRight weight="bold" />
             </Link>
-          ))}
+          </div>
         </div>
       </section>
 
+      {/* Platform Features Grid */}
       <section className="home-features-section" aria-label="Platform features">
         <span className="section-eyebrow">{t('home.everything_you_need')}</span>
         <div className="section-header">
@@ -101,7 +218,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Spotlight - the document automation flagship */}
+      {/* Spotlight - Document Automation */}
       <section className="home-docgen" aria-label="Document automation">
         <div className="home-docgen-inner">
           <div className="home-docgen-copy">
@@ -167,6 +284,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Free generators & makers */}
       <section className="home-generators" aria-label="Free generators">
         <div className="section-header">
           <h2>Free generators &amp; makers</h2>
@@ -180,16 +298,30 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="home-pricing" aria-label="Pricing">
-        <h2>{t('home.ready_for_more')}</h2>
+      {/* Call to action */}
+      <section className="home-pricing" aria-label={PAYMENTS_ENABLED ? 'Pricing' : 'Get Started'}>
+        <h2>{PAYMENTS_ENABLED ? t('home.ready_for_more') : 'Ready to start creating?'}</h2>
         <p>
-          {t('home.ready_for_more_desc')}
+          {PAYMENTS_ENABLED
+            ? t('home.ready_for_more_desc')
+            : 'Explore millions of free visual assets, templates, and creative tools — 100% free.'}
         </p>
         <div style={{ display: 'flex', gap: 'var(--space-md)', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link to={PAYMENTS_ENABLED ? '/billing' : '/waitlist'} className="btn-primary">
-            {PAYMENTS_ENABLED ? 'Upgrade to Creator Pro' : 'Join the Pro Waitlist'}
-          </Link>
-          <Link to="/products" className="btn-outline">{t('home.see_pricing')}</Link>
+          {PAYMENTS_ENABLED ? (
+            <>
+              <Link to="/billing" className="btn-primary">
+                Upgrade to Creator Pro
+              </Link>
+              <Link to="/products" className="btn-outline">{t('home.see_pricing')}</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/studio" className="btn-primary">
+                Launch Creator Studio
+              </Link>
+              <Link to="/tools" className="btn-outline">Explore Free Tools</Link>
+            </>
+          )}
         </div>
       </section>
     </>

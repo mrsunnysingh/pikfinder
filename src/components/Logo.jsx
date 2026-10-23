@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React from 'react';
 
 /**
  * Animated Pik Finder logo.
@@ -8,13 +8,13 @@ import React, { useId } from 'react';
  *   animated  – enable motion (default true; set false for static contexts)
  */
 export default function Logo({ size = 30, showText = true, animated = true }) {
-  const raw = useId();
-  const uid = raw.replace(/[^a-zA-Z0-9]/g, '');
-  const grad = `pf-grad-${uid}`;
+  // Use a static id to prevent SPA route change SVG gradient bugs
+  const grad = 'pf-brand-grad';
 
   return (
     <>
       <svg
+        xmlns="http://www.w3.org/2000/svg"
         width={size}
         height={size}
         viewBox="0 0 64 64"

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Crown, X } from '@phosphor-icons/react';
+import { PAYMENTS_ENABLED } from '../config/features';
 
 // A single, app-wide "upgrade to Pro" modal. Any Pro gate can trigger it without
 // prop-drilling by calling showUpgradeNudge('reason text'). Catching users at the
@@ -20,7 +21,7 @@ export default function UpgradeNudge() {
     return () => window.removeEventListener('pf:upgrade-nudge', h);
   }, []);
 
-  if (!open) return null;
+  if (!PAYMENTS_ENABLED || !open) return null;
   return (
     <div className="unudge-overlay" onClick={() => setOpen(false)} role="dialog" aria-modal="true">
       <div className="unudge-card" onClick={(e) => e.stopPropagation()}>

@@ -163,14 +163,11 @@ export default function Products() {
   const toast = useToast();
 
   const handlePlanClick = async (plan) => {
-    // Support both the new (plan object) and legacy (action string) callers.
     const id = typeof plan === 'string' ? (plan === 'contact' ? 'enterprise' : (plan === 'waitlist' ? 'pro' : 'free')) : plan.id;
 
     if (id === 'enterprise') { navigate('/contact'); return; }
-    if (id === 'free') { isLoggedIn ? navigate('/') : toggleAuthModal('signup'); return; }
+    if (id === 'free' || !PAYMENTS_ENABLED) { navigate('/studio'); return; }
 
-    // Creator Pro → live checkout. Payments off falls back to the waitlist.
-    if (!PAYMENTS_ENABLED) { navigate('/waitlist'); return; }
     if (!isLoggedIn) { toggleAuthModal('login'); return; }
     navigate('/billing');
   };
@@ -193,15 +190,16 @@ export default function Products() {
             transition={{ delay: 0.2 }}
           >
             <span className="badge-dot pulse-dot" />
-            <span>Our Products & Plans</span>
+            <span>{PAYMENTS_ENABLED ? 'Our Products & Plans' : 'Platform Features & Tools'}</span>
           </motion.div>
           <h1>
             Unlock the full power of{' '}
             <span className="text-gradient">visual discovery.</span>
           </h1>
           <p>
-            From free exploration to enterprise-grade APIs - choose the plan that
-            fits your creative ambition.
+            {PAYMENTS_ENABLED
+              ? 'From free exploration to enterprise-grade APIs - choose the plan that fits your creative ambition.'
+              : 'Explore our complete suite of creative tools, templates, and high-resolution visual discovery — 100% free.'}
           </p>
 
           {/* Stats Bar */}
@@ -221,111 +219,112 @@ export default function Products() {
         </motion.div>
       </header>
 
-      {/* Billing Toggle */}
-      <section className="billing-toggle-section">
-        <div className="billing-toggle">
-          <button
-            className={billingCycle === 'monthly' ? 'active' : ''}
-            onClick={() => setBillingCycle('monthly')}
+      {/* Billing Toggle & Pricing Cards (gated) */}
+      {PAYMENTS_ENABLED && (
+        <>
+          <section className="billing-toggle-section">
+            <div className="billing-toggle">
+              <button
+                className={billingCycle === 'monthly' ? 'active' : ''}
+                onClick={() => setBillingCycle('monthly')}
+              >
+                Monthly
+              </button>
+              <button
+                className={billingCycle === 'yearly' ? 'active' : ''}
+                onClick={() => setBillingCycle('yearly')}
+              >
+                Yearly <span className="save-badge">Save 20%</span>
+              </button>
+            </div>
+          </section>
+
+          <motion.section
+            className="pricing-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))' }}
           >
-            Monthly
-          </button>
-          <button
-            className={billingCycle === 'yearly' ? 'active' : ''}
-            onClick={() => setBillingCycle('yearly')}
-          >
-            Yearly <span className="save-badge">Save 20%</span>
-          </button>
-        </div>
-      </section>
+            {/* Creator Pro Waitlist Card */}
+            <motion.div
+              className="pricing-card popular"
+              variants={itemVariants}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+            >
+              <div className="popular-ribbon">
+                <Star weight="fill" /> Most Popular
+              </div>
 
-      {/* Pricing Cards */}
-      <motion.section
-        className="pricing-grid"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))' }}
-      >
-        
-        {/* Creator Pro Waitlist Card */}
-        <motion.div
-          className="pricing-card popular"
-          variants={itemVariants}
-          whileHover={{ y: -8, transition: { duration: 0.3 } }}
-        >
-          <div className="popular-ribbon">
-            <Star weight="fill" /> Most Popular
-          </div>
+              <div className="pricing-card-icon" style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)' }}>
+                <Sparkle size={28} weight="fill" />
+              </div>
 
-          <div className="pricing-card-icon" style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)' }}>
-            <Sparkle size={28} weight="fill" />
-          </div>
+              <h3>Creator Pro</h3>
+              <p className="plan-description">Everything you need to create without limits - HD exports, AI tools, and premium Studio features.</p>
 
-          <h3>Creator Pro</h3>
-          <p className="plan-description">Everything you need to create without limits - HD exports, AI tools, and premium Studio features.</p>
+              <div className="price-display">
+                <span className="price-amount">₹199</span>
+                <span className="price-period">/month - or ₹1,990/year</span>
+              </div>
 
-          <div className="price-display">
-            <span className="price-amount">₹199</span>
-            <span className="price-period">/month - or ₹1,990/year</span>
-          </div>
+              <div style={{ marginBottom: '24px', fontSize: '0.85rem', color: 'var(--primary)', fontWeight: '600' }}>
+                Cancel anytime. Instant access after payment.
+              </div>
 
-          <div style={{ marginBottom: '24px', fontSize: '0.85rem', color: 'var(--primary)', fontWeight: '600' }}>
-            Cancel anytime. Instant access after payment.
-          </div>
+              <ul className="feature-list">
+                <li><CheckCircle weight="fill" style={{ color: '#ec4899' }} /> <span>Ad-free experience</span></li>
+                <li><CheckCircle weight="fill" style={{ color: '#ec4899' }} /> <span>Advanced AI search</span></li>
+                <li><CheckCircle weight="fill" style={{ color: '#ec4899' }} /> <span>Unlimited collections</span></li>
+                <li><CheckCircle weight="fill" style={{ color: '#ec4899' }} /> <span>Batch downloads</span></li>
+                <li><CheckCircle weight="fill" style={{ color: '#ec4899' }} /> <span>Premium Creator Studio tools</span></li>
+                <li><CheckCircle weight="fill" style={{ color: '#ec4899' }} /> <span>Early access to new features</span></li>
+              </ul>
 
-          <ul className="feature-list">
-            <li><CheckCircle weight="fill" style={{ color: '#ec4899' }} /> <span>Ad-free experience</span></li>
-            <li><CheckCircle weight="fill" style={{ color: '#ec4899' }} /> <span>Advanced AI search</span></li>
-            <li><CheckCircle weight="fill" style={{ color: '#ec4899' }} /> <span>Unlimited collections</span></li>
-            <li><CheckCircle weight="fill" style={{ color: '#ec4899' }} /> <span>Batch downloads</span></li>
-            <li><CheckCircle weight="fill" style={{ color: '#ec4899' }} /> <span>Premium Creator Studio tools</span></li>
-            <li><CheckCircle weight="fill" style={{ color: '#ec4899' }} /> <span>Early access to new features</span></li>
-          </ul>
+              <button
+                className="pricing-cta cta-primary"
+                onClick={() => handlePlanClick({ id: 'pro', name: 'Creator Pro' })}
+              >
+                {PAYMENTS_ENABLED ? 'Upgrade to Pro' : 'Join Waitlist'} <ArrowRight />
+              </button>
+            </motion.div>
 
-          <button
-            className="pricing-cta cta-primary"
-            onClick={() => handlePlanClick({ id: 'pro', name: 'Creator Pro' })}
-          >
-            {PAYMENTS_ENABLED ? 'Upgrade to Pro' : 'Join Waitlist'} <ArrowRight />
-          </button>
-        </motion.div>
+            {/* Enterprise Card */}
+            <motion.div
+              className="pricing-card"
+              variants={itemVariants}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+            >
+              <div className="pricing-card-icon" style={{ background: 'linear-gradient(135deg, #475569, #0f172a)' }}>
+                <Buildings size={28} weight="fill" />
+              </div>
 
-        {/* Enterprise Card */}
-        <motion.div
-          className="pricing-card"
-          variants={itemVariants}
-          whileHover={{ y: -8, transition: { duration: 0.3 } }}
-        >
-          <div className="pricing-card-icon" style={{ background: 'linear-gradient(135deg, #475569, #0f172a)' }}>
-            <Buildings size={28} weight="fill" />
-          </div>
+              <h3>Enterprise</h3>
+              <p className="plan-description">Custom solutions for large teams and organizations.</p>
 
-          <h3>Enterprise</h3>
-          <p className="plan-description">Custom solutions for large teams and organizations.</p>
+              <div className="price-display">
+                <span className="price-amount" style={{ fontSize: '1.8rem' }}>Custom</span>
+              </div>
 
-          <div className="price-display">
-            <span className="price-amount" style={{ fontSize: '1.8rem' }}>Custom</span>
-          </div>
+              <ul className="feature-list" style={{ marginTop: '38px' }}>
+                <li><CheckCircle weight="fill" style={{ color: '#475569' }} /> <span>Everything in Creator Pro</span></li>
+                <li><CheckCircle weight="fill" style={{ color: '#475569' }} /> <span>Dedicated account manager</span></li>
+                <li><CheckCircle weight="fill" style={{ color: '#475569' }} /> <span>Custom API limits</span></li>
+                <li><CheckCircle weight="fill" style={{ color: '#475569' }} /> <span>Single Sign-On (SSO)</span></li>
+                <li><CheckCircle weight="fill" style={{ color: '#475569' }} /> <span>Custom SLAs</span></li>
+              </ul>
 
-          <ul className="feature-list" style={{ marginTop: '38px' }}>
-            <li><CheckCircle weight="fill" style={{ color: '#475569' }} /> <span>Everything in Creator Pro</span></li>
-            <li><CheckCircle weight="fill" style={{ color: '#475569' }} /> <span>Dedicated account manager</span></li>
-            <li><CheckCircle weight="fill" style={{ color: '#475569' }} /> <span>Custom API limits</span></li>
-            <li><CheckCircle weight="fill" style={{ color: '#475569' }} /> <span>Single Sign-On (SSO)</span></li>
-            <li><CheckCircle weight="fill" style={{ color: '#475569' }} /> <span>Custom SLAs</span></li>
-          </ul>
-
-          <button
-            className="pricing-cta cta-outline"
-            onClick={() => window.location.href = 'mailto:enterprise@pikfinder.com'}
-          >
-            Contact Sales <ArrowRight />
-          </button>
-        </motion.div>
-
-      </motion.section>
+              <button
+                className="pricing-cta cta-outline"
+                onClick={() => window.location.href = 'mailto:enterprise@pikfinder.com'}
+              >
+                Contact Sales <ArrowRight />
+              </button>
+            </motion.div>
+          </motion.section>
+        </>
+      )}
 
       {/* Features Grid */}
       <section className="products-features-section">
@@ -394,12 +393,25 @@ export default function Products() {
             free-to-use visuals with clear licensing.
           </p>
           <div className="cta-banner-actions">
-            <button className="btn-primary" onClick={() => handlePlanClick('signup')}>
-              <Rocket weight="fill" /> Get Started Free
-            </button>
-            <button className="btn-outline" onClick={() => navigate('/contact')}>
-              Contact Sales
-            </button>
+            {PAYMENTS_ENABLED ? (
+              <>
+                <button className="btn-primary" onClick={() => handlePlanClick('signup')}>
+                  <Rocket weight="fill" /> Get Started Free
+                </button>
+                <button className="btn-outline" onClick={() => navigate('/contact')}>
+                  Contact Sales
+                </button>
+              </>
+            ) : (
+              <>
+                <button className="btn-primary" onClick={() => navigate('/studio')}>
+                  <Rocket weight="fill" /> Launch Creator Studio
+                </button>
+                <button className="btn-outline" onClick={() => navigate('/tools')}>
+                  Explore Free Tools
+                </button>
+              </>
+            )}
           </div>
         </div>
       </motion.section>

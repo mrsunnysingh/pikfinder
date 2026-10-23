@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
 import {
   MagnifyingGlass,
   ArrowRight,
@@ -9,8 +10,19 @@ import {
   Sparkle,
   Heart,
   Star,
+  Microphone,
+  Camera,
+  X,
+  Desktop,
+  DeviceMobile,
+  Cpu,
+  Code,
+  Lightning,
+  CheckCircle,
+  CaretDown,
 } from '@phosphor-icons/react';
 import { motion } from 'framer-motion';
+import { useToast } from './Toast';
 
 const MEDIA_PILLS = [
   { value: 'all', label: 'All', icon: SquaresFour },
@@ -19,16 +31,43 @@ const MEDIA_PILLS = [
   { value: 'icon', label: 'Icons', icon: Star },
 ];
 
+const QUICK_TAGS = [
+  { label: '✨ Create an AI image', q: 'studio', isAction: true },
+  { label: '🎬 Create an AI video', q: 'video', isVideo: true },
+  { label: 'Location', q: 'location map travel' },
+  { label: 'Computer', q: 'computer technology setup' },
+  { label: 'Magnifying glass', q: 'magnifying glass search 3d' },
+  { label: 'Success', q: 'success achievement growth' },
+  { label: 'Spotlight', q: 'spotlight stage lighting' },
+  { label: 'Target', q: 'target goal accuracy' },
+  { label: 'Highlight', q: 'highlight aesthetic abstract' },
+  { label: 'Search bar', q: 'search bar ui modern' },
+  { label: 'Review', q: 'review feedback customer' },
+  { label: 'Goal', q: 'goal motivation futuristic' },
+];
+
+const ECOSYSTEM_BADGES = [
+  { label: 'Desktop', badge: 'New', icon: Desktop, modal: 'desktop' },
+  { label: 'Mobile', badge: null, icon: DeviceMobile, modal: 'mobile' },
+  { label: 'MCP', badge: 'New', icon: Cpu, modal: 'mcp' },
+  { label: 'Plugins', badge: null, icon: Lightning, modal: 'plugins' },
+  { label: 'API', badge: null, icon: Code, modal: 'api' },
+];
+
 export default function Hero() {
   const navigate = useNavigate();
+  const toast = useToast();
+  const { openModal } = useContext(AppContext);
   const [query, setQuery] = useState('');
   const [type, setType] = useState('photo');
+  const [finderMode, setFinderMode] = useState('Finder');
+  const [isModeOpen, setIsModeOpen] = useState(false);
+  const [isListening, setIsListening] = useState(false);
 
-  // Searching from the homepage takes the user to the dedicated search page.
-  const runSearch = (q) => {
+  const runSearch = (q, forceType = type) => {
     const term = (q ?? query).trim();
     if (!term) return;
-    navigate(`/search?q=${encodeURIComponent(term)}&type=${type}`);
+    navigate(`/search?q=${encodeURIComponent(term)}&type=${forceType}`);
   };
 
   const handleSubmit = (e) => {
@@ -36,181 +75,253 @@ export default function Hero() {
     runSearch();
   };
 
-  const handleTagClick = (tag) => {
-    setQuery(tag);
-    runSearch(tag);
+  const handleQuickTag = (tag) => {
+    if (tag.isAction) {
+      openModal('create');
+      return;
+    }
+    if (tag.isVideo) {
+      setType('video');
+      runSearch('motion video', 'video');
+      return;
+    }
+    setQuery(tag.label);
+    runSearch(tag.q || tag.label);
   };
 
-  const handlePillClick = (value) => {
-    // "All" maps to the default photo feed - the app only distinguishes photo/video/icon.
-    setType(value === 'video' ? 'video' : value === 'icon' ? 'icon' : 'photo');
+  const selectFinderMode = (mode, mediaType) => {
+    setFinderMode(mode);
+    setType(mediaType);
+    setIsModeOpen(false);
+    toast(`Search mode switched to: ${mode}`, 'info');
+  };
+
+  const handleVoiceSearch = () => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      toast('Voice search is not supported in this browser.', 'info');
+      return;
+    }
+    try {
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.onstart = () => {
+        setIsListening(true);
+        toast('Listening... Speak your prompt', 'info');
+      };
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        setQuery(transcript);
+        setIsListening(false);
+        runSearch(transcript);
+      };
+
+      recognition.onerror = () => {
+        setIsListening(false);
+        toast('Voice input stopped or canceled.', 'info');
+      };
+
+      recognition.onend = () => {
+        setIsListening(false);
+      };
+
+      recognition.start();
+    } catch {
+      setIsListening(false);
+      toast('Could not start voice search.', 'info');
+    }
+  };
+
+  const handleCameraSearch = () => {
+    toast('Reverse Image Search: Drag and drop or select an image in Studio to find visually similar assets.', 'info');
+    navigate('/studio');
   };
 
   return (
-    <header className="hero premium-hero hero-v2">
-      {/* Dynamic Background Element */}
+    <header className="hero premium-hero hero-magnific-style">
+      {/* Background Ambience */}
       <div className="hero-bg-overlay"></div>
 
-      <div className="hero-grid">
+      <div className="hero-grid hero-grid-centered">
         <motion.div
-          className="hero-content hero-copy"
-          initial={{ opacity: 0, y: 30 }}
+          className="hero-content hero-copy-centered"
+          initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
         >
+          {/* Top Pill / Badge */}
           <motion.div
-            className="badge"
-            initial={{ opacity: 0, scale: 0.9 }}
+            className="hero-pill-badge"
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
+            transition={{ delay: 0.1, duration: 0.5 }}
           >
-            <Sparkle weight="fill" size={14} />
-            <span>Millions of free images, videos &amp; creative tools</span>
+            <Sparkle weight="fill" size={14} className="badge-sparkle" />
+            <span>Next-Gen Creative Finder &amp; AI Studio</span>
           </motion.div>
 
           <motion.h1
+            className="hero-title-big"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.05, duration: 0.35 }}
+            transition={{ delay: 0.15, duration: 0.5 }}
           >
-            Find. Create. <br /><span className="text-gradient glass-text">Inspire.</span>
+            Find, Create &amp; Supercharge <br />
+            <span className="text-gradient glass-text">Every Creative Asset</span>
           </motion.h1>
 
           <motion.p
+            className="hero-subtitle"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
           >
-            Search millions of copyright-safe photos, videos, vector templates, and design tools in one clean workspace.
+            Access 100M+ royalty-free 4K photos, vectors, 3D icons, and AI templates across every design tool.
           </motion.p>
 
-          <motion.div
-            className="hero-cta-row"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.55, duration: 0.8 }}
-          >
-            <button type="button" className="btn-primary" onClick={() => runSearch('nature landscape')}>
-              Start Exploring <ArrowRight weight="bold" />
-            </button>
-            <Link to="/studio" className="btn-outline">
-              <SquaresFour weight="bold" /> Try Studio
-            </Link>
-          </motion.div>
-
+          {/* Sleek Magnific Style Search Bar */}
           <motion.form
-            className="search-form"
+            className="magnific-search-form"
             onSubmit={handleSubmit}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            style={{ width: '100%' }}
+            transition={{ delay: 0.35, duration: 0.6 }}
           >
-            <div className="hero-search-row">
-              <div className="search-input-wrapper">
-                <MagnifyingGlass className="search-icon" />
-                <input
-                  type="text"
-                  placeholder="Search 'neon city', 'minimalism', 'mountains'..."
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  autoComplete="off"
-                />
-                <div className="search-type-select">
-                  <select
-                    value={type === 'video' ? 'video' : type === 'icon' ? 'icon' : 'all'}
-                    onChange={(e) => handlePillClick(e.target.value)}
-                    aria-label="Media type"
-                  >
-                    <option value="all">All Media</option>
-                    <option value="photo">Photos</option>
-                    <option value="video">Videos</option>
-                    <option value="icon">Icons</option>
-                  </select>
-                </div>
-                <button type="submit" className="search-submit-btn" aria-label="Search">
-                  <MagnifyingGlass weight="bold" />
+            <div className="magnific-search-bar">
+              {/* Category Pill / Mode Selector */}
+              <div className="magnific-mode-pill-wrap" style={{ position: 'relative' }}>
+                <button
+                  type="button"
+                  className="magnific-mode-pill"
+                  onClick={() => setIsModeOpen(!isModeOpen)}
+                >
+                  <SquaresFour weight="duotone" size={18} className="mode-icon" />
+                  <span className="mode-label">{finderMode}</span>
+                  <CaretDown size={12} weight="bold" />
                 </button>
+
+                {isModeOpen && (
+                  <div className="filter-dropdown-menu" style={{ top: 'calc(100% + 10px)', minWidth: '160px', zIndex: 500 }}>
+                    <button type="button" className={`dropdown-item ${finderMode === 'Finder' ? 'active' : ''}`} onClick={() => selectFinderMode('Finder', 'photo')}>
+                      <span>All Assets (Finder)</span>
+                    </button>
+                    <button type="button" className={`dropdown-item ${finderMode === 'Photos' ? 'active' : ''}`} onClick={() => selectFinderMode('Photos', 'photo')}>
+                      <span>Photos (HD/4K)</span>
+                    </button>
+                    <button type="button" className={`dropdown-item ${finderMode === 'Videos' ? 'active' : ''}`} onClick={() => selectFinderMode('Videos', 'video')}>
+                      <span>Videos (Motion)</span>
+                    </button>
+                    <button type="button" className={`dropdown-item ${finderMode === 'Icons' ? 'active' : ''}`} onClick={() => selectFinderMode('Icons', 'icon')}>
+                      <span>Icons &amp; 3D</span>
+                    </button>
+                  </div>
+                )}
               </div>
-              <button type="submit" className="btn-outline ai-search-btn">
-                <Sparkle weight="fill" /> Search with AI
+
+              {/* Input */}
+              <input
+                type="text"
+                className="magnific-search-input"
+                placeholder="Search photos, videos, 3D assets, AI prompts…"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                autoComplete="off"
+              />
+
+              {/* Clear button */}
+              {query && (
+                <button
+                  type="button"
+                  className="magnific-action-btn"
+                  onClick={() => setQuery('')}
+                  title="Clear"
+                >
+                  <X weight="bold" size={16} />
+                </button>
+              )}
+
+              {/* Voice Search */}
+              <button
+                type="button"
+                className={`magnific-action-btn ${isListening ? 'listening' : ''}`}
+                onClick={handleVoiceSearch}
+                title="Voice Search"
+              >
+                <Microphone weight={isListening ? 'fill' : 'bold'} size={18} />
+              </button>
+
+              {/* Visual Camera Search */}
+              <button
+                type="button"
+                className="magnific-action-btn"
+                onClick={() => openModal('visual_search')}
+                title="Reverse Image Search / Drop Photo"
+              >
+                <Camera weight="bold" size={18} />
+              </button>
+
+              {/* Primary Search Submit */}
+              <button
+                type="submit"
+                className="magnific-submit-btn"
+                aria-label="Search"
+              >
+                <MagnifyingGlass weight="bold" size={18} />
               </button>
             </div>
           </motion.form>
 
+          {/* Quick Action Tag Chips (Magnific Style) */}
           <motion.div
-            className="media-pills"
+            className="magnific-quick-chips"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
+            transition={{ delay: 0.45, duration: 0.6 }}
           >
-            {MEDIA_PILLS.map(({ value, label, icon: Icon }) => {
-              const isActive = value === 'all' ? (type !== 'video' && type !== 'icon') : type === value;
-              return (
-                <button
-                  key={value}
-                  type="button"
-                  className={`media-pill ${isActive ? 'active' : ''}`}
-                  onClick={() => handlePillClick(value)}
-                >
-                  <Icon weight="bold" size={14} /> {label}
-                </button>
-              );
-            })}
-          </motion.div>
-
-          <motion.div
-            className="trending-searches"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            style={{ justifyContent: 'flex-start', marginTop: '16px' }}
-          >
-            {['Cyberpunk', 'Architecture', 'Moody Nature', 'Abstract', 'Neon'].map((tag) => (
-              <motion.button
-                key={tag}
-                className="trend-tag"
-                onClick={() => handleTagClick(tag)}
-                whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.15)' }}
-                whileTap={{ scale: 0.95 }}
+            {QUICK_TAGS.map((tag) => (
+              <button
+                key={tag.label}
+                type="button"
+                className={`quick-chip ${tag.isAction ? 'quick-chip-accent' : ''}`}
+                onClick={() => handleQuickTag(tag)}
               >
-                {tag}
-              </motion.button>
+                {tag.label}
+              </button>
             ))}
           </motion.div>
-        </motion.div>
 
-        <motion.div
-          className="hero-visual"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4, duration: 0.9, ease: 'easeOut' }}
-          aria-hidden="true"
-        >
-          <div className="hero-float-card" style={{ top: 0, left: 0, width: '210px', height: '150px', zIndex: 2 }}>
-            <img src="https://images.pexels.com/photos/38409470/pexels-photo-38409470.jpeg?auto=compress&cs=tinysrgb&w=420&h=300&fit=crop" alt="" width="210" height="150" loading="lazy" decoding="async" />
-            <span className="hero-float-badge">Unsplash ✓</span>
-          </div>
-          <div className="hero-float-card" style={{ top: '95px', left: '130px', width: '260px', height: '220px', zIndex: 3 }}>
-            <img src="https://images.pexels.com/photos/6910147/pexels-photo-6910147.jpeg?auto=compress&cs=tinysrgb&w=520&h=440&fit=crop" alt="" width="260" height="220" loading="lazy" decoding="async" />
-            <span className="hero-float-play"><Play weight="fill" /></span>
-            <span className="hero-float-badge">Pexels ✓</span>
-          </div>
-          <div className="hero-float-card" style={{ top: 0, right: 0, width: '140px', height: '180px', zIndex: 2 }}>
-            <img src="https://images.pexels.com/photos/34921744/pexels-photo-34921744.jpeg?auto=compress&cs=tinysrgb&w=300&h=380&fit=crop" alt="" width="140" height="180" loading="lazy" decoding="async" />
-            <span className="hero-float-badge">Openverse ✓</span>
-          </div>
-          <div className="hero-float-card" style={{ bottom: 0, right: '10px', width: '190px', height: '220px', zIndex: 1 }}>
-            <img src="https://images.pexels.com/photos/9300768/pexels-photo-9300768.jpeg?auto=compress&cs=tinysrgb&w=380&h=440&fit=crop" alt="" width="190" height="220" loading="lazy" decoding="async" />
-            <span className="hero-float-badge">Pixabay ✓</span>
-          </div>
-          <div className="hero-trust-card" style={{ bottom: '30px', left: '-10px' }}>
-            <Heart weight="fill" className="icon" />
-            <div>
-              <strong>2.4M+</strong>
-              <span>Creators trust us</span>
+          {/* Ecosystem Promo Bar (Magnific style "Use PikFinder everywhere you create") */}
+          <motion.div
+            className="magnific-ecosystem-bar"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.55, duration: 0.6 }}
+          >
+            <div className="ecosystem-intro">
+              <Sparkle weight="fill" size={15} />
+              <span>Use PikFinder everywhere you create</span>
             </div>
-          </div>
+            <div className="ecosystem-badges-list">
+              {ECOSYSTEM_BADGES.map((b) => (
+                <button
+                  key={b.label}
+                  type="button"
+                  onClick={() => openModal(b.modal)}
+                  className="ecosystem-badge-chip"
+                  style={{ background: 'var(--bg-elevated)', cursor: 'pointer' }}
+                >
+                  <b.icon size={15} weight="duotone" />
+                  <span>{b.label}</span>
+                  {b.badge && <span className="eco-pill-badge">{b.badge}</span>}
+                  <span className="eco-arrow">↗</span>
+                </button>
+              ))}
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </header>

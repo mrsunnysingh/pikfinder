@@ -6,6 +6,7 @@ import { AppContext } from '../context/AppContext';
 import ThemeToggle from './ThemeToggle';
 import { SOCIAL_LINKS } from './Footer';
 import { useTranslation } from 'react-i18next';
+import { PAYMENTS_ENABLED } from '../config/features';
 
 const NAV_ITEMS = [
   { to: '/', labelKey: 'nav.discover', end: true },
@@ -13,7 +14,7 @@ const NAV_ITEMS = [
   { to: '/studio', labelKey: 'nav.studio', badge: 'Beta' },
   { to: '/business-automation', labelKey: 'nav.documents', badge: 'New' },
   { to: '/tools', labelKey: 'nav.free_tools' },
-  { to: '/products', labelKey: 'nav.pricing' },
+  ...(PAYMENTS_ENABLED ? [{ to: '/products', labelKey: 'nav.pricing' }] : []),
 ];
 
 export default function Navbar() {
@@ -86,6 +87,9 @@ export default function Navbar() {
           </div>
         ) : (
           <div className="user-profile">
+            <Link to="/dashboard" className="btn-outline btn-dashboard-pill" style={{ height: '34px', padding: '0 14px', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span>Dashboard</span>
+            </Link>
             <button
               className="btn-icon favorites-nav-btn"
               title={t('nav.my_favorites')}
@@ -97,7 +101,12 @@ export default function Navbar() {
                 <span className="fav-count-badge">{favorites.length}</span>
               )}
             </button>
-            <div className="avatar-circle" title={t('nav.log_out')} onClick={logoutUser} style={{ cursor: 'pointer' }}>
+            <div 
+              className="avatar-circle" 
+              title={user?.name ? `${user.name} (Click to open Dashboard)` : 'User'} 
+              onClick={() => navigate('/dashboard')} 
+              style={{ cursor: 'pointer' }}
+            >
               {user?.photoURL ? <img src={user.photoURL} alt="" /> : (user?.name ? user.name.charAt(0).toUpperCase() : 'U')}
             </div>
           </div>

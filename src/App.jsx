@@ -1,5 +1,5 @@
 import React, { useContext, lazy, Suspense } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { AppContext } from './context/AppContext';
 
 // Shell - always needed, kept in the main bundle.
@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import AuthModal from './components/AuthModal';
 import ScrollToTop from './components/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
+import { PAYMENTS_ENABLED } from './config/features';
 import UpgradeNudge from './components/UpgradeNudge';
 import InstallPrompt from './components/InstallPrompt';
 import NotFound from './pages/NotFound';
@@ -57,6 +58,8 @@ const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Search = lazy(() => import('./pages/Search'));
 const Admin = lazy(() => import('./pages/Admin'));
 
+import EcosystemModals from './components/EcosystemModals';
+
 function App() {
   const { isAuthModalOpen, isLoggedIn } = useContext(AppContext);
 
@@ -72,111 +75,74 @@ function App() {
       <Suspense fallback={<div className="route-suspense" aria-busy="true" />}>
       <Routes>
         <Route path="/studio" element={<Studio />} />
-        <Route path="*" element={
-          !isLoggedIn ? (
-            <>
-              <Navbar />
-              <main>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/search" element={<Search />} />
-                  <Route path="/collections" element={<Collections />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/legal" element={<Legal />} />
-                  <Route path="/terms" element={<Terms />} />
-                  <Route path="/privacy" element={<Privacy />} />
-                  <Route path="/license" element={<License />} />
-                  <Route path="/licenses" element={<Licenses />} />
-                  <Route path="/dmca" element={<Dmca />} />
-                  <Route path="/status" element={<Status />} />
-                  <Route path="/billing" element={<Billing />} />
-                  <Route path="/pricing" element={<Navigate to="/billing" replace />} />
-                  {/* Creator Pro is live - old "Coming Soon" waitlist links go to pricing */}
-                  <Route path="/waitlist" element={<Navigate to="/billing" replace />} />
-                  <Route path="/analytics" element={<Analytics />} />
-                  <Route path="/products" element={<Products />} />
-                  <Route path="/backgrounds" element={<BackgroundGenerator />} />
-                  <Route path="/profile" element={<Profile />} />
-                  <Route path="/gradient" element={<GradientGenerator />} />
-                  <Route path="/tools/gradient-generator" element={<GradientToolPage />} />
-                  <Route path="/tools" element={<FreeTools />} />
-                  <Route path="/tools/:slug" element={<ToolPage />} />
-                  <Route path="/support" element={<Navigate to="/billing" replace />} />
-                  {/* Settings is account-only - send logged-out visitors home. */}
-                  <Route path="/settings" element={<Navigate to="/" replace />} />
-                  <Route path="/dashboard" element={<Navigate to="/" replace />} />
-                  <Route path="/admin" element={<Navigate to="/" replace />} />
-                  <Route path="/help" element={<Help />} />
-                  <Route path="/favorites" element={<Favorites />} />
-                  <Route path="/blog" element={<Blog />} />
-                  <Route path="/blog/:slug" element={<BlogPost />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/business-automation" element={<BusinessLanding />} />
-                  <Route path="/business" element={<BusinessHub />} />
-                  <Route path="/business/help" element={<BusinessHelp />} />
-                  <Route path="/pdf-editor" element={<PdfEditor />} />
-                  <Route path="/templates" element={<TemplatesIndex />} />
-                  <Route path="/templates/:slug" element={<TemplateCategory />} />
-                  {GENERATORS.map((g) => (
-                    <Route key={g.slug} path={`/${g.slug}`} element={<GeneratorPage slug={g.slug} />} />
-                  ))}
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </main>
-              <Footer />
-            </>
-          ) : (
-            <Routes>
-              <Route path="/" element={<DashboardLayout />}>
-                <Route index element={<Navigate to="/dashboard" replace />} />
-                <Route path="dashboard" element={<DashboardHome />} />
-                <Route path="search" element={<DashboardSearch />} />
-                <Route path="backgrounds" element={<BackgroundGenerator />} />
-                <Route path="profile" element={<Profile />} />
-                <Route path="gradient" element={<GradientGenerator />} />
-                <Route path="tools/gradient-generator" element={<GradientToolPage />} />
-                <Route path="tools" element={<FreeTools />} />
-                <Route path="tools/:slug" element={<ToolPage />} />
-                <Route path="support" element={<Navigate to="/billing" replace />} />
-                <Route path="settings" element={<Settings />} />
-                <Route path="help" element={<Help />} />
-                <Route path="collections" element={<Collections />} />
-                <Route path="business-automation" element={<Navigate to="/business" replace />} />
-                <Route path="business" element={<BusinessHub />} />
-                <Route path="business/help" element={<BusinessHelp />} />
-                <Route path="pdf-editor" element={<PdfEditor />} />
-                <Route path="templates" element={<TemplatesIndex />} />
-                <Route path="templates/:slug" element={<TemplateCategory />} />
-                {GENERATORS.map((g) => (
-                  <Route key={g.slug} path={g.slug} element={<GeneratorPage slug={g.slug} />} />
-                ))}
-                <Route path="favorites" element={<Favorites />} />
-                <Route path="blog" element={<Blog />} />
-                <Route path="blog/:slug" element={<BlogPost />} />
-                <Route path="about" element={<About />} />
-                <Route path="products" element={<Products />} />
-                <Route path="contact" element={<Contact />} />
-                <Route path="terms" element={<Terms />} />
-                <Route path="privacy" element={<Privacy />} />
-                <Route path="license" element={<License />} />
-                <Route path="licenses" element={<Licenses />} />
-                <Route path="dmca" element={<Dmca />} />
-                <Route path="status" element={<Status />} />
-                <Route path="billing" element={<Billing />} />
-                <Route path="waitlist" element={<Navigate to="/billing" replace />} />
-                <Route path="analytics" element={<Analytics />} />
-                <Route path="admin" element={<Admin />} />
-              </Route>
-              <Route path="*" element={<Navigate to="/dashboard" replace />} />
-            </Routes>
-          )
-        } />
+        
+        {/* Authenticated Dashboard Routes */}
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<DashboardHome />} />
+          <Route path="search" element={<DashboardSearch />} />
+        </Route>
+
+        {/* Public / Main Application Routes (Unified Layout with Navbar & Footer) */}
+        <Route element={
+          <>
+            <Navbar />
+            <main>
+              <Outlet />
+            </main>
+            <Footer />
+          </>
+        }>
+          <Route path="/" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/collections" element={<Collections />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/legal" element={<Legal />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/license" element={<License />} />
+          <Route path="/licenses" element={<Licenses />} />
+          <Route path="/dmca" element={<Dmca />} />
+          <Route path="/status" element={<Status />} />
+          <Route path="/billing" element={PAYMENTS_ENABLED ? <Billing /> : <Navigate to="/" replace />} />
+          <Route path="/pricing" element={<Navigate to={PAYMENTS_ENABLED ? "/billing" : "/"} replace />} />
+          <Route path="/waitlist" element={<Navigate to={PAYMENTS_ENABLED ? "/billing" : "/"} replace />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/backgrounds" element={<BackgroundGenerator />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/gradient" element={<GradientGenerator />} />
+          <Route path="/tools/gradient-generator" element={<GradientToolPage />} />
+          <Route path="/tools" element={<FreeTools />} />
+          <Route path="/tools/:slug" element={<ToolPage />} />
+          <Route path="/qr-code" element={<Navigate to="/tools/qr-code-generator" replace />} />
+          <Route path="/qr-code-generator" element={<Navigate to="/tools/qr-code-generator" replace />} />
+          <Route path="/qr" element={<Navigate to="/tools/qr-code-generator" replace />} />
+          <Route path="/support" element={<Navigate to="/contact" replace />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/help" element={<Help />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/business-automation" element={<BusinessLanding />} />
+          <Route path="/business" element={<BusinessHub />} />
+          <Route path="/business/help" element={<BusinessHelp />} />
+          <Route path="/pdf-editor" element={<PdfEditor />} />
+          <Route path="/templates" element={<TemplatesIndex />} />
+          <Route path="/templates/:slug" element={<TemplateCategory />} />
+          {GENERATORS.map((g) => (
+            <Route key={g.slug} path={`/${g.slug}`} element={<GeneratorPage slug={g.slug} />} />
+          ))}
+          <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
       </Suspense>
       </ErrorBoundary>
 
       {/* Global Modals */}
       {isAuthModalOpen && <AuthModal />}
+      <EcosystemModals />
       <InstallPrompt />
     </>
   );

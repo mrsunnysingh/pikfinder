@@ -7,14 +7,18 @@ import { AppProvider } from './context/AppContext.jsx';
 import { ToastProvider } from './components/Toast.jsx';
 import './i18n.js';
 
+import ErrorBoundary from './components/ErrorBoundary.jsx';
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ToastProvider>
-        <AppProvider>
-          <App />
-        </AppProvider>
-      </ToastProvider>
+      <ErrorBoundary>
+        <ToastProvider>
+          <AppProvider>
+            <App />
+          </AppProvider>
+        </ToastProvider>
+      </ErrorBoundary>
     </BrowserRouter>
   </React.StrictMode>,
 );
